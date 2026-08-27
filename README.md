@@ -23,32 +23,48 @@ La lógica financiera y las decisiones de arquitectura son de autoría propia; l
 ### Escritorio Macro Argentina
 Estado de reservas, tasa real, brecha cambiaria, riesgo país, resultado fiscal, actividad y desempleo en un solo panel, con series históricas del BCRA.
 
-![Escritorio Macro Argentina](assets/02_macro_argentina.png)
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/adab3b11-e626-4e99-9a59-e0429897974b" />
+<img width="3120" height="910" alt="image" src="https://github.com/user-attachments/assets/4be9210a-88d0-4c1f-a581-7d5912f81282" />
 
 ### Inflación (IPC) por rubro
 Serie histórica completa del IPC, apertura por rubro y comparación núcleo vs. estacional vs. regulados — construido sobre el parser propio de los Excel de INDEC.
 
-![Inflación IPC](assets/03_inflacion_ipc.png)
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/dbac7f9c-6817-4cb8-b141-794d8cfb5197" />
 
-### Curvas de Renta Fija con ajuste Nelson-Siegel
-Curva de tasa fija soberana con el ajuste de la curva Nelson-Siegel superpuesto sobre los precios de mercado del día.
+### Curvas de Renta Fija Argentina
+Curvas de rendimiento precios spot.
 
-![Curva Tasa Fija](assets/04_curva_tasa_fija.png)
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/07d48975-d71f-4f66-95c0-38cdb5769081" />
+<img width="3061" height="486" alt="image" src="https://github.com/user-attachments/assets/8d23181e-dda8-4682-8589-b73afb7d7573" />
 
-### Arbitraje legislativo (Ley Local vs. Ley Extranjera)
-Ratios de dólar MEP implícito por activo y spread en bps entre pares de bonos soberanos bajo legislación local vs. extranjera (AL29/GD29, AL30/GD30, etc.).
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/ed736640-3de1-401f-a228-f55862fa6f4a" />
+<img width="2723" height="424" alt="image" src="https://github.com/user-attachments/assets/bbabf686-78ba-47dc-9ae7-847d3e77aba8" />
 
-![Arbitraje Legislativo](assets/05_arbitraje_legislativo.png)
+<img width="3048" height="863" alt="image" src="https://github.com/user-attachments/assets/25858673-3b7c-4007-8a83-d8372e78de8e" />
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/79186c45-e6b9-47e2-9b0d-6eb7cb3ac6db" />
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/353fb007-1041-4347-aa56-f4849985a2b0" />
 
-### Ficha de bono: sensibilidad y duration
-Métricas spot (paridad, TIR, current yield) y de sensibilidad (Duration, Convexidad, variación de precio ante ±100bps) calculadas para cada bono del universo.
+<img width="3135" height="948" alt="image" src="https://github.com/user-attachments/assets/ab120e75-0331-40e0-8b04-f66d2e2d2764" />
+<img width="3082" height="1155" alt="image" src="https://github.com/user-attachments/assets/212a6a9d-4259-46ef-af10-d587e3f10251" />
+<img width="3024" height="419" alt="image" src="https://github.com/user-attachments/assets/df62938f-b931-46e8-9083-773833e7facb" />
 
-![Ficha de Bono](assets/06_ficha_bono.png)
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/61cf94a6-2f07-4186-b72c-1c637ea83bc4" />
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/d69df2f4-1b1b-4602-b258-fea9868014be" />
+
+
+### Breakeven Inflation
+El objetivo es encontrar desfasajes groseros entre la inflación que pricean los bonos (BEI) y la inflación real esperada (REM). El sistema empareja una Lecap y un Boncer que vencen el mismo día. Si el Boncer rinde tan poco que asume una inflación irrealmente alta, te avisa para que lo vendas y compres la Lecap (LONG FIJA).
+
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/2ef430c2-09e0-4567-8d81-7563a97364a5" />
 
 ### Semáforo de estrés sistémico global (GSSI) y tasas americanas
 Índice compuesto de estrés de mercado (percentiles históricos de VIX, MOVE, VVIX, CISS) junto a la curva del Tesoro americano, TIPS e inflación breakeven.
 
-![Liquidez Global](assets/01_liquidez_global.png)
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/0bad6d37-7111-44b8-b031-99605fc0d881" />
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/e0ee9e9d-ab98-4d65-bddf-d76dd59bd429" />
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/6195296e-12a4-4324-ae8f-eb49c403ff0e" />
+<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/af55d776-1bbe-445c-862a-ff389ca0de82" />
+<img width="2051" height="489" alt="image" src="https://github.com/user-attachments/assets/9ef78718-2894-45e6-af0e-c7a500636725" />
 
 ## Qué resuelve
 
