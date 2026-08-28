@@ -22,9 +22,18 @@ La lógica financiera y las decisiones de arquitectura son de autoría propia; l
 
 **Economía real y variables de mercado — Argentina** (10 categorías): Cambiario · Monetario · Actividad · Fiscal · Empleo y Sociedad · Precios · Consumo y Retail · Sector Externo · Expectativas · Mercados.
 
-**Variables globales que mira el mercado**: Liquidez y tasas de la Fed · curvas del Tesoro americano y TIPS · inflación breakeven · índice de estrés sistémico (VIX, MOVE, VVIX, CISS) · curvas de recesión (T10Y2Y, T10Y3M).
+**Variables globales que mira el mercado**: bancos centrales (Fed, ECB, BOJ, PBOC) y su liquidez agregada · curvas del Tesoro americano y TIPS · inflación breakeven · índice de estrés sistémico (VIX, MOVE, VVIX, CISS) · curvas de recesión (T10Y2Y, T10Y3M) · fiscal de EE.UU.
 
 **Universo de renta fija argentina**: Tasa fija, CER, Dollar Linked, Duales, Soberanos/Provinciales USD y 189 Obligaciones Negociables corporativas (ley local y extranjera), con curva Nelson-Siegel ajustada en vivo para cada clase de emisor.
+
+## Pipeline de ejecución
+
+El sistema corre en un orden fijo de 4 pasos, repartidos entre este repo y su capa de datos (ETL):
+
+1. **Universo de bonos** — sincroniza el universo completo de Títulos Públicos, Obligaciones Negociables y Fideicomisos Financieros del MAE (no solo los "vigentes" que expone la API oficial).
+2. **Macro global** — descarga masiva desde BCRA, INDEC, FRED/ECB/Treasury, datos.gob.ar y arma el índice unificado de series.
+3. **Precios en vivo** — actualiza intradiario los futuros de dólar (scraping de fuentes públicas de mercado) y los precios de bonos/letras/ON vía IOL.
+4. **Motor de pricing y dashboard** — corre el ETL de planillas BCRA/INDEC, dispara el pipeline de pricers (Prefect) y levanta el escritorio en Streamlit.
 
 ## Capturas
 
@@ -73,7 +82,7 @@ Métricas spot (paridad, TIR, current yield) y de sensibilidad (Duration, Convex
 Dos motores de detección de desfasajes de precio, con acción sugerida (comprar/vender) calculada en vivo:
 
 - **Inflación implícita vs. mercado (BEI vs. REM):** empareja una Lecap y un bono CER que vencen el mismo día para extraer la inflación que el mercado está pricing (BEI) y la compara contra el consenso de analistas (REM). Si el bono CER rinde tan poco que asume una inflación irrealmente alta, señala vender ese CER y pasarse a la Lecap (LONG FIJA).
-- **Arbitraje FX sintético (Dollar Linked vs. Tasa Fija):** simula el rendimiento de un bono Dollar Linked asumiendo que el dólar devalúa según lo que pricean los futuros de ROFEX, y lo compara contra una Lecap del mismo plazo — si la devaluación implícita en el Dollar Linked es menor a la que rendiría la tasa fija, señala vender el Dollar Linked y pasarse a tasa fija.
+- **Arbitraje FX sintético (Dollar Linked vs. Tasa Fija):** simula el rendimiento de un bono Dollar Linked asumiendo que el dólar devalúa según lo que pricean los futuros de dólar (obtenidos por scraping), y lo compara contra una Lecap del mismo plazo — si la devaluación implícita en el Dollar Linked es menor a la que rendiría la tasa fija, señala vender el Dollar Linked y pasarse a tasa fija.
 
 <img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/2ef430c2-09e0-4567-8d81-7563a97364a5" />
 
@@ -100,7 +109,13 @@ Cobertura de 7 tipos de instrumentos de renta fija argentina, sobre un universo 
 - Duales (con ruteo automático por pata ganadora)
 - Hard dollar (soberanos y corporativos en USD, ley local y extranjera)
 
-Cálculos incluidos: NPV, Duration Macaulay/Modificada, Convexidad, y un **solver de TIR propio por método de Brent** (híbrido bisección / interpolación cuadrática inversa), optimizado con Numba (JIT) para performance.
+Cálculos incluidos: NPV, Duration Macaulay/Modificada, Convexidad, Z-spread contra la curva del Tesoro americano interpolada, y solvers de TIR propios — un **solver por método de Brent optimizado con Numba (JIT)** para los instrumentos en pesos (tasa fija, CER, duales), y `scipy.optimize.brentq` para los bonos hard-dollar.
+
+### Otros motores destacados
+
+- **Optimizador de cartera por duration target** (`scipy.optimize.SLSQP`): minimiza la varianza de una cartera de bonos alrededor de una duration objetivo, sujeto a TIR mínima, máximo 30% por activo y cobertura de flujo de caja mensual — no es Markowitz media-varianza clásico, sino un problema de optimización con restricciones a medida del universo argentino.
+- **Calculadora de FX implícito (MEP/CCL)**: prioriza fuente de precio (API de bróker → ratio AL30/GD30 → A3500) y descarta automáticamente cotizaciones con más de 30 días de antigüedad.
+- **Motor de régimen macro**: construye una matriz diaria de régimen con un *firewall* anti-look-ahead-bias (retrasa T+2 las variables del BCRA para simular el rezago real de publicación), más un "Shadow FX" (tipo de cambio implícito por M2/reservas) y un Z-score móvil del spread interbancario BAIBAR-TAMAR.
 
 ## Stack técnico
 
@@ -109,7 +124,7 @@ Cálculos incluidos: NPV, Duration Macaulay/Modificada, Convexidad, y un **solve
 | Orquestación ETL | Prefect |
 | Almacenamiento analítico | DuckDB, Parquet |
 | Cálculo numérico | NumPy, SciPy, Numba (JIT) |
-| Fuentes de datos | API BCRA, INDEC (parsers de Excel oficiales), FRED, datos.gob.ar, prospectos MAE (PDF), ROFEX (futuros) |
+| Fuentes de datos | API BCRA, INDEC (parsers de Excel oficiales), FRED, Treasury, datos.gob.ar, prospectos MAE (PDF), futuros de dólar (scraping) |
 | Extracción de fichas de bonos | PyMuPDF + LLM para estructurar parámetros de prospectos |
 | Generación de reportes | fpdf2 (fichas técnicas en PDF) |
 | Dashboard | Streamlit, Plotly |
