@@ -127,31 +127,35 @@ supermercados — un gráfico simple y muy legible incluso para un lector no té
 ### Tasa Fija y CER — curvas con ajuste Nelson-Siegel
 Curvas de rendimiento sobre precios spot para renta fija a tasa fija y ajustada por CER, con la tabla de pricing completa (TIR, TEA, TEM, Duration, Convexidad) detrás de cada punto.
 
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/07d48975-d71f-4f66-95c0-38cdb5769081" />
-<img width="3061" height="486" alt="image" src="https://github.com/user-attachments/assets/8d23181e-dda8-4682-8589-b73afb7d7573" />
+<img width="3437" height="1301" alt="image" src="https://github.com/user-attachments/assets/301851d5-4ff4-4e49-904b-fb8349516d6a" />
+<img width="3417" height="1171" alt="image" src="https://github.com/user-attachments/assets/c1071a39-a157-4d77-9bbd-6969b137488f" />
 
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/ed736640-3de1-401f-a228-f55862fa6f4a" />
-<img width="2723" height="424" alt="image" src="https://github.com/user-attachments/assets/bbabf686-78ba-47dc-9ae7-847d3e77aba8" />
+<img width="3433" height="1304" alt="image" src="https://github.com/user-attachments/assets/34955e75-219f-4a72-bbf4-0461a78176c1" />
+<img width="3415" height="955" alt="image" src="https://github.com/user-attachments/assets/e21c6ed0-3eaf-4c36-8bd4-2635fecab1d3" />
 
 ### Dollar Linked — bandas cambiarias y proyección por escenario
 Evolución del A3500 contra el régimen oficial de bandas cambiarias, con brecha promedio (6M e histórica) contra el límite superior e inferior; dos escenarios de proyección — devaluación implícita en los futuros A3500 y en los futuros ROFEX — para comparar contra la curva de tasa fija.
 
-<img width="3048" height="863" alt="image" src="https://github.com/user-attachments/assets/25858673-3b7c-4007-8a83-d8372e78de8e" />
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/79186c45-e6b9-47e2-9b0d-6eb7cb3ac6db" />
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/353fb007-1041-4347-aa56-f4849985a2b0" />
+<img width="3436" height="1280" alt="image" src="https://github.com/user-attachments/assets/9d458b3d-ba2d-467a-b605-053f4c6015b1" />
+<img width="3427" height="1308" alt="image" src="https://github.com/user-attachments/assets/598d2838-ae34-4f6f-b6fa-d20eaac505ed" />
+<img width="3422" height="1305" alt="image" src="https://github.com/user-attachments/assets/71fd6749-7ac8-47b2-8163-b126c5403154" />
+<img width="3433" height="1152" alt="image" src="https://github.com/user-attachments/assets/04b05aa4-da54-4116-81a0-c9c02fdafbbe" />
+<img width="3417" height="1225" alt="image" src="https://github.com/user-attachments/assets/e8589c58-626b-4333-90d3-8102d2694061" />
+<img width="3435" height="1223" alt="image" src="https://github.com/user-attachments/assets/bcd1548a-f2df-464a-ac2b-46d9ae082931" />
 
 ### Soberanos y Provinciales USD — MEP implícito y arbitraje legislativo
 Ratios de dólar MEP implícito por activo, spread en bps entre pares de bonos soberanos bajo ley local vs. extranjera (AL29/GD29, AL30/GD30, etc.), y curvas por ley (local, extranjera, deuda provincial y Bopreales).
 
-<img width="3135" height="948" alt="image" src="https://github.com/user-attachments/assets/ab120e75-0331-40e0-8b04-f66d2e2d2764" />
-<img width="3082" height="1155" alt="image" src="https://github.com/user-attachments/assets/212a6a9d-4259-46ef-af10-d587e3f10251" />
-<img width="3024" height="419" alt="image" src="https://github.com/user-attachments/assets/df62938f-b931-46e8-9083-773833e7facb" />
+<img width="3436" height="917" alt="image" src="https://github.com/user-attachments/assets/99a8d08e-0cb1-456b-bd3e-7e03bc6221f5" />
+<img width="3433" height="1304" alt="image" src="https://github.com/user-attachments/assets/4a24b61d-111f-49e3-bfb4-92e2f22ab10c" />
+<img width="3422" height="1091" alt="image" src="https://github.com/user-attachments/assets/83fcb055-85ef-4917-8b8f-33ee11cda5d4" />
 
 ### Corporativos USD — 189 Obligaciones Negociables por ley y por sector
 Universo completo de ONs corporativas, segmentadas por ley de emisión (local/extranjera) y por sector económico (agrupa emisores como YPF/PAE/Vista bajo "Oil & Gas", exige un mínimo de 3 tickers para que un sector tenga curva propia).
 
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/61cf94a6-2f07-4186-b72c-1c637ea83bc4" />
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/d69df2f4-1b1b-4602-b258-fea9868014be" />
+<img width="3435" height="1197" alt="image" src="https://github.com/user-attachments/assets/f15d1943-130e-475a-859a-9a269500dd83" />
+<img width="3430" height="1282" alt="image" src="https://github.com/user-attachments/assets/34c4fbec-720d-4dd8-8f09-bb8d4d7c3d91" />
+<img width="3422" height="1259" alt="image" src="https://github.com/user-attachments/assets/33d28559-f531-4300-b2cf-cbfcdbbbabb5" />
 
 <!--
 📌 Falta la captura de "Ficha de bono" — el detalle de sensibilidad de un instrumento puntual
@@ -171,7 +175,9 @@ Dos motores de detección de desfasajes de precio, con acción sugerida (comprar
 - **Inflación implícita vs. mercado (BEI vs. REM):** empareja una Lecap y un bono CER que vencen el mismo día para extraer la inflación que el mercado está pricing (BEI) y la compara contra el consenso de analistas (REM). Si el bono CER rinde tan poco que asume una inflación irrealmente alta, señala vender ese CER y pasarse a la Lecap (LONG FIJA).
 - **Arbitraje FX sintético (Dollar Linked vs. Tasa Fija):** simula el rendimiento de un bono Dollar Linked asumiendo que el dólar devalúa según lo que pricean los futuros de dólar (obtenidos por scraping), y lo compara contra una Lecap del mismo plazo — si la devaluación implícita en el Dollar Linked es menor a la que rendiría la tasa fija, señala vender el Dollar Linked y pasarse a tasa fija.
 
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/2ef430c2-09e0-4567-8d81-7563a97364a5" />
+<img width="3424" height="1299" alt="image" src="https://github.com/user-attachments/assets/ab4cd31f-4c08-4ff4-873f-d16f9d1d27bd" />
+<img width="3065" height="436" alt="image" src="https://github.com/user-attachments/assets/3db86490-585e-4c83-8719-793f8fa7fc5a" />
+<img width="3143" height="550" alt="image" src="https://github.com/user-attachments/assets/e7209efe-966f-487f-b92e-243156689fb8" />
 
 ### Semáforo de estrés sistémico global (GSSI) y tasas americanas
 Índice compuesto de estrés de mercado (percentiles históricos de VIX, MOVE, VVIX, CISS), curva del Tesoro americano, TIPS, inflación breakeven, y las dos curvas que la propia Fed de Nueva York usa como modelo oficial de probabilidad de recesión (T10Y2Y y T10Y3M), con historia desde fines de los '70.
