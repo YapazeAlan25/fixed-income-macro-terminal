@@ -1,0 +1,138 @@
+<svg viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a5578"/>
+    </marker>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1220"/>
+      <stop offset="100%" stop-color="#0a0e18"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="900" fill="url(#bgGrad)"/>
+
+  <text x="600" y="45" text-anchor="middle" fill="#e2e8f0" font-size="26" font-weight="700">Arquitectura del sistema</text>
+  <text x="600" y="72" text-anchor="middle" fill="#8b95b3" font-size="14">De la fuente oficial al gráfico interactivo — 4 capas independientes</text>
+
+  <!-- Layer 1: Fuentes -->
+  <text x="60" y="118" fill="#8b95b3" font-size="13" font-weight="600" letter-spacing="1">01 · FUENTES DE DATOS</text>
+  <g font-size="13" fill="#cbd5f5">
+    <rect x="60"  y="130" width="128" height="46" rx="8" fill="#161d33" stroke="#2d3657"/>
+    <text x="124" y="158" text-anchor="middle">BCRA</text>
+
+    <rect x="200" y="130" width="128" height="46" rx="8" fill="#161d33" stroke="#2d3657"/>
+    <text x="264" y="158" text-anchor="middle">INDEC</text>
+
+    <rect x="340" y="130" width="168" height="46" rx="8" fill="#161d33" stroke="#2d3657"/>
+    <text x="424" y="152" text-anchor="middle">FRED · ECB · BIS</text>
+    <text x="424" y="168" text-anchor="middle" font-size="11" fill="#8b95b3">Treasury · OECD</text>
+
+    <rect x="520" y="130" width="140" height="46" rx="8" fill="#161d33" stroke="#2d3657"/>
+    <text x="590" y="158" text-anchor="middle">datos.gob.ar</text>
+
+    <rect x="672" y="130" width="150" height="46" rx="8" fill="#161d33" stroke="#2d3657"/>
+    <text x="747" y="152" text-anchor="middle">MAE</text>
+    <text x="747" y="168" text-anchor="middle" font-size="11" fill="#8b95b3">prospectos legales</text>
+
+    <rect x="834" y="130" width="150" height="46" rx="8" fill="#161d33" stroke="#2d3657"/>
+    <text x="909" y="152" text-anchor="middle">IOL</text>
+    <text x="909" y="168" text-anchor="middle" font-size="11" fill="#8b95b3">precios en vivo</text>
+
+    <rect x="996" y="130" width="144" height="46" rx="8" fill="#161d33" stroke="#2d3657"/>
+    <text x="1068" y="152" text-anchor="middle">Futuros ROFEX</text>
+    <text x="1068" y="168" text-anchor="middle" font-size="11" fill="#8b95b3">scraping</text>
+  </g>
+
+  <line x1="600" y1="176" x2="600" y2="212" stroke="#4a5578" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Layer 2: Ingesta -->
+  <rect x="200" y="218" width="800" height="56" rx="10" fill="#131a2e" stroke="#3a4570" stroke-width="1.5"/>
+  <text x="600" y="242" text-anchor="middle" fill="#93c5fd" font-size="14" font-weight="600">02 · MOTOR DE INGESTA</text>
+  <text x="600" y="262" text-anchor="middle" fill="#9aa4c4" font-size="12">descarga paralela · incremental por fecha de modificación · rate-limiting propio por fuente</text>
+
+  <line x1="600" y1="274" x2="600" y2="310" stroke="#4a5578" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Layer 3: Warehouse -->
+  <rect x="380" y="316" width="440" height="60" rx="10" fill="#161d33" stroke="#48bb78" stroke-width="1.5"/>
+  <text x="600" y="342" text-anchor="middle" fill="#68d391" font-size="15" font-weight="700">03 · DATA WAREHOUSE</text>
+  <text x="600" y="363" text-anchor="middle" fill="#9aa4c4" font-size="12">DuckDB (analítico, embebido) + Parquet</text>
+
+  <line x1="500" y1="376" x2="440" y2="418" stroke="#4a5578" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="700" y1="376" x2="760" y2="418" stroke="#4a5578" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Layer 4: dos ramas -->
+  <text x="220" y="410" fill="#8b95b3" font-size="13" font-weight="600" letter-spacing="1">04 · CAPA DE ANÁLISIS</text>
+
+  <!-- Rama pricing -->
+  <rect x="120" y="418" width="440" height="188" rx="10" fill="#171422" stroke="#9f7aea" stroke-width="1.5"/>
+  <text x="340" y="444" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="700">Motores de Pricing</text>
+  <text x="340" y="461" text-anchor="middle" fill="#8b95b3" font-size="11">orquestados con Prefect · NumPy / SciPy / Numba (JIT)</text>
+
+  <g font-size="12" fill="#cbd5f5">
+    <rect x="140" y="474" width="190" height="30" rx="6" fill="#211b33"/>
+    <text x="235" y="494" text-anchor="middle">Tasa Fija</text>
+    <rect x="340" y="474" width="200" height="30" rx="6" fill="#211b33"/>
+    <text x="440" y="494" text-anchor="middle">CER (lookup T-10 + proyección REM)</text>
+
+    <rect x="140" y="510" width="190" height="30" rx="6" fill="#211b33"/>
+    <text x="235" y="530" text-anchor="middle">Dollar Linked</text>
+    <rect x="340" y="510" width="200" height="30" rx="6" fill="#211b33"/>
+    <text x="440" y="530" text-anchor="middle">Duales (ruteo por pata)</text>
+
+    <rect x="140" y="546" width="400" height="30" rx="6" fill="#211b33"/>
+    <text x="340" y="566" text-anchor="middle">Hard Dollar — Soberanos / Provinciales / ONs (Local + NY)</text>
+  </g>
+  <text x="340" y="596" text-anchor="middle" fill="#8b95b3" font-size="11">NPV · TIR (Brent) · Duration · Convexidad · Z-spread</text>
+
+  <!-- Rama señales -->
+  <rect x="640" y="418" width="440" height="188" rx="10" fill="#131f22" stroke="#4299e1" stroke-width="1.5"/>
+  <text x="860" y="444" text-anchor="middle" fill="#93c5fd" font-size="14" font-weight="700">Capa de Señales &amp; Régimen Macro</text>
+  <text x="860" y="461" text-anchor="middle" fill="#8b95b3" font-size="11">firewall anti-look-ahead-bias (T+2)</text>
+
+  <g font-size="12" fill="#cbd5f5">
+    <rect x="660" y="474" width="190" height="30" rx="6" fill="#122733"/>
+    <text x="755" y="494" text-anchor="middle">GSSI (estrés global)</text>
+    <rect x="860" y="474" width="200" height="30" rx="6" fill="#122733"/>
+    <text x="960" y="494" text-anchor="middle">Nowcasting recesión EE.UU.</text>
+
+    <rect x="660" y="510" width="190" height="30" rx="6" fill="#122733"/>
+    <text x="755" y="530" text-anchor="middle">Shadow FX (M2/Reservas)</text>
+    <rect x="860" y="510" width="200" height="30" rx="6" fill="#122733"/>
+    <text x="960" y="530" text-anchor="middle">Z-score BAIBAR–TAMAR</text>
+
+    <rect x="660" y="546" width="400" height="30" rx="6" fill="#122733"/>
+    <text x="860" y="566" text-anchor="middle">10 categorías macro Argentina (cambiario → mercados)</text>
+  </g>
+  <text x="860" y="596" text-anchor="middle" fill="#8b95b3" font-size="11">banderas 🟢🟡🔴 · frescura de datos por serie</text>
+
+  <line x1="340" y1="606" x2="500" y2="646" stroke="#4a5578" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="860" y1="606" x2="700" y2="646" stroke="#4a5578" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Layer 5: Dashboard -->
+  <rect x="260" y="652" width="680" height="150" rx="12" fill="#161d33" stroke="#ed8936" stroke-width="1.5"/>
+  <text x="600" y="682" text-anchor="middle" fill="#fbb768" font-size="16" font-weight="700">05 · DASHBOARD (Streamlit + Plotly)</text>
+
+  <g font-size="12.5" fill="#cbd5f5">
+    <rect x="284" y="698" width="150" height="76" rx="8" fill="#241a10"/>
+    <text x="359" y="724" text-anchor="middle" font-weight="600">Inicio</text>
+    <text x="359" y="742" text-anchor="middle" font-size="10.5" fill="#9aa4c4">brief matutino</text>
+    <text x="359" y="758" text-anchor="middle" font-size="10.5" fill="#9aa4c4">banderas de riesgo</text>
+
+    <rect x="446" y="698" width="150" height="76" rx="8" fill="#241a10"/>
+    <text x="521" y="724" text-anchor="middle" font-weight="600">Renta Fija</text>
+    <text x="521" y="742" text-anchor="middle" font-size="10.5" fill="#9aa4c4">7 pestañas</text>
+    <text x="521" y="758" text-anchor="middle" font-size="10.5" fill="#9aa4c4">200+ instrumentos</text>
+
+    <rect x="608" y="698" width="150" height="76" rx="8" fill="#241a10"/>
+    <text x="683" y="724" text-anchor="middle" font-weight="600">Liquidez Global</text>
+    <text x="683" y="742" text-anchor="middle" font-size="10.5" fill="#9aa4c4">Fed · BOJ · PBOC</text>
+    <text x="683" y="758" text-anchor="middle" font-size="10.5" fill="#9aa4c4">GSSI · recesión US</text>
+
+    <rect x="770" y="698" width="150" height="76" rx="8" fill="#241a10"/>
+    <text x="845" y="724" text-anchor="middle" font-weight="600">Macro Argentina</text>
+    <text x="845" y="742" text-anchor="middle" font-size="10.5" fill="#9aa4c4">10 pestañas</text>
+    <text x="845" y="758" text-anchor="middle" font-size="10.5" fill="#9aa4c4">~45 gráficos</text>
+  </g>
+
+  <text x="600" y="852" text-anchor="middle" fill="#5b6488" font-size="11.5">Dos repos privados — motor de datos + motor de análisis — comparten un mismo warehouse. Este repo documenta el resultado.</text>
+</svg>
