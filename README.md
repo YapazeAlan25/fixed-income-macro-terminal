@@ -24,6 +24,7 @@ Escritorio de análisis financiero propio que cubre bonos argentinos (pricing y 
 - [Capturas](#capturas)
 - [Qué resuelve](#qué-resuelve)
 - [Motores de pricing](#motores-de-pricing)
+- [Exportación a Excel: fichas de nivel research desk](#exportación-a-excel-fichas-de-nivel-research-desk)
 - [Otros motores destacados](#otros-motores-destacados)
 - [Lógica destacada (ejemplo ilustrativo)](#lógica-destacada-ejemplo-ilustrativo)
 - [Stack técnico](#stack-técnico)
@@ -41,6 +42,7 @@ Escritorio de análisis financiero propio que cubre bonos argentinos (pricing y 
 | **~330** | funciones de acceso a datos sobre el warehouse (una por serie o grupo de series) |
 | **27** | parsers propios para los distintos módulos de Excel oficiales de INDEC |
 | **~45** | gráficos interactivos solo en el escritorio de Macro Argentina |
+| **21** | tests automatizados que reconcilian cada ficha Excel exportada contra el precio de mercado y contra el dashboard en vivo, instrumento por instrumento |
 
 ## Qué es
 
@@ -157,17 +159,20 @@ Universo completo de ONs corporativas, segmentadas por ley de emisión (local/ex
 <img width="3430" height="1282" alt="image" src="https://github.com/user-attachments/assets/34c4fbec-720d-4dd8-8f09-bb8d4d7c3d91" />
 <img width="3422" height="1259" alt="image" src="https://github.com/user-attachments/assets/33d28559-f531-4300-b2cf-cbfcdbbbabb5" />
 
-<!--
-📌 Falta la captura de "Ficha de bono" — el detalle de sensibilidad de un instrumento puntual
-   (paridad, TIR, current yield, Duration, Convexidad, variación de precio ante ±100bps).
-   Ninguna de las capturas actuales corresponde a esta vista; si existe, va acá:
+### Ficha de bono: drill-down completo por instrumento
+Click en cualquier ticker de las tablas de pricing de arriba abre una vista de detalle dedicada
+para ese instrumento: métricas de sensibilidad completas (TIR, Paridad, Duration, **Vida
+Promedio** —distinta de Duration: pesa solo la devolución de capital sin descontar, el número
+que de verdad importa en bonos que amortizan en cuotas, no al vencimiento entero—, Convexidad,
+DV01 en dos escalas —por 100 de nominal y por una posición real de VN 1.000.000—, spread contra
+la curva propia del emisor y concentración del emisor en el universo), detalle completo del
+prospecto, cronograma de flujos con Valor Presente de cada flujo (misma estructura que un
+modelo de manual de finanzas), gráfico de sensibilidad Precio-vs-TIR con la aproximación
+clásica de Duration-Convexidad superpuesta contra el reprecio exacto, comparables por duration
+dentro de la misma clase de emisor, otros instrumentos del mismo emisor exacto, y un botón para
+exportar la misma ficha, completa, a Excel.
 
-### Ficha de bono: sensibilidad y duration
-Métricas spot y de sensibilidad para cualquier bono del universo, drill-down desde cualquiera
-de las tablas de pricing de arriba.
-
-[PEGAR CAPTURA ACÁ]
--->
+<!-- 📌 Captura pendiente: abrir cualquier ticker desde una tabla de Renta Fija y pegar acá -->
 
 ### Tablero de Arbitraje: señales cuantitativas de trading
 Dos motores de detección de desfasajes de precio, con acción sugerida (comprar/vender) calculada en vivo:
@@ -204,6 +209,36 @@ Cobertura de 7 tipos de instrumentos de renta fija argentina, sobre un universo 
 
 Cálculos incluidos: NPV, Duration Macaulay/Modificada, Convexidad, Z-spread contra la curva del Tesoro americano interpolada, y solvers de TIR propios — un **solver por método de Brent optimizado con Numba (JIT)** para los instrumentos en pesos (tasa fija, CER, duales), y `scipy.optimize.brentq` para los bonos hard-dollar.
 
+## Exportación a Excel: fichas de nivel research desk
+
+Cada instrumento se puede exportar a un Excel completo con la misma metodología y los mismos
+números que el dashboard en vivo — nunca una fórmula paralela: reusa el motor de pricing, con
+un flag que además le hace devolver el cronograma detallado fila por fila.
+
+- **Cronograma completo con Valor Presente de cada flujo** (PVCF), con una fila de control que
+  reconcilia la suma de los PVCF contra el precio efectivamente pagado — la misma estructura
+  que arma un analista a mano en un modelo de manual de finanzas.
+- **Análisis de sensibilidad**: tabla y gráfico de Precio vs. TIR en un rango de ±10 puntos
+  porcentuales, con la aproximación clásica de Duration-Convexidad superpuesta contra el
+  reprecio exacto — muestra en qué rango de movimiento de tasa la aproximación lineal de manual
+  sigue siendo confiable y dónde empieza a divergir del valor real.
+- **DV01** en dos escalas (por 100 de nominal y por una posición real de VN 1.000.000), **Vida
+  Promedio** (average life, distinta de Duration), **spread contra la curva propia** del
+  emisor, y **comparables** — los bonos de duration más parecida dentro de la misma clase de
+  emisor, más una tabla aparte con otros instrumentos del mismo emisor exacto (primer chequeo
+  de concentración de un analista de riesgo).
+- **Detalle completo del prospecto**: emisor, ISIN, ley, tipo de amortización, frecuencia de
+  pago, base de cálculo, y las fechas de referencia exactas usadas para tasas variables
+  (TAMAR/BADLAR) o ajuste por CER (CER Base/Liquidación a T-10, coeficiente aplicado).
+- **Exportación masiva**: un botón arma un .zip con una ficha por cada instrumento vigente del
+  universo completo, organizadas en carpetas por tipo y emisor, más un archivo "Global" por
+  clase de instrumento con una hoja Resumen — hipervínculos a la hoja de cada ticker y escala
+  de color condicional incluidos — para tener el book completo de renta fija en un solo click.
+
+Validado con 21 tests (pytest) que reconcilian, para todo el universo vigente, el PVCF
+exportado contra el precio de mercado y contra el valor que muestra el dashboard en vivo —
+ninguna de las dos vistas puede divergir de la otra sin que un test lo detecte.
+
 ## Otros motores destacados
 
 - **Calculadora de FX implícito (MEP/CCL)**: prioriza fuente de precio (API de bróker → ratio AL30/GD30 → A3500) y descarta automáticamente cotizaciones con más de 30 días de antigüedad.
@@ -238,15 +273,14 @@ else:
 | Cálculo numérico | NumPy, SciPy, Numba (JIT) |
 | Fuentes de datos | API BCRA, INDEC (parsers de Excel oficiales), FRED, ECB, BIS, Treasury, OECD, datos.gob.ar, prospectos MAE (PDF), precios IOL, futuros de dólar (scraping) |
 | Extracción de fichas de bonos | PyMuPDF (texto) + parsing automático por expresiones regulares del documento legal definitivo; lectura asistida por LLM en el flujo de carga manual de casos no estándar |
-| Generación de reportes | fpdf2 (fichas técnicas en PDF) |
+| Generación de reportes | openpyxl (fichas Excel completas por instrumento, exportación masiva del universo) |
 | Dashboard | Streamlit, Plotly |
-| Validación | pytest |
+| Validación | pytest (21 tests sobre el exportador Excel: reconciliación PVCF↔precio, consistencia contra el warehouse) |
 
 ## Roadmap
 
 - **Portfolio tracking y optimización por duration target**: ya prototipado (carga de posiciones propias + optimizador de cartera con restricciones — TIR mínima, concentración máxima por activo, duration objetivo); en revisión antes de reintegrarlo al dashboard en vivo.
 - **Reservas internacionales NETAS** (brutas − encajes en USD − swaps): hoy el panel muestra solo el proxy bruto por falta de una fuente pública confiable de encajes/swaps.
-- **Exportación de reportes PDF/Excel** con fichas técnicas por bono: el motor está construido (`fpdf2` + formato Excel) pero la fase queda deshabilitada en el pipeline por ahora, pendiente de reactivar.
 
 ## Contacto
 
