@@ -227,6 +227,14 @@ un flag que además le hace devolver el cronograma detallado fila por fila.
 - **Cronograma completo con Valor Presente de cada flujo** (PVCF), con una fila de control que
   reconcilia la suma de los PVCF contra el precio efectivamente pagado — la misma estructura
   que arma un analista a mano en un modelo de manual de finanzas.
+- **Cronograma en pesos NOMINALES, no en unidades de valor nominal (VN) constantes**: para
+  instrumentos CER, cada cupón/amortización futuro se multiplica por el coeficiente CER
+  proyectado a ESA fecha puntual (no un único coeficiente fijo de hoy), así un cupón
+  contractualmente parejo se ve crecer en $ a medida que se aleja en el tiempo; para Dollar
+  Linked, cada flujo se muestra en USD y en ARS al tipo de cambio proyectado de ese día bajo
+  cada uno de los 4 escenarios. La TIR/Duration/Convexidad y el análisis de sensibilidad se
+  siguen resolviendo en términos reales — separar ambas vistas evita el error clásico de leer
+  "100" en una fila de un bono indexado y pensar que ese es el dinero real que se cobra.
 - **Análisis de sensibilidad**: tabla y gráfico de Precio vs. TIR en un rango de ±10 puntos
   porcentuales, con la aproximación clásica de Duration-Convexidad superpuesta contra el
   reprecio exacto — muestra en qué rango de movimiento de tasa la aproximación lineal de manual
