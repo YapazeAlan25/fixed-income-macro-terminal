@@ -172,7 +172,16 @@ clásica de Duration-Convexidad superpuesta contra el reprecio exacto, comparabl
 dentro de la misma clase de emisor, otros instrumentos del mismo emisor exacto, y un botón para
 exportar la misma ficha, completa, a Excel.
 
-<!-- 📌 Captura pendiente: abrir cualquier ticker desde una tabla de Renta Fija y pegar acá -->
+<!--
+📌 CAPTURA PENDIENTE (alto valor: es la vista más nueva del sistema, hoy sin ningún ejemplo
+   visual en este README). Sugerencia concreta: entrá a Soberanos USD, click en un ticker
+   como AO27 o GD30 — esa clase de instrumento arma el prospecto más completo (incluye el
+   link al documento legal). Capturá:
+   1. La parte de arriba: KPIs + Detalle del Prospecto (hasta donde arranca el cronograma).
+   2. Scrolleada más abajo: cronograma de flujos + el gráfico de sensibilidad
+      Precio-vs-TIR con las dos curvas (exacta y aproximación Duration-Convexidad).
+   Pegá cada una donde corresponda, con el mismo formato <img> que las de arriba.
+-->
 
 ### Tablero de Arbitraje: señales cuantitativas de trading
 Dos motores de detección de desfasajes de precio, con acción sugerida (comprar/vender) calculada en vivo:
@@ -238,6 +247,21 @@ un flag que además le hace devolver el cronograma detallado fila por fila.
 Validado con 21 tests (pytest) que reconcilian, para todo el universo vigente, el PVCF
 exportado contra el precio de mercado y contra el valor que muestra el dashboard en vivo —
 ninguna de las dos vistas puede divergir de la otra sin que un test lo detecte.
+
+<!--
+📌 CAPTURA(S) PENDIENTE(S) (alto valor: esta sección entera hoy es solo texto, sin ninguna
+   prueba visual — es probablemente el hueco más grande del README). Abrí cualquier .xlsx
+   exportado en Excel y capturá:
+   1. La hoja de un ticker: bloque de KPIs + Detalle del Prospecto + el arranque del
+      cronograma con las columnas PVCF/t×PVCF visibles — muestra de un vistazo que no es un
+      Excel genérico, es una planilla de manual de finanzas con trazabilidad completa.
+      Si entra en el mismo screenshot, mejor: la tabla de sensibilidad ±10pp al costado con
+      su gráfico embebido (Precio vs. TIR, exacta vs. aproximación Duration-Convexidad).
+   2. (Opcional pero potente) La hoja "Resumen" de un archivo `<Clase>_Global.xlsx` de la
+      exportación masiva: la escala de color condicional en TIR/Paridad y los hipervínculos
+      a cada ticker se ven de un vistazo, y comunican "esto está pensado como herramienta de
+      trabajo real", no solo como demo.
+-->
 
 ## Otros motores destacados
 
