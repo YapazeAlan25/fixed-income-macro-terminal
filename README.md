@@ -204,6 +204,15 @@ Dos motores de detección de desfasajes de precio, con acción sugerida (comprar
 <img width="3065" height="436" alt="image" src="https://github.com/user-attachments/assets/3db86490-585e-4c83-8719-793f8fa7fc5a" />
 <img width="3143" height="550" alt="image" src="https://github.com/user-attachments/assets/e7209efe-966f-487f-b92e-243156689fb8" />
 
+### Carry Trade — breakeven de devaluación vs. expectativas de mercado
+Para cada bono a tasa fija en pesos (LECAP/BONCAP/BONO TF), calcula el tipo de cambio *breakeven* — al que el mercado tendría que llegar en el vencimiento para que un carry trade (vender USD, comprar el bono en pesos, recomprar USD al cobrar) empate exactamente contra haberse quedado en dólares — y lo compara contra tres expectativas de mercado: REM (encuesta de expectativas del BCRA), futuros ROFEX y las bandas cambiarias oficiales, todas anualizadas (TNA) para poder comparar bonos de distinto plazo en igualdad de condiciones. Señala si el carry gana, pierde o queda neutro contra cada expectativa, y suma una comparación directa en pesos (sin pasar por el tipo de cambio) contra un bono Dollar Linked de duration similar.
+
+<!--
+📌 CAPTURA PENDIENTE (falta screenshot de esta pestaña). Capturá la curva de carry (FX REM/ROFEX/
+   Banda vs. los breakeven de cada bono) y/o la tabla de detalle por instrumento, mismo formato
+   <img> que las demás secciones de Capturas.
+-->
+
 ### Semáforo de estrés sistémico global (GSSI) y tasas americanas
 Índice compuesto de estrés de mercado (percentiles históricos de VIX, MOVE, VVIX, CISS), curva del Tesoro americano, TIPS, inflación breakeven, y las dos curvas que la propia Fed de Nueva York usa como modelo oficial de probabilidad de recesión (T10Y2Y y T10Y3M), con historia desde fines de los '70.
 
