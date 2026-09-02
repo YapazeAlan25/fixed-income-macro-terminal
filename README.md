@@ -42,7 +42,8 @@ Escritorio de análisis financiero propio que cubre bonos argentinos (pricing y 
 | **~330** | funciones de acceso a datos sobre el warehouse (una por serie o grupo de series) |
 | **27** | parsers propios para los distintos módulos de Excel oficiales de INDEC |
 | **~45** | gráficos interactivos solo en el escritorio de Macro Argentina |
-| **21** | tests automatizados que reconcilian cada ficha Excel exportada contra el precio de mercado y contra el dashboard en vivo, instrumento por instrumento |
+| **25** | tests automatizados: reconciliación de cada ficha Excel contra el precio de mercado y el dashboard en vivo, más paridad verificada entre la tarea programada y la corrida manual |
+| **2** | tareas programadas (Windows Task Scheduler) que mantienen datos, precios y pricing frescos sin intervención manual |
 
 ## Qué es
 
@@ -72,9 +73,14 @@ Dos motores privados —uno de ingesta, uno de análisis— que comparten el mis
 El sistema corre en un orden fijo de 4 pasos, repartidos entre este repo y su capa de datos (ETL):
 
 1. **Universo de bonos** — sincroniza el universo completo de Títulos Públicos, Obligaciones Negociables y Fideicomisos Financieros del MAE (no solo los "vigentes" que expone la API oficial).
-2. **Macro global** — descarga masiva desde BCRA, INDEC, FRED/ECB/Treasury, datos.gob.ar y arma el índice unificado de series.
-3. **Precios en vivo** — actualiza intradiario los futuros de dólar (scraping de fuentes públicas de mercado) y los precios de bonos/letras/ON vía IOL.
-4. **Motor de pricing y dashboard** — corre el ETL de planillas BCRA/INDEC, dispara el pipeline de pricers (Prefect) y levanta el escritorio en Streamlit.
+2. **Macro global** — descarga masiva desde BCRA, INDEC, FRED/ECB/Treasury, datos.gob.ar y arma el índice unificado de series. INDEC se gatea contra su propio calendario oficial de difusión (parseado de PDF) — cada módulo se scrapea solo el día que corresponde, con margen de ±1 día por si se publica antes o después.
+3. **Precios en vivo** — actualiza intradiario los futuros de dólar (scraping de fuentes públicas de mercado) y los precios de bonos/letras/ON vía IOL, con un contador de cuota mensual que corta antes de arriesgar el acceso a la API.
+4. **Motor de pricing y dashboard** — corre el ETL de planillas BCRA/INDEC, dispara el pipeline de pricers (Prefect), exporta el book completo de Excel y levanta el escritorio en Streamlit.
+
+Los pasos 2-4 corren también sin intervención humana vía tareas programadas de Windows — una
+diaria para la macro, otra cada 30 minutos en horario de mercado para precios/pricing/export —
+con un test automatizado que verifica que la tarea programada corra exactamente el mismo
+pipeline que una corrida manual, no una aproximación.
 
 ## Capturas
 
@@ -277,6 +283,10 @@ ninguna de las dos vistas puede divergir de la otra sin que un test lo detecte.
 - **Motor de régimen macro**: construye una matriz diaria de régimen con un *firewall* anti-look-ahead-bias (retrasa 2 días las variables del BCRA para simular el rezago real de publicación), más un "Shadow FX" (tipo de cambio implícito por M2/reservas) y un Z-score móvil (ventana de 90 días) del spread interbancario BAIBAR-TAMAR.
 - **Semáforo de Estrés Sistémico Global (GSSI)**: índice compuesto 0-100 por percentil histórico de VIX, MOVE, VVIX y CISS, con su variación mensual como referencia de tendencia.
 - **Proyector de CER por REM**: cuando el BCRA todavía no publicó el CER oficial de una fecha futura, bootstrapea la curva de inflación mensual implícita en el REM (Relevamiento de Expectativas de Mercado) y la proyecta día a día, respetando qué mes de IPC corresponde legalmente aplicar según el día del mes.
+- **Scraping de INDEC gateado por su propio calendario oficial**: en vez de scrapear los 26 módulos activos todos los días, el sistema parsea el PDF de calendario de difusión semestral de INDEC (layout de 2 columnas, reconstruido por posición de palabra) y solo va a buscar cada módulo el día que le corresponde según ese calendario — con margen de tolerancia y un modo *fail-open* que nunca deja de scrapear algo por un mapeo incompleto.
+- **Deuda Externa Bruta, recuperada de su fuente real vigente**: el reporte standalone de Deuda Externa de INDEC está discontinuado desde 2017 (verificado navegando la página oficial en vivo); la serie completa 2006-hoy sigue publicándose, pero integrada dentro del informe combinado de Cuentas Internacionales — el parser se extendió para extraerla de ahí, en vez de asumir que "no hay dato" por seguir apuntando a la página vieja.
+- **Unificación de fuentes oficiales por sobre agregadores de terceros**: antes de migrar una serie (inflación, tasa de depósitos) de un agregador externo a la API oficial del BCRA, se verifica en vivo que ambas fuentes den exactamente el mismo historial — la migración se hace solo cuando la oficial es al menos igual de completa (y, en algún caso, más actualizada), nunca a ciegas por preferencia.
+- **Gestión de cuota de API con circuit-breaker**: el consumo mensual de la API de precios de mercado se trackea en una base local; si se acerca al límite del plan gratuito, el sistema corta las llamadas antes de arriesgar un bloqueo, en vez de descubrirlo a mitad de mes con el servicio caído.
 
 ## Lógica destacada (ejemplo ilustrativo)
 
@@ -307,7 +317,8 @@ else:
 | Extracción de fichas de bonos | PyMuPDF (texto) + parsing automático por expresiones regulares del documento legal definitivo; lectura asistida por LLM en el flujo de carga manual de casos no estándar |
 | Generación de reportes | openpyxl (fichas Excel completas por instrumento, exportación masiva del universo) |
 | Dashboard | Streamlit, Plotly |
-| Validación | pytest (21 tests sobre el exportador Excel: reconciliación PVCF↔precio, consistencia contra el warehouse) |
+| Validación | pytest (25 tests: reconciliación PVCF↔precio del exportador Excel, consistencia contra el warehouse, paridad automatizada entre la tarea programada y la corrida manual) |
+| Automatización | Windows Task Scheduler (2 tareas: macro diaria, precios/pricing/export cada 30 min en horario de mercado) con control de cuota de API |
 
 ## Roadmap
 
