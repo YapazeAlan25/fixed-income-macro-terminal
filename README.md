@@ -26,6 +26,7 @@ Escritorio de análisis financiero propio que cubre bonos argentinos (pricing y 
 - [Motores de pricing](#motores-de-pricing)
 - [Exportación a Excel: fichas de nivel research desk](#exportación-a-excel-fichas-de-nivel-research-desk)
 - [Otros motores destacados](#otros-motores-destacados)
+- [Rigor de ingeniería y control de calidad](#rigor-de-ingeniería-y-control-de-calidad)
 - [Lógica destacada (ejemplo ilustrativo)](#lógica-destacada-ejemplo-ilustrativo)
 - [Stack técnico](#stack-técnico)
 - [Roadmap](#roadmap)
@@ -42,8 +43,10 @@ Escritorio de análisis financiero propio que cubre bonos argentinos (pricing y 
 | **~330** | funciones de acceso a datos sobre el warehouse (una por serie o grupo de series) |
 | **27** | parsers propios para los distintos módulos de Excel oficiales de INDEC |
 | **~45** | gráficos interactivos solo en el escritorio de Macro Argentina |
-| **25** | tests automatizados: reconciliación de cada ficha Excel contra el precio de mercado y el dashboard en vivo, más paridad verificada entre la tarea programada y la corrida manual |
+| **87** | tests automatizados en las dos capas del sistema (62 sobre el motor de ingesta de datos + 25 sobre el motor de pricing/dashboard): desde imports y parsing hasta reconciliación de cada ficha Excel contra el precio de mercado y el dashboard en vivo, con paridad verificada entre la tarea programada y la corrida manual |
 | **2** | tareas programadas (Windows Task Scheduler) que mantienen datos, precios y pricing frescos sin intervención manual |
+| **1m 39s** | tiempo de descarga completa de las 13 fuentes de datos, en paralelo |
+| **21s** | tiempo del pipeline de pricing completo (motor de pricing + carga a warehouse) — 3.5x más rápido tras una optimización de la etapa de ingesta |
 
 ## Qué es
 
@@ -67,6 +70,8 @@ Dos motores privados —uno de ingesta, uno de análisis— que comparten el mis
 **Variables globales que mira el mercado**: bancos centrales (Fed, ECB, BOJ, PBOC) y su liquidez agregada · curvas del Tesoro americano y TIPS · inflación breakeven · índice de estrés sistémico (VIX, MOVE, VVIX, CISS) · curvas de recesión (T10Y2Y, T10Y3M) · fiscal de EE.UU.
 
 **Universo de renta fija argentina**: Tasa fija, CER, Dollar Linked, Duales, Soberanos/Provinciales USD y 189 Obligaciones Negociables corporativas (ley local y extranjera), con curva Nelson-Siegel ajustada en vivo para cada clase de emisor.
+
+**Alcance real de las APIs oficiales**: BCRA y FRED exponen catálogos mucho más grandes de lo que el sistema integra por defecto, y el sistema no descarga todo lo que existe — integra lo que es relevante para el análisis. La API de BCRA se usa en las categorías Monetarias, Cambiarias, Transparencia (tasas por banco) y Planillas oficiales (~1.580 series monetarias/cambiarias en total); el organismo expone además otras categorías de microdatos regulatorios (por ejemplo cheques rechazados, central de deudores del sistema financiero) que hoy quedan fuera del alcance del proyecto. La API de FRED tiene un catálogo total de ~800.000 series — el sistema mantiene curadas ~1.100 por relevancia temática (precios, actividad, empleo, tasas, monetario, mercados, tipo de cambio, comercio exterior, crédito, fiscal, condiciones financieras, recesión, macro internacional), con el catálogo completo indexable bajo demanda sin necesidad de descargarlo por defecto. Los reportes técnicos de INDEC no se scrapean por scrapear: hay 26 módulos activos con parser propio, y cada uno se descarga solo el día que le corresponde según el calendario oficial de difusión semestral de INDEC (parseado directo del PDF oficial), con un margen de ±1 día por si se publica antes o después.
 
 ## Pipeline de ejecución
 
@@ -216,11 +221,13 @@ Antes de este sistema, armar la foto diaria del mercado de renta fija argentino 
 
 Cobertura de 7 tipos de instrumentos de renta fija argentina, sobre un universo de más de 200 activos (36 soberanos/provinciales + 189 Obligaciones Negociables corporativas + Letras y bonos en pesos):
 
-- Tasa fija (soberana, provincial, corporativa)
+- Tasa fija en pesos (soberana — LECAPs/BONCAP/BADLAR/TAMAR)
 - CER (ajustados por inflación — lookup a T-10 sobre CER Base y CER de liquidación/vencimiento, más un proyector propio que extiende la curva a futuro con el REM cuando aún no hay CER oficial publicado)
 - Dollar-linked
 - Duales (con ruteo automático por pata ganadora)
-- Hard dollar (soberanos y corporativos en USD, ley local y extranjera)
+- Hard dollar soberano y provincial (USD, ley local y extranjera)
+- Hard dollar corporativo (Obligaciones Negociables en USD, ley local y extranjera)
+- Corporativos y provinciales en ARS a tasa fija/step-up (sin indexación CER/UVA/dollar-linked)
 
 Cálculos incluidos: NPV, Duration Macaulay/Modificada, Convexidad, Z-spread contra la curva del Tesoro americano interpolada, y solvers de TIR propios — un **solver por método de Brent optimizado con Numba (JIT)** para los instrumentos en pesos (tasa fija, CER, duales), y `scipy.optimize.brentq` para los bonos hard-dollar.
 
@@ -280,13 +287,24 @@ ninguna de las dos vistas puede divergir de la otra sin que un test lo detecte.
 ## Otros motores destacados
 
 - **Calculadora de FX implícito (MEP/CCL)**: prioriza fuente de precio (API de bróker → ratio AL30/GD30 → A3500) y descarta automáticamente cotizaciones con más de 30 días de antigüedad.
-- **Motor de régimen macro**: construye una matriz diaria de régimen con un *firewall* anti-look-ahead-bias (retrasa 2 días las variables del BCRA para simular el rezago real de publicación), más un "Shadow FX" (tipo de cambio implícito por M2/reservas) y un Z-score móvil (ventana de 90 días) del spread interbancario BAIBAR-TAMAR.
+- **Motor de régimen macro** *(prototipado, hoy desactivado en producción)*: matriz diaria de régimen con un *firewall* anti-look-ahead-bias (retrasa 2 días las variables del BCRA para simular el rezago real de publicación), un "Shadow FX" (tipo de cambio implícito por M2/reservas) y un Z-score móvil (ventana de 90 días) del spread interbancario BAIBAR-TAMAR. El código está intacto pero deshabilitado desde una auditoría que encontró 19 variables sin alimentar (tras un cambio de esquema de nombres de archivo, sin ningún consumidor en el dashboard) — retomarlo como feature real requiere remapear esas 19 variables a los archivos reales de BCRA, uno por uno.
 - **Semáforo de Estrés Sistémico Global (GSSI)**: índice compuesto 0-100 por percentil histórico de VIX, MOVE, VVIX y CISS, con su variación mensual como referencia de tendencia.
 - **Proyector de CER por REM**: cuando el BCRA todavía no publicó el CER oficial de una fecha futura, bootstrapea la curva de inflación mensual implícita en el REM (Relevamiento de Expectativas de Mercado) y la proyecta día a día, respetando qué mes de IPC corresponde legalmente aplicar según el día del mes.
 - **Scraping de INDEC gateado por su propio calendario oficial**: en vez de scrapear los 26 módulos activos todos los días, el sistema parsea el PDF de calendario de difusión semestral de INDEC (layout de 2 columnas, reconstruido por posición de palabra) y solo va a buscar cada módulo el día que le corresponde según ese calendario — con margen de tolerancia y un modo *fail-open* que nunca deja de scrapear algo por un mapeo incompleto.
 - **Deuda Externa Bruta, recuperada de su fuente real vigente**: el reporte standalone de Deuda Externa de INDEC está discontinuado desde 2017 (verificado navegando la página oficial en vivo); la serie completa 2006-hoy sigue publicándose, pero integrada dentro del informe combinado de Cuentas Internacionales — el parser se extendió para extraerla de ahí, en vez de asumir que "no hay dato" por seguir apuntando a la página vieja.
 - **Unificación de fuentes oficiales por sobre agregadores de terceros**: antes de migrar una serie (inflación, tasa de depósitos) de un agregador externo a la API oficial del BCRA, se verifica en vivo que ambas fuentes den exactamente el mismo historial — la migración se hace solo cuando la oficial es al menos igual de completa (y, en algún caso, más actualizada), nunca a ciegas por preferencia.
-- **Gestión de cuota de API con circuit-breaker**: el consumo mensual de la API de precios de mercado se trackea en una base local; si se acerca al límite del plan gratuito, el sistema corta las llamadas antes de arriesgar un bloqueo, en vez de descubrirlo a mitad de mes con el servicio caído.
+- **Gestión de cuota de API con circuit-breaker**: el consumo mensual de la API de precios de mercado se trackea en una base local; si se acerca al límite del plan gratuito, el sistema corta las llamadas antes de arriesgar un bloqueo, en vez de descubrirlo a mitad de mes con el servicio caído. En números: ~22 llamadas por corrida de precios intradiaria, ~6.000/mes de consumo real contra un límite gratuito de 25.000/mes (24% de uso), con alerta al 90% y corte duro al 100%.
+
+## Rigor de ingeniería y control de calidad
+
+El sistema pasa por rondas periódicas de auditoría de código propia — no solo revisión de estilo, sino verificación de que los cálculos financieros sean correctos —, respaldadas por **87 tests automatizados** entre las dos capas. Algunos hallazgos reales, con impacto financiero directo, detectados y corregidos en producción:
+
+- **Error de signo en la sensibilidad de convexidad**: `(-0.01**2)` se evaluaba como `-0.0001` por precedencia de operadores en Python, en vez de `+0.0001` — subestimaba la ganancia de precio ante una baja de tasa de 100bps, más notorio en bonos de mayor duration/convexidad.
+- **TAMAR mal mapeado (tasa efectiva en vez de nominal)**: el BCRA publica la tasa TAMAR bajo dos IDs distintos según la base de capitalización — el sistema alimentaba la tasa efectiva anual a fórmulas que asumen explícitamente la nominal, sobrestimando la capitalización de todo bono BADLAR/TAMAR y de los duales Fija/TAMAR. Corregido y verificado contra la API oficial de BCRA en vivo.
+- **Loop infinito en la descarga del Tesoro americano**: un error de anidado dejaba la lógica de paginación inalcanzable — cualquier descarga exitosa colgaba la tarea programada diaria de forma indefinida. Detectado en una auditoría previa a un deploy, corregido y verificado con timeout.
+- **Catálogo de BCRA con fecha desactualizada en silencio**: para ciertas series que el BCRA precalcula con fórmula pública (como el CER), el catálogo resumen queda pisado en la fecha de hoy aunque el endpoint de datos ya tenga semanas más de historia publicada — sin el bypass correspondiente, el motor de pricing se quedaba atrás en un input crítico para el cálculo, sin ningún error visible.
+
+Estos hallazgos surgen de rondas de auditoría documentadas y fechadas contra el código real, no de pruebas puntuales — la idea es que un error de cálculo financiero se detecte por proceso, no por casualidad.
 
 ## Lógica destacada (ejemplo ilustrativo)
 
@@ -317,7 +335,7 @@ else:
 | Extracción de fichas de bonos | PyMuPDF (texto) + parsing automático por expresiones regulares del documento legal definitivo; lectura asistida por LLM en el flujo de carga manual de casos no estándar |
 | Generación de reportes | openpyxl (fichas Excel completas por instrumento, exportación masiva del universo) |
 | Dashboard | Streamlit, Plotly |
-| Validación | pytest (25 tests: reconciliación PVCF↔precio del exportador Excel, consistencia contra el warehouse, paridad automatizada entre la tarea programada y la corrida manual) |
+| Validación | pytest (87 tests entre las dos capas: 25 de reconciliación PVCF↔precio del exportador Excel, consistencia contra el warehouse y paridad automatizada entre la tarea programada y la corrida manual, + 62 estructurales/incrementales del motor de ingesta de datos) |
 | Automatización | Windows Task Scheduler (2 tareas: macro diaria, precios/pricing/export cada 30 min en horario de mercado) con control de cuota de API |
 
 ## Roadmap
