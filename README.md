@@ -43,7 +43,7 @@ Escritorio de análisis financiero propio que cubre bonos argentinos (pricing y 
 | **~330** | funciones de acceso a datos sobre el warehouse (una por serie o grupo de series) |
 | **27** | parsers propios para los distintos módulos de Excel oficiales de INDEC |
 | **~45** | gráficos interactivos solo en el escritorio de Macro Argentina |
-| **87** | tests automatizados en las dos capas del sistema (62 sobre el motor de ingesta de datos + 25 sobre el motor de pricing/dashboard): desde imports y parsing hasta reconciliación de cada ficha Excel contra el precio de mercado y el dashboard en vivo, con paridad verificada entre la tarea programada y la corrida manual |
+| **186** | tests automatizados en las dos capas del sistema (62 sobre el motor de ingesta de datos + 124 sobre el motor de pricing/dashboard, de un total que era 25 antes de la última ronda de auditoría): desde imports y parsing hasta reconciliación de cada ficha Excel contra el precio de mercado y el dashboard en vivo, con paridad verificada entre la tarea programada y la corrida manual — la última ronda casi quintuplicó la cobertura de pricing/dashboard, con foco en funciones puras 100% sintéticas (no dependen de que el mercado esté abierto para correr en CI) |
 | **2** | tareas programadas (Windows Task Scheduler) que mantienen datos, precios y pricing frescos sin intervención manual |
 | **1m 39s** | tiempo de descarga completa de las 13 fuentes de datos, en paralelo |
 | **21s** | tiempo del pipeline de pricing completo (motor de pricing + carga a warehouse) — 3.5x más rápido tras una optimización de la etapa de ingesta |
@@ -69,7 +69,7 @@ Dos motores privados —uno de ingesta, uno de análisis— que comparten el mis
 
 **Variables globales que mira el mercado**: bancos centrales (Fed, ECB, BOJ, PBOC) y su liquidez agregada · curvas del Tesoro americano y TIPS · inflación breakeven · índice de estrés sistémico (VIX, MOVE, VVIX, CISS) · curvas de recesión (T10Y2Y, T10Y3M) · fiscal de EE.UU.
 
-**Universo de renta fija argentina**: Tasa fija, CER, Dollar Linked, Duales, Soberanos/Provinciales USD y 189 Obligaciones Negociables corporativas (ley local y extranjera), con curva Nelson-Siegel ajustada en vivo para cada clase de emisor.
+**Universo de renta fija argentina**: Tasa fija, CER, Dollar Linked, Duales, Soberanos/Provinciales USD, 189 Obligaciones Negociables corporativas en USD (ley local y extranjera) y Corporativos/Provinciales en ARS a tasa fija o variable (TAMAR/BADLAR), con curva Nelson-Siegel ajustada en vivo para cada clase de emisor.
 
 **Alcance real de las APIs oficiales**: BCRA y FRED exponen catálogos mucho más grandes de lo que el sistema integra por defecto, y el sistema no descarga todo lo que existe — integra lo que es relevante para el análisis. La API de BCRA se usa en las categorías Monetarias, Cambiarias, Transparencia (tasas por banco) y Planillas oficiales (~1.580 series monetarias/cambiarias en total); el organismo expone además otras categorías de microdatos regulatorios (por ejemplo cheques rechazados, central de deudores del sistema financiero) que hoy quedan fuera del alcance del proyecto. La API de FRED tiene un catálogo total de ~800.000 series — el sistema mantiene curadas ~1.100 por relevancia temática (precios, actividad, empleo, tasas, monetario, mercados, tipo de cambio, comercio exterior, crédito, fiscal, condiciones financieras, recesión, macro internacional), con el catálogo completo indexable bajo demanda sin necesidad de descargarlo por defecto. Los reportes técnicos de INDEC no se scrapean por scrapear: hay 26 módulos activos con parser propio, y cada uno se descarga solo el día que le corresponde según el calendario oficial de difusión semestral de INDEC (parseado directo del PDF oficial), con un margen de ±1 día por si se publica antes o después.
 
@@ -179,9 +179,11 @@ DV01 en dos escalas —por 100 de nominal y por una posición real de VN 1.000.0
 la curva propia del emisor y concentración del emisor en el universo), detalle completo del
 prospecto, cronograma de flujos con Valor Presente de cada flujo (misma estructura que un
 modelo de manual de finanzas), gráfico de sensibilidad Precio-vs-TIR con la aproximación
-clásica de Duration-Convexidad superpuesta contra el reprecio exacto, comparables por duration
-dentro de la misma clase de emisor, otros instrumentos del mismo emisor exacto, y un botón para
-exportar la misma ficha, completa, a Excel.
+clásica de Duration-Convexidad superpuesta contra el reprecio exacto, un **mini-Breakeven a
++3/+6/+12 meses** (misma lógica que la Matriz de Breakeven completa, ver [Capturas](#capturas),
+sin tener que salir de la ficha para una primera lectura del margen de seguridad), comparables
+por duration dentro de la misma clase de emisor, otros instrumentos del mismo emisor exacto, y
+un botón para exportar la misma ficha, completa, a Excel.
 
 <!--
 📌 CAPTURA PENDIENTE (alto valor: es la vista más nueva del sistema, hoy sin ningún ejemplo
@@ -205,7 +207,7 @@ Dos motores de detección de desfasajes de precio, con acción sugerida (comprar
 <img width="3143" height="550" alt="image" src="https://github.com/user-attachments/assets/e7209efe-966f-487f-b92e-243156689fb8" />
 
 ### Carry Trade — breakeven de devaluación vs. expectativas de mercado
-Para cada bono a tasa fija en pesos (LECAP/BONCAP/BONO TF), calcula el tipo de cambio *breakeven* — al que el mercado tendría que llegar en el vencimiento para que un carry trade (vender USD, comprar el bono en pesos, recomprar USD al cobrar) empate exactamente contra haberse quedado en dólares — y lo compara contra tres expectativas de mercado: REM (encuesta de expectativas del BCRA), futuros ROFEX y las bandas cambiarias oficiales, todas anualizadas (TNA) para poder comparar bonos de distinto plazo en igualdad de condiciones. Señala si el carry gana, pierde o queda neutro contra cada expectativa, y suma una comparación directa en pesos (sin pasar por el tipo de cambio) contra un bono Dollar Linked de duration similar.
+Para cada bono a tasa fija en pesos (LECAP/BONCAP/BONO TF), calcula el tipo de cambio *breakeven* — al que el mercado tendría que llegar en el vencimiento para que un carry trade (vender USD, comprar el bono en pesos, recomprar USD al cobrar) empate exactamente contra haberse quedado en dólares — y lo compara contra tres expectativas de mercado: REM (encuesta de expectativas del BCRA), futuros ROFEX y las bandas cambiarias oficiales, todas anualizadas por composición (TEA, no TNA — una auditoría propia de convención de tasas encontró y corrigió esa etiqueta) para poder comparar bonos de distinto plazo en igualdad de condiciones. Señala si el carry gana, pierde o queda neutro contra cada expectativa, y suma una comparación directa en pesos (sin pasar por el tipo de cambio) contra un bono Dollar Linked de duration similar.
 
 Las 3 expectativas de mercado no siempre cubren el mismo horizonte (el REM releva solo ~4-5 meses hacia adelante, los futuros ROFEX bastante más) — en vez de estirar la más corta con el último valor conocido como si fuera una proyección real, la curva y la tabla se acotan juntas a la última fecha donde las tres siguen teniendo dato genuino, y un bono que vence más allá de ese punto se excluye del análisis en lugar de mostrar una señal fabricada contra una expectativa que no existe. La línea de banda cambiaria, además, cambia de color en el punto exacto donde deja de ser cronograma oficial del BCRA y pasa a ser proyección con inflación esperada del REM — la incertidumbre queda visible, no escondida detrás de una línea continua.
 
@@ -213,6 +215,21 @@ Las 3 expectativas de mercado no siempre cubren el mismo horizonte (el REM relev
 📌 CAPTURA PENDIENTE (falta screenshot de esta pestaña). Capturá la curva de carry (FX REM/ROFEX/
    Banda vs. los breakeven de cada bono) y/o la tabla de detalle por instrumento, mismo formato
    <img> que las demás secciones de Capturas.
+-->
+
+### Matriz de Sensibilidad: TIR Breakeven (Total Return)
+Para cada instrumento de una categoría (Hard Dollar, CER, Tasa Fija, Dollar Linked, Corporativos ARS, Duales), calcula el retorno total de comprar hoy y vender en una fecha objetivo elegida, contra una grilla de TIRs de salida hipotéticas, con 3 estrategias de reinversión de los cupones cobrados en el camino (caja al 0%, tasa de mercado dinámica, o reinversión a la TIR del propio bono) — y una columna **BREAKEVEN**: la TIR de salida máxima que el instrumento puede tolerar antes de que la posición pase a pérdida nominal, más una columna **Margen** (Breakeven − TIR de hoy, en puntos porcentuales) para leer de un vistazo qué tan ajustada está cada posición. Un resumen agregado arriba de la tabla (bonos totales, margen promedio, cuántos con margen bajo o negativo) evita tener que leer fila por fila para notar que una categoría entera quedó apretada, y una alerta equivalente aparece directo en el brief matutino para los Soberanos Hard Dollar.
+
+Cada categoría respeta su propia unidad de tasa en vez de forzar una sola convención: para CER, la TIR de salida es **real** (post-inflación) — los flujos remanentes se descuentan en base real (VN100, sin CER) y el precio de salida se reinfla una única vez con el coeficiente CER proyectado a la fecha de salida elegida, no con el de cada cupón individual (que ya lleva la inflación de esa fecha puntual incorporada) — evitando el error clásico de contar la inflación proyectada dos veces. Para Dollar Linked se puede elegir el escenario de FX de referencia (REM/ROFEX/A3500/Banda). Para la estrategia de reinversión "tasa de mercado", el input se pide como TNA (como cotiza una caución real) y se convierte a TEA antes de capitalizar — capitalizarla directo como si ya fuera una TEA anual (un error real, encontrado y corregido en la propia auditoría del proyecto) subestima cuánto rinde una caución que se renueva cada pocos días, no una vez al año.
+
+Los bonos Duales entran a la matriz con la pata (TAMAR/CER/Fija/Dollar Linked) que efectivamente paga más **en cada fecha de pago** — no la que gana hoy asumida fija para siempre — reusando el mismo cronograma que ya resuelve la TIR del instrumento internamente. Cada ficha de bono individual, además, muestra un mini-Breakeven directo (+3/+6/+12 meses) sin tener que ir a buscarlo a esta pestaña, y toda la matriz se puede exportar a Excel con los valores numéricos reales (no el texto ya formateado de pantalla), con escala de color condicional.
+
+<!--
+📌 CAPTURA PENDIENTE (es la vista más nueva y más densa del sistema, hoy sin ningún ejemplo
+   visual en este README). Sugerencia: capturá la tabla completa con el resumen de riesgo
+   agregado arriba (Bonos en la matriz / Margen promedio / Margen < 5pp / Margen negativo) y,
+   si entra en el mismo screenshot o en uno aparte, el gráfico de Perfil de Retorno Total
+   (Convexidad) con 2-3 bonos superpuestos. Mismo formato <img> que las demás secciones.
 -->
 
 ### Semáforo de estrés sistémico global (GSSI) y tasas americanas
@@ -240,7 +257,7 @@ Cobertura de 7 tipos de instrumentos de renta fija argentina, sobre un universo 
 - Hard dollar corporativo (Obligaciones Negociables en USD, ley local y extranjera)
 - Corporativos y provinciales en ARS a tasa fija/step-up (sin indexación CER/UVA/dollar-linked)
 
-Cálculos incluidos: NPV, Duration Macaulay/Modificada, Convexidad, Z-spread contra la curva del Tesoro americano interpolada, y solvers de TIR propios — un **solver por método de Brent optimizado con Numba (JIT)** para los instrumentos en pesos (tasa fija, CER, duales), y `scipy.optimize.brentq` para los bonos hard-dollar.
+Cálculos incluidos: NPV, Duration Macaulay/Modificada, Convexidad, Z-spread generalizado (contra la curva del Tesoro americano interpolada para instrumentos en USD, y contra una curva libre-de-riesgo propia en pesos —construida en vivo a partir de LECAPs/BONCAPs— para instrumentos en ARS), y solvers de TIR propios — un **solver por método de Brent optimizado con Numba (JIT)** para los instrumentos en pesos (tasa fija, CER, duales), y `scipy.optimize.brentq` para los bonos hard-dollar.
 
 ## Exportación a Excel: fichas de nivel research desk
 
@@ -309,12 +326,14 @@ ninguna de las dos vistas puede divergir de la otra sin que un test lo detecte.
 
 ## Rigor de ingeniería y control de calidad
 
-El sistema pasa por rondas periódicas de auditoría de código propia — no solo revisión de estilo, sino verificación de que los cálculos financieros sean correctos —, respaldadas por **87 tests automatizados** entre las dos capas. Algunos hallazgos reales, con impacto financiero directo, detectados y corregidos en producción:
+El sistema pasa por rondas periódicas de auditoría de código propia — no solo revisión de estilo, sino verificación de que los cálculos financieros sean correctos —, respaldadas por **186 tests automatizados** entre las dos capas. Algunos hallazgos reales, con impacto financiero directo, detectados y corregidos en producción:
 
 - **Error de signo en la sensibilidad de convexidad**: `(-0.01**2)` se evaluaba como `-0.0001` por precedencia de operadores en Python, en vez de `+0.0001` — subestimaba la ganancia de precio ante una baja de tasa de 100bps, más notorio en bonos de mayor duration/convexidad.
 - **TAMAR mal mapeado (tasa efectiva en vez de nominal)**: el BCRA publica la tasa TAMAR bajo dos IDs distintos según la base de capitalización — el sistema alimentaba la tasa efectiva anual a fórmulas que asumen explícitamente la nominal, sobrestimando la capitalización de todo bono BADLAR/TAMAR y de los duales Fija/TAMAR. Corregido y verificado contra la API oficial de BCRA en vivo.
 - **Loop infinito en la descarga del Tesoro americano**: un error de anidado dejaba la lógica de paginación inalcanzable — cualquier descarga exitosa colgaba la tarea programada diaria de forma indefinida. Detectado en una auditoría previa a un deploy, corregido y verificado con timeout.
 - **Catálogo de BCRA con fecha desactualizada en silencio**: para ciertas series que el BCRA precalcula con fórmula pública (como el CER), el catálogo resumen queda pisado en la fecha de hoy aunque el endpoint de datos ya tenga semanas más de historia publicada — sin el bypass correspondiente, el motor de pricing se quedaba atrás en un input crítico para el cálculo, sin ningún error visible.
+- **TNA capitalizada como si ya fuera una TEA anual**: en el simulador de reinversión de cupones de la Matriz de Breakeven, una tasa de caución/money market (TNA, se renueva cada pocos días) se componía directo como `(1+TNA)^años` — la fórmula de una TEA que compone una sola vez al año. A 4.9 años de horizonte, el factor de capitalización quedaba en 4.35x en vez del 5.42x correcto (TNA→TEA vía capitalización mensual). Encontrado auditando la lógica de reinversión a pedido explícito, con un test que reproduce los números exactos del bug para blindar el fix contra una futura reversión.
+- **Fecha invertida (día↔mes) en la ficha de bonos TAMAR/BADLAR**: una fecha de referencia se guardaba ya formateada como string `'dd/mm/yyyy'` (convención argentina) en vez de como objeto fecha, y el exportador la volvía a parsear sin especificar esa convención — para cualquier fecha ambigua (día ≤ 12) el resultado quedaba con día y mes invertidos en silencio (`'05/03/2026'` se mostraba como `'03/05/2026'`). Encontrado revisando en vivo los warnings de una corrida real, no en una prueba sintética.
 
 Estos hallazgos surgen de rondas de auditoría documentadas y fechadas contra el código real, no de pruebas puntuales — la idea es que un error de cálculo financiero se detecte por proceso, no por casualidad.
 
@@ -347,7 +366,7 @@ else:
 | Extracción de fichas de bonos | PyMuPDF (texto) + parsing automático por expresiones regulares del documento legal definitivo; lectura asistida por LLM en el flujo de carga manual de casos no estándar |
 | Generación de reportes | openpyxl (fichas Excel completas por instrumento, exportación masiva del universo) |
 | Dashboard | Streamlit, Plotly |
-| Validación | pytest (87 tests entre las dos capas: 25 de reconciliación PVCF↔precio del exportador Excel, consistencia contra el warehouse y paridad automatizada entre la tarea programada y la corrida manual, + 62 estructurales/incrementales del motor de ingesta de datos) |
+| Validación | pytest (186 tests entre las dos capas: 124 sobre el motor de pricing/dashboard — reconciliación PVCF↔precio del exportador Excel, invariantes por familia de instrumento, paridad automatizada entre la tarea programada y la corrida manual, y funciones puras 100% sintéticas de las señales de riesgo y del simulador de Breakeven —, + 62 estructurales/incrementales del motor de ingesta de datos) + GitHub Actions (CI en cada push: compileall + pytest) |
 | Automatización | Windows Task Scheduler (2 tareas: macro diaria, precios/pricing/export cada 30 min en horario de mercado) con control de cuota de API |
 
 ## Roadmap
