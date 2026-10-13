@@ -62,7 +62,7 @@ Escritorio de análisis financiero propio que cubre bonos argentinos (pricing, v
 | **5** | secciones del escritorio: Inicio, Renta Fija (16 pestañas), Liquidez Global (5 pestañas), Macro Argentina (14 vistas) y Mi cartera |
 | **~460** | funciones de acceso a datos sobre el warehouse (una por serie o grupo de series) |
 | **~30** | módulos con parser propio para los Excel oficiales de INDEC |
-| **~2.000** | tests automatizados en las dos capas del sistema (1.815 sobre el motor de pricing y el dashboard + 173 sobre el motor de descarga): desde imports y parsing hasta la reconciliación de cada ficha Excel contra el precio de mercado, el dashboard en vivo con datos reales y controles cruzados contra fuentes independientes. Se verifica además que la tarea programada corra exactamente el mismo pipeline que una corrida manual |
+| **~2.000** | tests automatizados en las dos capas del sistema (1.836 sobre el motor de pricing y el dashboard + 173 sobre el motor de descarga): desde imports y parsing hasta la reconciliación de cada ficha Excel contra el precio de mercado, el dashboard en vivo con datos reales y controles cruzados contra fuentes independientes. Se verifica además que la tarea programada corra exactamente el mismo pipeline que una corrida manual |
 | **4** | tareas programadas (Windows Task Scheduler) que mantienen datos, precios, mercados e historia al día sin intervención manual |
 | **~1m 40s** | descarga completa de las fuentes en paralelo (medido con 13 fuentes) |
 | **21s** | pipeline de pricing completo (motor de pricing + carga a warehouse), 3.5x más rápido tras una optimización de la etapa de ingesta |
@@ -503,12 +503,15 @@ un flag que además le hace devolver el cronograma detallado fila por fila.
 - **Detalle completo del prospecto**: emisor, ISIN, ley, tipo de amortización, frecuencia de
   pago, base de cálculo, y las fechas de referencia exactas usadas para tasas variables
   (TAMAR/BADLAR) o ajuste por CER (CER Base/Liquidación a T-10, coeficiente aplicado).
+- **Riesgo, ejecución y contexto** (el mismo bloque en todas las clases de instrumento): base del precio (con puntas reales de IOL o último operado), precio Bid y Ask, costo de ida y vuelta y días para recuperar
+  la comisión, volumen operado hoy y hora del precio, dólar MEP implícito (Hard Dollar), **próximo pago**, **breakeven a +3/+6/+12 meses** en las tres vistas de precio, calificaciones del emisor y **contexto de
+  la TIR** (percentil contra su último año y, en soberanos, el spread contra su par de legislación con su z-score). Cada dato se muestra solo si existe para ese instrumento: nunca se rellena con un valor inventado.
 - **Exportación masiva**: un botón arma un .zip con una ficha por cada instrumento vigente del
   universo completo, organizadas en carpetas por tipo y emisor, más un archivo "Global" por
   clase de instrumento con una hoja Resumen — hipervínculos a la hoja de cada ticker y escala
   de color condicional incluidos — para tener el book completo de renta fija en un solo click.
 
-Validado con 21 tests (pytest) que reconcilian, para todo el universo vigente, el PVCF
+Validado con tests (pytest) que reconcilian, para todo el universo vigente, el PVCF
 exportado contra el precio de mercado y contra el valor que muestra el dashboard en vivo —
 ninguna de las dos vistas puede divergir de la otra sin que un test lo detecte.
 
@@ -577,7 +580,7 @@ Cinco análisis pensados para **no engañarse**: cada uno informa n, el estadís
 
 ## Rigor de ingeniería y control de calidad
 
-El sistema pasa por rondas periódicas de auditoría de código propia — no solo revisión de estilo, sino verificación de que los cálculos financieros sean correctos —, respaldadas por **casi 2.000 tests automatizados** entre las dos capas (1.815 sobre el motor de pricing y el dashboard + 173 sobre el motor de descarga). Algunos hallazgos reales, con impacto financiero directo, detectados y corregidos en producción:
+El sistema pasa por rondas periódicas de auditoría de código propia — no solo revisión de estilo, sino verificación de que los cálculos financieros sean correctos —, respaldadas por **casi 2.000 tests automatizados** entre las dos capas (1.836 sobre el motor de pricing y el dashboard + 173 sobre el motor de descarga). Algunos hallazgos reales, con impacto financiero directo, detectados y corregidos en producción:
 
 - **Error de signo en la sensibilidad de convexidad**: `(-0.01**2)` se evaluaba como `-0.0001` por precedencia de operadores en Python, en vez de `+0.0001` — subestimaba la ganancia de precio ante una baja de tasa de 100bps, más notorio en bonos de mayor duration/convexidad.
 - **TAMAR mal mapeado (tasa efectiva en vez de nominal)**: el BCRA publica la tasa TAMAR bajo dos IDs distintos según la base de capitalización — el sistema alimentaba la tasa efectiva anual a fórmulas que asumen explícitamente la nominal, sobrestimando la capitalización de todo bono BADLAR/TAMAR y de los duales Fija/TAMAR. Corregido y verificado contra la API oficial de BCRA en vivo.
@@ -637,7 +640,7 @@ else:
 | Extracción de fichas de bonos | PyMuPDF (texto) + parsing automático por expresiones regulares del documento legal definitivo; lectura asistida por LLM en el flujo de carga manual de casos no estándar |
 | Generación de reportes | openpyxl (fichas Excel completas por instrumento, exportación masiva del universo) |
 | Dashboard | Streamlit, Plotly (velas, perfil de volumen), caché de lecturas por firma de archivo |
-| Validación | pytest (casi 2.000 tests: 1.815 sobre el motor de pricing y el dashboard — reconciliación PVCF↔precio del exportador Excel, invariantes por familia de instrumento, controles cruzados contra fuentes independientes, paridad entre la tarea programada y la corrida manual, funciones puras 100% sintéticas — y 173 sobre el motor de descarga con sesiones simuladas sin red) + GitHub Actions (CI en cada push: compileall + pytest) |
+| Validación | pytest (casi 2.000 tests: 1.836 sobre el motor de pricing y el dashboard — reconciliación PVCF↔precio del exportador Excel, invariantes por familia de instrumento, controles cruzados contra fuentes independientes, paridad entre la tarea programada y la corrida manual, funciones puras 100% sintéticas — y 173 sobre el motor de descarga con sesiones simuladas sin red) + GitHub Actions (CI en cada push: compileall + pytest) |
 | Automatización | Windows Task Scheduler (4 tareas: macro diaria; precios, pricing y export cada 30 min en horario de mercado; mercados globales cada 30 min; historia, respaldo y calidad semanales) con control de cuota de API |
 
 ## Roadmap
