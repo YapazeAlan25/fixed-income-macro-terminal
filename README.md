@@ -555,6 +555,12 @@ Cada ficha trae, en una sola hoja: métricas de sensibilidad, las tres vistas de
 📸 PEGAR CAPTURA — hoja "Resumen" de un archivo <Clase>_Global.xlsx de la exportación masiva (se ve la escala de color y los hipervínculos).
 -->
 
+**Research Report en PDF** — el reporte para enviar a un cliente o inversor: resumen ejecutivo con las banderas de riesgo, contexto macro y cambiario, las curvas de rendimiento y las métricas tácticas. Usa los mismos gráficos y cálculos que ve el analista en pantalla.
+
+<!--
+📸 PEGAR CAPTURA — dos o tres páginas del Research Report en PDF: el resumen ejecutivo (banderas y KPIs) y una página con las curvas de rendimiento. Se genera desde el botón de exportación de Renta Fija.
+-->
+
 ## Otros motores destacados
 
 - **Calculadora de FX implícito (MEP/CCL)**: prioriza fuente de precio (API de bróker → ratio AL30/GD30 → A3500) y descarta automáticamente cotizaciones con más de 30 días de antigüedad.
