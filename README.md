@@ -23,6 +23,8 @@ Escritorio de análisis financiero propio que cubre bonos argentinos (pricing, v
 - **Para quién es útil:** mesas de renta fija y trading, research, riesgo, asset management y tesorerías corporativas que operan deuda argentina.
 - **Qué demuestra de mí:** finanzas cuantitativas aplicadas, ingeniería de datos de punta a punta, criterio estadístico y un proceso de verificación sistemático (ver [Qué demuestra este proyecto](#qué-demuestra-este-proyecto)).
 
+<img src="assets/architecture.svg" alt="Arquitectura: fuentes de datos → motor de ingesta → warehouse DuckDB/Parquet → motores de pricing y capa de señales → dashboard Streamlit → entregables, con operación y calidad" width="100%" />
+
 ## Índice
 
 - [En 30 segundos](#en-30-segundos)
@@ -34,6 +36,7 @@ Escritorio de análisis financiero propio que cubre bonos argentinos (pricing, v
 - [Pipeline de ejecución](#pipeline-de-ejecución)
 - [Capturas](#capturas)
 - [Qué resuelve](#qué-resuelve)
+- [Un día de trabajo de un analista](#un-día-de-trabajo-de-un-analista)
 - [Motores de pricing](#motores-de-pricing)
 - [Comisiones y vistas Mercado / Compra / Venta](#comisiones-y-vistas-mercado--compra--venta)
 - [Terminal de analista: valor relativo, TIR histórica y señales](#terminal-de-analista-valor-relativo-tir-histórica-y-señales)
@@ -53,7 +56,7 @@ Escritorio de análisis financiero propio que cubre bonos argentinos (pricing, v
 
 | | |
 |---|---|
-| **13** | fuentes de descarga automática en paralelo (BCRA, INDEC, FRED, ECB, BIS, Tesoro de EE.UU., datos.gob.ar, ARCA, Secretaría de Finanzas, FMI, UTDT, mercados AR y yfinance), más un índice unificado de series; a eso se suman precios en vivo e históricos de IOL, MAE y Rava, y las calificaciones de la CNV |
+| **13** | fuentes de descarga automática en paralelo (BCRA, INDEC, FRED, ECB, BIS, Tesoro de EE.UU., datos.gob.ar, ARCA, Secretaría de Finanzas, FMI, UTDT, mercados AR y yfinance), más un índice unificado de series; a eso se suman precios en vivo e históricos de IOL y de fuentes públicas de mercado, los prospectos del MAE y las calificaciones de la CNV |
 | **200+** | instrumentos de renta fija cubiertos (36 soberanos/provinciales + 189 Obligaciones Negociables corporativas + letras y bonos en pesos) |
 | **7** | tipos de instrumento con motor de pricing propio, cada uno en **tres vistas de precio** (Mercado, Compra y Venta, con comisiones del broker) |
 | **5** | secciones del escritorio: Inicio, Renta Fija (16 pestañas), Liquidez Global (5 pestañas), Macro Argentina (14 vistas) y Mi cartera |
@@ -87,13 +90,33 @@ La lógica financiera y las decisiones de arquitectura son de autoría propia; l
 
 ## Arquitectura
 
-<img src="assets/architecture.svg" alt="Arquitectura: fuentes de datos → motor de ingesta → warehouse DuckDB/Parquet → motores de pricing y capa de señales → dashboard Streamlit" width="100%" />
+El diagrama de arriba resume el sistema de punta a punta.
 
 Dos motores privados —uno de ingesta, uno de análisis— que comparten el mismo warehouse. La descarga de cada fuente corre con su propio manejo de rate-limits y caché incremental (no vuelve a traer lo que no cambió); el pricing y las señales se recalculan sobre esa foto ya consolidada, orquestados como un pipeline de 5 fases con Prefect.
 
 ## Cobertura de datos
 
 **Economía real y variables de mercado — Argentina** (14 vistas): Cambiario · Reservas y liquidez · Fiscal · Monetario · Crédito y bancos · Actividad Real · PIB y Cuentas Nacionales · Empleo y Sociedad · Precios · Consumo y Retail · Sector Externo · Expectativas · Mercados · Correlaciones.
+
+**Macro Argentina en detalle** (lo que un analista busca y cada vista trae resuelto):
+
+| Vista | Qué incluye |
+|---|---|
+| 💵 **Cambiario** | Reservas brutas, riesgo país, "La Trinidad Macro" (inflación, tasa y crawling peg), cuadro de 6 dólares con brecha, ITCRM |
+| 🏛️ **Reservas y liquidez** | Escalera de reservas brutas → netas tipo FMI → netas líquidas, composición oficial SDDS, liquidez a un año, compras y ventas diarias del BCRA |
+| 🧾 **Fiscal** | Recaudación total y por impuesto (ARCA), resultado primario y financiero real y en % del PIB, deuda y financiamiento del Tesoro, previsional, cuasifiscal, tablero con calendario de publicaciones |
+| 🏦 **Monetario** | BADLAR/TAMAR, M1/M2/M3 y base monetaria (nominal y real), balance del BCRA, pases, depósitos del gobierno, préstamos por tipo deflactados, tasas de depósitos e hipotecarias |
+| 🏧 **Crédito y bancos** | Crédito por línea diario, crecimiento real, depósitos por titular y tasas, calidad de cartera por línea y grupo de entidades, liquidez, solvencia y rentabilidad |
+| 📈 **Actividad Real** y 📊 **PIB** | EMAE (original, desestacionalizado, tendencia-ciclo), PIB por demanda y por sector, ISAC (construcción), servicios públicos, producción industrial |
+| 👷 **Empleo y Sociedad** | Tasas de la EPH por región y aglomerado, brechas por género y edad, SMVM y RIPTE (nominal y real), empleo registrado (SIPA) por sector, tamaño y sexo, pobreza e indigencia, canasta básica y de crianza |
+| 🛒 **Precios** | IPC por rubro, núcleo / estacional / regulados, por región, ponderaciones, precios mayoristas y costo de la construcción |
+| 🛍️ **Consumo y Retail** | Supermercados, autoservicios mayoristas, centros de compras y electrodomésticos: ventas a precios constantes y corrientes, medios de pago, ventas por rubro |
+| 🌎 **Sector Externo** | Comercio exterior por zona y por producto, complejos exportadores y origen provincial, turismo internacional, deuda externa bruta 2006-hoy |
+| 🔮 **Expectativas** | REM (inflación, tipo de cambio, PIB, desocupación, fiscal), confianza del consumidor y del gobierno (UTDT), **track record** del REM y su **precisión** (sesgo y error por plazo) |
+| 🌾 **Mercados** | S&P Merval, commodities agro y liquidación de divisas del agro |
+| 🔗 **Correlaciones** | Matriz con horizonte elegible, dinero e inflación, brecha como predictor, riesgo país global vs local |
+
+Cada vista muestra la **fecha del último dato de cada serie** y un semáforo de frescura; un footer permanente avisa si algo está desactualizado.
 
 **Variables globales que mira el mercado**: bancos centrales (Fed, ECB, BOJ, PBOC) y su liquidez agregada · curvas del Tesoro americano y TIPS · inflación breakeven · índice de estrés sistémico (VIX, MOVE, VVIX, CISS) · curvas de recesión (T10Y2Y, T10Y3M) · fiscal de EE.UU. · ~65 activos de Yahoo Finance con barras de 30 minutos en horario de mercado y cualquier otro ticker a demanda.
 
@@ -116,7 +139,7 @@ Los pasos 2-4 corren también sin intervención humana vía **4 tareas programad
 
 ## Capturas
 
-> Todas las capturas son de una corrida real del sistema, sin datos de ejemplo (en la sección de cartera, con los montos ocultos).
+> **Capturas actualizadas al 13/10/2026**, tomadas de la **última corrida del pricing**: datos reales del sistema en funcionamiento, sin datos de ejemplo (en la sección de cartera, con los montos ocultos).
 
 ### Escritorio Macro Argentina — panel general
 Estado de reservas, tasa real, brecha cambiaria, riesgo país, resultado fiscal, actividad y desempleo en un solo panel; reservas del BCRA y riesgo país (EMBI+) con historia completa.
@@ -375,6 +398,21 @@ Panel permanente de salud de datos: frescura de cada fuente contra su propia fre
 
 Antes de este sistema, armar la foto diaria del mercado de renta fija argentino significaba actualizar planillas de Excel a mano: bajar precios, recalcular TIR y duration bono por bono, y cruzar manualmente con la macro del día. Este sistema automatiza esa cadena completa y agrega capacidades que no existían en la versión manual: ajuste de curvas por Nelson-Siegel, detección de arbitraje legislativo y de arbitraje FX sintético con acción sugerida, y un panel de riesgo sistémico global actualizado en vivo — todo cruzado contra el contexto macro real de Argentina y del mundo, no solo el precio del bono en el vacío.
 
+## Un día de trabajo de un analista
+
+El sistema está pensado alrededor del flujo real de una mesa o de un research desk, de la apertura a la entrega:
+
+| Momento | Qué usa | Qué obtiene |
+|---|---|---|
+| **Antes de la apertura** | Brief matutino, **Qué cambió hoy**, alertas de curva | Banderas de riesgo (macro global y riesgo Argentina), cuadro de 6 dólares con brecha, contexto overnight (futuros de EE.UU., Asia, DXY, agro), próximas publicaciones, cambio de TIR por clase contra la rueda anterior y alertas con umbrales editables |
+| **Durante la rueda** | Precios y puntas cada 30 minutos, refresco automático, reloj de mercados, tablas con click a la ficha | Pricing al día sin relanzar nada (la sección de Renta Fija se refresca sola cada 2 minutos), MEP y brecha en vivo, tablero de arbitraje con acción sugerida |
+| **Valuar y comparar** | Curvas Nelson-Siegel por clase, Z-spread, comparables, valor relativo, forwards | Dónde está caro o barato cada bono contra su curva, contra su par de legislación y contra su propia historia |
+| **Decidir** | Breakeven (total return), carry trade completo, radar, simulador, armador de portafolios | Retorno neto de comisiones de comprar hoy y salir en una fecha, con escenarios de TIR de salida, dólar y reinversión |
+| **Seguir la cartera** | Tenencias, riesgo y estrés, calificaciones, tesis y alertas | TIR del dinero, DV01, escenarios de curva, estrés histórico, cambios de calificación y tesis invalidadas |
+| **Entender el contexto** | 14 vistas de macro Argentina y el escritorio global | La macro cruzada con el precio: fiscal, bancos, reservas, inflación, actividad, externo y expectativas |
+| **Entregar** | Ficha Excel por instrumento, exportación masiva, matriz a Excel y **Research Report en PDF** | Fichas con el cronograma y el valor presente de cada flujo, y un reporte listo para enviar a un cliente o inversor: resumen ejecutivo con banderas, contexto macro y cambiario, las curvas de rendimiento y métricas tácticas |
+| **Confiar en el dato** | Panel de salud de datos, etiqueta de base del precio, fecha de cada serie | Cada precio dice si viene de puntas reales o del último operado, y cada fuente dice qué tan fresca está |
+
 ## Motores de pricing
 
 Cobertura de 7 tipos de instrumentos de renta fija argentina, sobre un universo de más de 200 activos (36 soberanos/provinciales + 189 Obligaciones Negociables corporativas + Letras y bonos en pesos):
@@ -436,6 +474,8 @@ El seguimiento de una cartera propia con el mismo rigor que el pricing:
 
 ## Exportación a Excel: fichas de nivel research desk
 
+> Además del Excel, el escritorio genera un **Research Report en PDF** (resumen ejecutivo con banderas de riesgo, contexto macro y cambiario, las nueve curvas de rendimiento y métricas tácticas) pensado para enviarse a un cliente o inversor; reutiliza los mismos gráficos y cálculos que ve el analista en pantalla, nunca un constructor paralelo.
+
 Cada instrumento se puede exportar a un Excel completo con la misma metodología y los mismos
 números que el dashboard en vivo — nunca una fórmula paralela: reusa el motor de pricing, con
 un flag que además le hace devolver el cronograma detallado fila por fila.
@@ -472,19 +512,44 @@ Validado con 21 tests (pytest) que reconcilian, para todo el universo vigente, e
 exportado contra el precio de mercado y contra el valor que muestra el dashboard en vivo —
 ninguna de las dos vistas puede divergir de la otra sin que un test lo detecte.
 
+### Ejemplos de fichas exportadas
+
+Cada ficha trae, en una sola hoja: métricas de sensibilidad, las tres vistas de precio, el detalle del prospecto, el cronograma con el valor presente de cada flujo, el análisis de sensibilidad con su gráfico y los comparables. El pie de cada hoja indica la fecha y hora de generación.
+
+**Hard Dollar (soberanos, provinciales y ONs)** — cronograma en USD, con el control que reconcilia la suma de los PVCF contra el precio pagado.
+
 <!--
-📌 CAPTURA(S) PENDIENTE(S) (alto valor: esta sección entera hoy es solo texto, sin ninguna
-   prueba visual — es probablemente el hueco más grande del README). Abrí cualquier .xlsx
-   exportado en Excel y capturá:
-   1. La hoja de un ticker: bloque de KPIs + Detalle del Prospecto + el arranque del
-      cronograma con las columnas PVCF/t×PVCF visibles — muestra de un vistazo que no es un
-      Excel genérico, es una planilla de manual de finanzas con trazabilidad completa.
-      Si entra en el mismo screenshot, mejor: la tabla de sensibilidad ±10pp al costado con
-      su gráfico embebido (Precio vs. TIR, exacta vs. aproximación Duration-Convexidad).
-   2. (Opcional pero potente) La hoja "Resumen" de un archivo `<Clase>_Global.xlsx` de la
-      exportación masiva: la escala de color condicional en TIR/Paridad y los hipervínculos
-      a cada ticker se ven de un vistazo, y comunican "esto está pensado como herramienta de
-      trabajo real", no solo como demo.
+📸 PEGAR CAPTURA — ficha Hard Dollar (por ejemplo BPOB8, AL30 o una ON): KPIs, "Vistas de precio", "Detalle del Prospecto" y cronograma con PVCF. Si entra, también la tabla de sensibilidad ±10 pp con su gráfico.
+-->
+
+**CER** — cronograma en **pesos nominales**: cada flujo usa el coeficiente CER proyectado a su propia fecha de pago, así un cupón contractualmente parejo se ve crecer en pesos; la TIR y la sensibilidad siguen en términos reales.
+
+<!--
+📸 PEGAR CAPTURA — ficha CER (por ejemplo TX28): mostrar la columna "Coef. CER (proyectado)" y los flujos nominales.
+-->
+
+**Tasa Fija / LECAP / BONCAP** — flujos a tasa fija en pesos, con TEA, TNA y TEM y las tres vistas de precio.
+
+<!--
+📸 PEGAR CAPTURA — ficha Tasa Fija (por ejemplo una LECAP o BONCAP vigente).
+-->
+
+**Dollar Linked** — cada flujo en USD y en ARS al tipo de cambio proyectado de ese día bajo cada uno de los cuatro escenarios (REM, ROFEX, A3500 y Banda).
+
+<!--
+📸 PEGAR CAPTURA — ficha Dollar Linked: el cronograma con las columnas de los escenarios de dólar.
+-->
+
+**Corporativos y provinciales en ARS, y Duales** — mismas secciones, con el ruteo por pata ganadora en los duales.
+
+<!--
+📸 PEGAR CAPTURA (opcional) — ficha de un corporativo/provincial en ARS o de un dual.
+-->
+
+**Archivo "Global" por clase** — hoja *Resumen* con hipervínculos a la hoja de cada ticker, escala de color condicional en TIR y paridad, y la curva Nelson-Siegel por grupo de emisor.
+
+<!--
+📸 PEGAR CAPTURA — hoja "Resumen" de un archivo <Clase>_Global.xlsx de la exportación masiva (se ve la escala de color y los hipervínculos).
 -->
 
 ## Otros motores destacados
@@ -568,7 +633,7 @@ else:
 | Motor de ingesta multi-fuente | Descarga paralela propia, con caché incremental y rate-limiting por API |
 | Almacenamiento analítico | DuckDB, Parquet |
 | Cálculo numérico y estadística | NumPy, SciPy, Numba (JIT); Granger robusto (HC1), Newey-West, Benjamini-Hochberg, Ledoit-Wolf |
-| Fuentes de datos | API BCRA, INDEC (parsers de Excel oficiales), FRED, ECB, BIS, Tesoro de EE.UU., datos.gob.ar, ARCA, Secretaría de Finanzas, API de datos del FMI (SDMX), UTDT, CNV (calificaciones), prospectos MAE (PDF), precios y puntas de IOL, Rava, Yahoo Finance y futuros de dólar (scraping) |
+| Fuentes de datos | API BCRA, INDEC (parsers de Excel oficiales), FRED, ECB, BIS, Tesoro de EE.UU., datos.gob.ar, ARCA, Secretaría de Finanzas, API de datos del FMI (SDMX), UTDT, CNV (calificaciones), prospectos MAE (PDF), precios y puntas de IOL, otras fuentes públicas de mercado, Yahoo Finance y futuros de dólar (scraping de fuentes públicas) |
 | Extracción de fichas de bonos | PyMuPDF (texto) + parsing automático por expresiones regulares del documento legal definitivo; lectura asistida por LLM en el flujo de carga manual de casos no estándar |
 | Generación de reportes | openpyxl (fichas Excel completas por instrumento, exportación masiva del universo) |
 | Dashboard | Streamlit, Plotly (velas, perfil de volumen), caché de lecturas por firma de archivo |
