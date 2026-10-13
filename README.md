@@ -5,18 +5,29 @@
 ![DuckDB](https://img.shields.io/badge/DuckDB-Warehouse-FFF000?logo=duckdb&logoColor=black)
 ![Prefect](https://img.shields.io/badge/Prefect-Orquestación-070E10?logo=prefect&logoColor=white)
 ![Estado](https://img.shields.io/badge/Estado-en%20producción%20diaria-2ea44f)
+![Tests](https://img.shields.io/badge/Tests-~2.000%20automatizados-2ea44f)
 ![Código](https://img.shields.io/badge/Código-privado%20%7C%20repo%20de%20portfolio-lightgrey)
 
-Escritorio de análisis financiero propio que cubre bonos argentinos (pricing y arbitraje), la economía real de Argentina (actividad, empleo, precios, fiscal, sector externo) y las variables globales que mueve el mercado (tasas americanas, estrés sistémico, curvas de recesión). No es solo un pricer de bonos: es un tablero completo, del tipo que un analista de mesa consulta todos los días para tener la foto completa antes de tomar una posición.
+Escritorio de análisis financiero propio que cubre bonos argentinos (pricing, valor relativo, arbitraje y seguimiento de una cartera), la economía real de Argentina (actividad, empleo, precios, **fiscal, sistema bancario, reservas**, sector externo) y las variables globales que mueve el mercado (tasas americanas, estrés sistémico, curvas de recesión). No es solo un pricer de bonos: es una terminal completa, del tipo que un analista de mesa consulta todos los días para tener la foto completa antes de tomar una posición.
 
 > 📌 **Este repositorio es una vidriera del proyecto.** Documenta su funcionamiento y resultados con capturas reales. El código fuente es privado; este README explica arquitectura, alcance y stack técnico.
 
 **Autor:** Alan Yapaze — [LinkedIn](https://www.linkedin.com/in/alan-yapaze/)
 **Vigencia:** 2023 – presente (iniciado como modelado manual en Excel, migrado en 2026 a una arquitectura Python automatizada)
 
+## En 30 segundos
+
+- **El problema:** el mercado de renta fija argentina se analiza hoy con planillas armadas a mano: precios, TIR y duration bono por bono, macro cruzada a ojo y sin trazabilidad de qué número salió de dónde.
+- **Qué construí:** una terminal propia que descarga automáticamente 13 fuentes oficiales y de mercado, valúa más de 200 instrumentos con motores de pricing propios, cruza todo con la macro argentina y global y sigue una cartera real. Corre todos los días sin intervención.
+- **Qué la distingue:** cada número se puede **defender**. Las comisiones del broker están en todos los precios (tres vistas: Mercado, Compra, Venta); cada análisis nuevo se contrasta contra una fuente independiente antes de mostrarse; los resultados negativos se publican (por ejemplo, ninguna señal técnica sobrevive a la corrección por pruebas múltiples); y casi 2.000 tests protegen los cálculos financieros.
+- **Para quién es útil:** mesas de renta fija y trading, research, riesgo, asset management y tesorerías corporativas que operan deuda argentina.
+- **Qué demuestra de mí:** finanzas cuantitativas aplicadas, ingeniería de datos de punta a punta, criterio estadístico y un proceso de verificación sistemático (ver [Qué demuestra este proyecto](#qué-demuestra-este-proyecto)).
+
 ## Índice
 
+- [En 30 segundos](#en-30-segundos)
 - [El proyecto en números](#el-proyecto-en-números)
+- [Novedades de septiembre-octubre 2026](#novedades-de-septiembre-octubre-2026)
 - [Qué es](#qué-es)
 - [Arquitectura](#arquitectura)
 - [Cobertura de datos](#cobertura-de-datos)
@@ -24,9 +35,15 @@ Escritorio de análisis financiero propio que cubre bonos argentinos (pricing y 
 - [Capturas](#capturas)
 - [Qué resuelve](#qué-resuelve)
 - [Motores de pricing](#motores-de-pricing)
+- [Comisiones y vistas Mercado / Compra / Venta](#comisiones-y-vistas-mercado--compra--venta)
+- [Terminal de analista: valor relativo, TIR histórica y señales](#terminal-de-analista-valor-relativo-tir-histórica-y-señales)
+- [Fiscal, sistema bancario y reservas con datos oficiales](#fiscal-sistema-bancario-y-reservas-con-datos-oficiales)
+- [Mi cartera: tenencias, riesgo y calificaciones](#mi-cartera-tenencias-riesgo-y-calificaciones)
 - [Exportación a Excel: fichas de nivel research desk](#exportación-a-excel-fichas-de-nivel-research-desk)
 - [Otros motores destacados](#otros-motores-destacados)
+- [Hallazgos de análisis (con sus límites)](#hallazgos-de-análisis-con-sus-límites)
 - [Rigor de ingeniería y control de calidad](#rigor-de-ingeniería-y-control-de-calidad)
+- [Qué demuestra este proyecto](#qué-demuestra-este-proyecto)
 - [Lógica destacada (ejemplo ilustrativo)](#lógica-destacada-ejemplo-ilustrativo)
 - [Stack técnico](#stack-técnico)
 - [Roadmap](#roadmap)
@@ -36,24 +53,35 @@ Escritorio de análisis financiero propio que cubre bonos argentinos (pricing y 
 
 | | |
 |---|---|
-| **13** | fuentes de datos integradas (BCRA, INDEC, FRED, ECB, BIS, Treasury, OECD, datos.gob.ar, UTDT, mercados AR, yfinance, Binance, MAE/IOL) |
+| **13** | fuentes de descarga automática en paralelo (BCRA, INDEC, FRED, ECB, BIS, Tesoro de EE.UU., datos.gob.ar, ARCA, Secretaría de Finanzas, FMI, UTDT, mercados AR y yfinance), más un índice unificado de series; a eso se suman precios en vivo e históricos de IOL, MAE y Rava, y las calificaciones de la CNV |
 | **200+** | instrumentos de renta fija cubiertos (36 soberanos/provinciales + 189 Obligaciones Negociables corporativas + letras y bonos en pesos) |
-| **7** | tipos de instrumento con motor de pricing propio |
-| **10** | categorías de economía real y mercado cubiertas para Argentina |
-| **~330** | funciones de acceso a datos sobre el warehouse (una por serie o grupo de series) |
-| **27** | parsers propios para los distintos módulos de Excel oficiales de INDEC |
-| **~45** | gráficos interactivos solo en el escritorio de Macro Argentina |
-| **186** | tests automatizados en las dos capas del sistema (62 sobre el motor de ingesta de datos + 124 sobre el motor de pricing/dashboard, de un total que era 25 antes de la última ronda de auditoría): desde imports y parsing hasta reconciliación de cada ficha Excel contra el precio de mercado y el dashboard en vivo, con paridad verificada entre la tarea programada y la corrida manual — la última ronda casi quintuplicó la cobertura de pricing/dashboard, con foco en funciones puras 100% sintéticas (no dependen de que el mercado esté abierto para correr en CI) |
-| **2** | tareas programadas (Windows Task Scheduler) que mantienen datos, precios y pricing frescos sin intervención manual |
-| **1m 39s** | tiempo de descarga completa de las 13 fuentes de datos, en paralelo |
-| **21s** | tiempo del pipeline de pricing completo (motor de pricing + carga a warehouse) — 3.5x más rápido tras una optimización de la etapa de ingesta |
+| **7** | tipos de instrumento con motor de pricing propio, cada uno en **tres vistas de precio** (Mercado, Compra y Venta, con comisiones del broker) |
+| **5** | secciones del escritorio: Inicio, Renta Fija (16 pestañas), Liquidez Global (5 pestañas), Macro Argentina (14 vistas) y Mi cartera |
+| **~460** | funciones de acceso a datos sobre el warehouse (una por serie o grupo de series) |
+| **~30** | módulos con parser propio para los Excel oficiales de INDEC |
+| **~2.000** | tests automatizados en las dos capas del sistema (1.815 sobre el motor de pricing y el dashboard + 173 sobre el motor de descarga): desde imports y parsing hasta la reconciliación de cada ficha Excel contra el precio de mercado, el dashboard en vivo con datos reales y controles cruzados contra fuentes independientes. Se verifica además que la tarea programada corra exactamente el mismo pipeline que una corrida manual |
+| **4** | tareas programadas (Windows Task Scheduler) que mantienen datos, precios, mercados e historia al día sin intervención manual |
+| **~1m 40s** | descarga completa de las fuentes en paralelo (medido con 13 fuentes) |
+| **21s** | pipeline de pricing completo (motor de pricing + carga a warehouse), 3.5x más rápido tras una optimización de la etapa de ingesta |
+| **< 1 s** | tiempo por clic en cualquier vista del escritorio fiscal y bancario ya visitada (medido pantalla por pantalla; la vista de deuda pasó de 95 s a 15 s la primera vez y 0,2 s después, ver [Rigor de ingeniería](#rigor-de-ingeniería-y-control-de-calidad)) |
+
+## Novedades de septiembre-octubre 2026
+
+La versión anterior de este README documentaba el pricer y el escritorio macro. Desde entonces el sistema creció en seis frentes:
+
+- **Fiscal y sistema bancario con fuentes oficiales**: tres vistas nuevas de Macro Argentina — 🧾 Fiscal (9 sub-vistas: recaudación por impuesto de ARCA, resultado, deuda y financiamiento, previsional, cuasifiscal, empleo y salarios del SIPA con cuadros por sexo), 🏧 Crédito y bancos (crédito por línea, crecimiento real, depósitos y tasas, calidad de cartera, solvencia) y 🏛️ Reservas y liquidez (escalera de reservas netas verificada contra el FMI). Ver [Fiscal, sistema bancario y reservas](#fiscal-sistema-bancario-y-reservas-con-datos-oficiales).
+- **Renta fija como terminal de analista**: comisiones del broker y vistas Mercado/Compra/Venta en todos los pricers, TIR histórica reconstruida con los pricers reales, valor relativo con estudio de eventos, forwards implícitas y roll-down, MEP/brecha, carry trade como operación completa y un resumen "qué cambió hoy". Ver [Comisiones](#comisiones-y-vistas-mercado--compra--venta) y [Terminal de analista](#terminal-de-analista-valor-relativo-tir-histórica-y-señales).
+- **Mi cartera**: diario de operaciones, tenencias con TIR del dinero y FIFO, riesgo y estrés, calificaciones de las agencias locales leídas de la CNV, swing trading en renta fija con backtest honesto, optimizador y alertas. Ver [Mi cartera](#mi-cartera-tenencias-riesgo-y-calificaciones).
+- **Liquidez global**: Charting estilo TradingView con niveles de soporte y resistencia, perfil de volumen, divergencias y un backtest de señales que informa lo que **no** funciona.
+- **Menos PDF, más datos estructurados**: las reservas se leen de la API de datos del FMI y la calidad de cartera del anexo Excel del BCRA; los PDF quedaron como control opcional. Los análisis nuevos se contrastan contra la fuente independiente antes de mostrarse.
+- **Operación robusta**: archivo intradía, respaldo semanal verificado, panel de salud de datos, reloj de mercados y caché de lecturas.
 
 ## Qué es
 
 Un sistema de dos capas construido para reemplazar el trabajo manual de armar y actualizar planillas de bonos y macro todos los días:
 
-1. **Capa de datos (ETL):** ingesta automatizada desde BCRA, INDEC, FRED/ECB/BIS/Treasury/OECD, datos.gob.ar y prospectos de bonos del MAE, hacia un data warehouse analítico en DuckDB/Parquet.
-2. **Capa de análisis y presentación:** motores de pricing y detección de arbitraje propios para renta fija argentina —orquestados con Prefect—, más un escritorio macro (Argentina y global) interactivo en Streamlit.
+1. **Capa de datos (ETL):** ingesta automatizada desde BCRA, INDEC, FRED/ECB/BIS/Tesoro de EE.UU., datos.gob.ar, ARCA, la Secretaría de Finanzas, la API de datos del FMI y los prospectos de bonos del MAE, hacia un data warehouse analítico en DuckDB/Parquet. Cada fuente se valida antes de guardarse (estructura, historia mínima, frescura) y nunca pisa un archivo bueno con uno incompleto.
+2. **Capa de análisis y presentación:** motores de pricing, valor relativo y detección de arbitraje propios para renta fija argentina —orquestados con Prefect—, un escritorio macro (Argentina y global) interactivo en Streamlit y un módulo de seguimiento de cartera.
 
 La lógica financiera y las decisiones de arquitectura son de autoría propia; la implementación de código fue desarrollada con asistencia de agentes de IA (Claude, Gemini) bajo un enfoque de *AI-augmented development* — dirigido por criterio financiero, no por experiencia previa como programador.
 
@@ -65,31 +93,30 @@ Dos motores privados —uno de ingesta, uno de análisis— que comparten el mis
 
 ## Cobertura de datos
 
-**Economía real y variables de mercado — Argentina** (10 categorías): Cambiario · Monetario · Actividad · Fiscal · Empleo y Sociedad · Precios · Consumo y Retail · Sector Externo · Expectativas · Mercados.
+**Economía real y variables de mercado — Argentina** (14 vistas): Cambiario · Reservas y liquidez · Fiscal · Monetario · Crédito y bancos · Actividad Real · PIB y Cuentas Nacionales · Empleo y Sociedad · Precios · Consumo y Retail · Sector Externo · Expectativas · Mercados · Correlaciones.
 
-**Variables globales que mira el mercado**: bancos centrales (Fed, ECB, BOJ, PBOC) y su liquidez agregada · curvas del Tesoro americano y TIPS · inflación breakeven · índice de estrés sistémico (VIX, MOVE, VVIX, CISS) · curvas de recesión (T10Y2Y, T10Y3M) · fiscal de EE.UU.
+**Variables globales que mira el mercado**: bancos centrales (Fed, ECB, BOJ, PBOC) y su liquidez agregada · curvas del Tesoro americano y TIPS · inflación breakeven · índice de estrés sistémico (VIX, MOVE, VVIX, CISS) · curvas de recesión (T10Y2Y, T10Y3M) · fiscal de EE.UU. · ~65 activos de Yahoo Finance con barras de 30 minutos en horario de mercado y cualquier otro ticker a demanda.
 
-**Universo de renta fija argentina**: Tasa fija, CER, Dollar Linked, Duales, Soberanos/Provinciales USD, 189 Obligaciones Negociables corporativas en USD (ley local y extranjera) y Corporativos/Provinciales en ARS a tasa fija o variable (TAMAR/BADLAR), con curva Nelson-Siegel ajustada en vivo para cada clase de emisor.
+**Universo de renta fija argentina**: Tasa fija, CER, Dollar Linked, Duales, Soberanos/Provinciales USD, 189 Obligaciones Negociables corporativas en USD (ley local y extranjera) y Corporativos/Provinciales en ARS a tasa fija o variable (TAMAR/BADLAR), con curva Nelson-Siegel ajustada en vivo para cada clase de emisor, puntas bid/ask de IOL y la historia de precios (incluidos 101 instrumentos en pesos ya vencidos, para no tener sesgo de supervivencia).
 
-**Alcance real de las APIs oficiales**: BCRA y FRED exponen catálogos mucho más grandes de lo que el sistema integra por defecto, y el sistema no descarga todo lo que existe — integra lo que es relevante para el análisis. La API de BCRA se usa en las categorías Monetarias, Cambiarias, Transparencia (tasas por banco) y Planillas oficiales (~1.580 series monetarias/cambiarias en total); el organismo expone además otras categorías de microdatos regulatorios (por ejemplo cheques rechazados, central de deudores del sistema financiero) que hoy quedan fuera del alcance del proyecto. La API de FRED tiene un catálogo total de ~800.000 series — el sistema mantiene curadas ~1.100 por relevancia temática (precios, actividad, empleo, tasas, monetario, mercados, tipo de cambio, comercio exterior, crédito, fiscal, condiciones financieras, recesión, macro internacional), con el catálogo completo indexable bajo demanda sin necesidad de descargarlo por defecto. Los reportes técnicos de INDEC no se scrapean por scrapear: hay 26 módulos activos con parser propio, y cada uno se descarga solo el día que le corresponde según el calendario oficial de difusión semestral de INDEC (parseado directo del PDF oficial), con un margen de ±1 día por si se publica antes o después.
+**Fiscal y bancos, con fuente oficial y sin leer PDF**: recaudación y resultado (datos.gob.ar), recaudación por impuesto, boletín de seguridad social por sector, tamaño y sexo, y anuario de ARCA, deuda pública y colocaciones del Tesoro (Secretaría de Finanzas), crédito por línea y depósitos por titular (BCRA), anexo estadístico del Informe sobre Bancos y reservas internacionales con la planilla SDDS del FMI.
+
+**Alcance real de las APIs oficiales**: BCRA y FRED exponen catálogos mucho más grandes de lo que el sistema integra por defecto, y el sistema no descarga todo lo que existe — integra lo que es relevante para el análisis. La API de BCRA se usa en las categorías Monetarias, Cambiarias, Transparencia (tasas por banco) y Planillas oficiales, más los saldos diarios de préstamos y depósitos y las series de reservas; el organismo expone además otras categorías de microdatos regulatorios (por ejemplo cheques rechazados, central de deudores del sistema financiero) que hoy quedan fuera del alcance del proyecto. La API de FRED tiene un catálogo total de ~800.000 series — el sistema mantiene curadas ~1.100 por relevancia temática, con el catálogo completo indexable bajo demanda sin necesidad de descargarlo por defecto. Los reportes técnicos de INDEC no se scrapean por scrapear: hay más de 25 módulos con parser propio, y cada uno se descarga solo el día que le corresponde según el calendario oficial de difusión (el plan semestral del INDEC más las fechas reales de publicación, ver [Rigor de ingeniería](#rigor-de-ingeniería-y-control-de-calidad)), con un margen de ±1 día por si se publica antes o después.
 
 ## Pipeline de ejecución
 
 El sistema corre en un orden fijo de 4 pasos, repartidos entre este repo y su capa de datos (ETL):
 
-1. **Universo de bonos** — sincroniza el universo completo de Títulos Públicos, Obligaciones Negociables y Fideicomisos Financieros del MAE (no solo los "vigentes" que expone la API oficial).
-2. **Macro global** — descarga masiva desde BCRA, INDEC, FRED/ECB/Treasury, datos.gob.ar y arma el índice unificado de series. INDEC se gatea contra su propio calendario oficial de difusión (parseado de PDF) — cada módulo se scrapea solo el día que corresponde, con margen de ±1 día por si se publica antes o después.
-3. **Precios en vivo** — actualiza intradiario los futuros de dólar (scraping de fuentes públicas de mercado) y los precios de bonos/letras/ON vía IOL, con un contador de cuota mensual que corta antes de arriesgar el acceso a la API.
-4. **Motor de pricing y dashboard** — corre el ETL de planillas BCRA/INDEC, dispara el pipeline de pricers (Prefect), exporta el book completo de Excel y levanta el escritorio en Streamlit.
+1. **Universo de bonos** — sincroniza el universo completo de Títulos Públicos, Obligaciones Negociables y Fideicomisos Financieros del MAE (no solo los "vigentes" que expone la API oficial), de forma incremental.
+2. **Macro global** — descarga masiva desde BCRA, INDEC, FRED/ECB/BIS/Tesoro, datos.gob.ar, ARCA, Secretaría de Finanzas y la API del FMI, y arma el índice unificado de series. INDEC se gatea contra su calendario oficial de difusión — cada módulo se scrapea solo el día que corresponde, con margen de ±1 día por si se publica antes o después.
+3. **Precios en vivo** — actualiza intradiario los futuros de dólar (scraping de fuentes públicas de mercado) y los precios y puntas de bonos/letras/ON vía IOL, con un contador de cuota mensual que corta antes de arriesgar el acceso a la API.
+4. **Motor de pricing y dashboard** — corre el ETL de planillas BCRA/INDEC, dispara el pipeline de pricers (Prefect), archiva la foto intradía, exporta el book completo de Excel y levanta el escritorio en Streamlit.
 
-Los pasos 2-4 corren también sin intervención humana vía tareas programadas de Windows — una
-diaria para la macro, otra cada 30 minutos en horario de mercado para precios/pricing/export —
-con un test automatizado que verifica que la tarea programada corra exactamente el mismo
-pipeline que una corrida manual, no una aproximación.
+Los pasos 2-4 corren también sin intervención humana vía **4 tareas programadas de Windows**: la macro diaria; precios, pricing y export cada 30 minutos en horario de mercado; mercados globales cada 30 minutos; y una semanal (viernes) que baja la historia de precios, reconstruye la TIR histórica, hace un **respaldo verificado** con manifiesto SHA-256 y corre el chequeo de calidad de datos. Un test automatizado verifica que la tarea programada corra exactamente el mismo pipeline que una corrida manual, no una aproximación.
 
 ## Capturas
 
-> Todas las capturas son de una corrida real del sistema, sin datos de ejemplo.
+> Todas las capturas son de una corrida real del sistema, sin datos de ejemplo (en la sección de cartera, con los montos ocultos).
 
 ### Escritorio Macro Argentina — panel general
 Estado de reservas, tasa real, brecha cambiaria, riesgo país, resultado fiscal, actividad y desempleo en un solo panel; reservas del BCRA y riesgo país (EMBI+) con historia completa.
@@ -123,18 +150,56 @@ completo, hoy sin ninguna captura en el repo pese a ser una de las secciones má
 
 [PEGAR CAPTURA ACÁ]
 
-### Fiscal — resultado y dinámica de financiamiento (rollover)
-Resultado primario/financiero del Sector Público Nacional y emisión vs. amortización de
-deuda en moneda local y extranjera — el termómetro de cuánta deuda nueva coloca el Tesoro
-contra cuánta vence.
-
-[PEGAR CAPTURA ACÁ]
-
 ### Consumo y Retail — medios de pago
 Evolución de la preferencia del consumidor entre efectivo y tarjetas (débito/crédito) en
 supermercados — un gráfico simple y muy legible incluso para un lector no técnico.
 
 [PEGAR CAPTURA ACÁ]
+-->
+
+### Reservas y liquidez — de las reservas brutas a las netas
+La "escalera" de reservas: brutas → netas de encajes → **netas tipo FMI** (descontando el swap con China, la línea del BIS, SEDESA y las compras al Fondo) → netas líquidas. La versión tipo FMI reproduce el dato que publica el propio FMI con una diferencia de USD 27 y 60 millones a fines de 2024 y 2025. Incluye la composición oficial de la planilla SDDS, la liquidez a un año y las compras y ventas diarias de dólares del BCRA.
+
+<!--
+📸 CAPTURA PENDIENTE — Macro Argentina → "🏛️ Reservas y liquidez".
+   1. La escalera de reservas (gráfico con los 4 niveles + la línea del NIR del FMI).
+   2. (Opcional) Composición oficial SDDS y liquidez neta a un año.
+   Formato: <img width="..." height="..." alt="image" src="https://github.com/user-attachments/assets/..." />
+-->
+
+### Fiscal — recaudación, resultado, deuda y seguridad social
+Nueve sub-vistas con datos oficiales: tablero con calendario de publicaciones, resumen fiscal (resultado primario/financiero en pesos reales y % del PIB), recaudación por impuesto de ARCA, deuda y financiamiento (stock por moneda e instrumento, perfil de vencimientos, colocaciones del Tesoro, tenedores), previsional, cuasifiscal, empleo y salarios del SIPA y largo plazo por región. Cada serie lleva su fecha de última actualización y controles de identidad (por ejemplo, DGI + DGA + seguridad social = recaudación total).
+
+<!--
+📸 CAPTURAS PENDIENTES — Macro Argentina → "🧾 Fiscal" (las 3 de más valor):
+   1. "🚦 Tablero y calendario": semáforo de frescura + próximas publicaciones.
+   2. "💳 Deuda y financiamiento": stock de deuda por moneda y perfil de vencimientos.
+   3. "🧮 Por impuesto (ARCA)": recaudación real por impuesto con variación interanual.
+-->
+
+### Empleo y salarios (SIPA) — mujeres y varones, y destino de la seguridad social
+Empleo registrado y salarios reales del SIPA; el boletín de ARCA abierto por **sexo y sector de actividad** (las mujeres son ~38% de los trabajadores registrados y su salario bruto promedio es ~79% del de los varones — sin controlar horas ni puestos, por eso se muestra también por sector) y el **destino de la recaudación de la seguridad social** (ANSES 63%, PAMI 9%, obras sociales y ART 25%), que explica por qué la recaudación total de ARCA no es recaudación fiscal.
+
+<!--
+📸 CAPTURAS PENDIENTES — Macro Argentina → Fiscal → "👷 Empleo y salarios (SIPA)":
+   1. Sección "Mujeres y varones": KPIs + salario relativo por sector.
+   2. Sección "Recaudación de la seguridad social: conceptos y destino".
+-->
+
+### Crédito y bancos — crédito, depósitos y calidad de cartera
+Cinco secciones: **crédito por línea** con saldos diarios (adelantos, documentos, hipotecarios, prendarios, personales, tarjetas), **crecimiento real** de crédito y depósitos, **depósitos por titular y tasas** (un tercio de los depósitos privados en pesos son de fondos comunes de inversión), **calidad de cartera** (irregularidad por línea y por grupo de entidades desde 2010) y **liquidez, solvencia y rentabilidad** por grupo de bancos. Las identidades contables se verifican en cada lectura.
+
+<!--
+📸 CAPTURAS PENDIENTES — Macro Argentina → "🏧 Crédito y bancos" (una por sección, las 5 se ven distinto):
+   1. "💳 Crédito por línea"   2. "💹 Crecimiento real"   3. "🏦 Depósitos y tasas"
+   4. "⚠️ Calidad de cartera"   5. "🛡️ Liquidez, solvencia y rentabilidad"
+-->
+
+### Correlaciones y análisis de evidencia
+Matriz de correlaciones macro con horizonte elegible, y cinco análisis diseñados para no engañarse (dinero e inflación, brecha como predictor, riesgo país global vs local, precisión del REM). Cada resultado informa n, el estadístico, el azar esperable y corrige por pruebas múltiples. Ver [Hallazgos de análisis](#hallazgos-de-análisis-con-sus-límites).
+
+<!--
+📸 CAPTURA PENDIENTE — Macro Argentina → "🔗 Correlaciones": la matriz + el panel de robustez horizonte × período de un par.
 -->
 
 ### Tasa Fija y CER — curvas con ajuste Nelson-Siegel
@@ -217,6 +282,41 @@ Las 3 expectativas de mercado no siempre cubren el mismo horizonte (el REM relev
    <img> que las demás secciones de Capturas.
 -->
 
+### Qué cambió hoy y Tasa Fija con forwards y roll-down
+Resumen de la rueda: cambio de TIR de cada clase contra la rueda anterior, cambio de la curva de letras y alertas de curva con umbrales editables. En Tasa Fija, forwards implícitas a 3 y 6 meses (solo donde la curva llega; nunca se extrapola), roll-down, colchón de tasa y **días que tarda el carry en pagar la comisión**.
+
+<!--
+📸 CAPTURAS PENDIENTES — Renta Fija:
+   1. "📰 Qué cambió hoy" completa (KPIs + alertas).
+   2. Tasa Fija → "Forwards y roll-down".
+-->
+
+### Valor Relativo — spreads de legislación con estudio de eventos
+AL/GD por par (AL29/GD29, AL30/GD30, AL35/GD35, AE38/GD38, AL41/GD41): z-score contra su propia historia, vida media de reversión, estadístico tipo Dickey-Fuller y **edge neto de comisiones**; estudio de eventos calculado solo con datos anteriores a cada señal; y caro/barato de cada bono contra la curva Nelson-Siegel soberana. Distingue "cubre el costo de rotar", "desvío menor al costo" y "no revierte", para no confundir un cambio de nivel con una oportunidad.
+
+<!--
+📸 CAPTURAS PENDIENTES — Renta Fija → "⚖️ Valor Relativo":
+   1. Tabla de pares con z-score, vida media y edge neto.
+   2. Serie del spread de un par (AL30/GD30) con bandas.
+-->
+
+### UST vs Soberanos, MEP/Brecha y Carry Trade completo
+¿Los soberanos siguen al Tesoro? Correlación, beta y R² contra el Tesoro de igual duration (resultado: explica ~1% de la variación semanal de la TIR). MEP y CCL implícitos por bono con la brecha contra el A3500 y el costo real de convertir. El carry trade como **operación completa de cuatro patas** (USD → bono → pesos → activo → pesos → bono → USD) con comisiones en cada pata y varios escenarios de dólar de salida.
+
+<!--
+📸 CAPTURAS PENDIENTES — Renta Fija:
+   1. "🇺🇸 UST vs Soberanos": mapa bono × tenor + lectura automática.
+   2. "💱 MEP / Brecha": tabla de conversión por bono + brecha histórica.
+   3. "Carry Trade": operación completa con breakeven y escenarios.
+-->
+
+### Armador de Portafolios, Radar y Simulador de Posición
+Armador de portafolios hard dollar (duration objetivo, TIR objetivo o Markowitz) donde el monto es el **desembolso total con comisiones**, con costo de implementación y TIR de ida y vuelta; Radar de oportunidades; y un simulador "¿y si compro o vendo X?" con el resultado neto de ida y vuelta.
+
+<!--
+📸 CAPTURAS PENDIENTES — Renta Fija → "💼 Armador de Portafolios" (composición sugerida con comisiones y KPIs) y "🧮 Simulador de Posición".
+-->
+
 ### Matriz de Sensibilidad: TIR Breakeven (Total Return)
 Para cada instrumento de una categoría (Hard Dollar, CER, Tasa Fija, Dollar Linked, Corporativos ARS, Duales), calcula el retorno total de comprar hoy y vender en una fecha objetivo elegida, contra una grilla de TIRs de salida hipotéticas, con 3 estrategias de reinversión de los cupones cobrados en el camino (caja al 0%, tasa de mercado dinámica, o reinversión a la TIR del propio bono) — y una columna **BREAKEVEN**: la TIR de salida máxima que el instrumento puede tolerar antes de que la posición pase a pérdida nominal, más una columna **Margen** (Breakeven − TIR de hoy, en puntos porcentuales) para leer de un vistazo qué tan ajustada está cada posición. Un resumen agregado arriba de la tabla (bonos totales, margen promedio, cuántos con margen bajo o negativo) evita tener que leer fila por fila para notar que una categoría entera quedó apretada, y una alerta equivalente aparece directo en el brief matutino para los Soberanos Hard Dollar.
 
@@ -241,6 +341,36 @@ Los bonos Duales entran a la matriz con la pata (TAMAR/CER/Fija/Dollar Linked) q
 <img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/af55d776-1bbe-445c-862a-ff389ca0de82" />
 <img width="2051" height="489" alt="image" src="https://github.com/user-attachments/assets/9ef78718-2894-45e6-af0e-c7a500636725" />
 
+### Charting estilo TradingView, niveles y backtest honesto de señales
+Velas diarias, semanales, mensuales e intradía de 30 minutos sobre ~65 activos (y cualquier ticker a demanda), con medias móviles, RSI de Wilder con **divergencias marcadas en la vela en que se pudieron operar**, MACD, Bollinger, Ichimoku, perfil de volumen y **soportes y resistencias en zonas** (confluencia diario/semanal/mensual, con R:R neto de comisiones). El backtest de señales mide el exceso sobre entrar en cualquier vela y corrige por pruebas múltiples: ninguna señal clásica agrega valor demostrable en el conjunto, y la pantalla lo dice.
+
+<!--
+📸 CAPTURAS PENDIENTES — Liquidez Global → "📈 Charting":
+   1. "📈 Gráfico": velas + SMA + RSI con divergencias (un activo conocido, por ejemplo SPY).
+   2. "🎯 Niveles": zonas confluentes y tabla accionable.
+   3. "🧪 Backtest de señales": tabla con n, exceso y significancia corregida.
+-->
+
+### Mi cartera — tenencias, riesgo y calificaciones
+Diario de operaciones con precio neto de comisión y TIR de compra con el pricer real, tenencias por FIFO con valor de liquidación y TIR del dinero, riesgo por factor y estrés, calificaciones de las agencias locales leídas de la CNV, swing trading en renta fija y optimizador de pesos.
+
+<!--
+📸 CAPTURAS PENDIENTES — "💼 Mi cartera" (recomendación: usar una cartera de ejemplo o desenfocar montos y cantidades reales antes de publicar):
+   1. Tenencias: tabla por posición con TIR del dinero, duration y DV01.
+   2. "Riesgo y estrés": descomposición por factor y escenarios de curva.
+   3. "🏛️ Calificaciones": nota de cada agencia por bono + escala común.
+   4. Swing: valuación relativa y señales activas.
+-->
+
+### Salud de datos y reloj de mercados
+Panel permanente de salud de datos: frescura de cada fuente contra su propia frecuencia de publicación, claves duplicadas, fechas inconsistentes, saltos anómalos y semáforos por serie. Reloj de mercados con banderas y solapes de rueda arriba de todo el escritorio.
+
+<!--
+📸 CAPTURAS PENDIENTES:
+   1. Panel "🩺 Salud de datos" abierto (semáforos por fuente).
+   2. El reloj de mercados en la cabecera del dashboard.
+-->
+
 ## Qué resuelve
 
 Antes de este sistema, armar la foto diaria del mercado de renta fija argentino significaba actualizar planillas de Excel a mano: bajar precios, recalcular TIR y duration bono por bono, y cruzar manualmente con la macro del día. Este sistema automatiza esa cadena completa y agrega capacidades que no existían en la versión manual: ajuste de curvas por Nelson-Siegel, detección de arbitraje legislativo y de arbitraje FX sintético con acción sugerida, y un panel de riesgo sistémico global actualizado en vivo — todo cruzado contra el contexto macro real de Argentina y del mundo, no solo el precio del bono en el vacío.
@@ -258,6 +388,51 @@ Cobertura de 7 tipos de instrumentos de renta fija argentina, sobre un universo 
 - Corporativos y provinciales en ARS a tasa fija/step-up (sin indexación CER/UVA/dollar-linked)
 
 Cálculos incluidos: NPV, Duration Macaulay/Modificada, Convexidad, Z-spread generalizado (contra la curva del Tesoro americano interpolada para instrumentos en USD, y contra una curva libre-de-riesgo propia en pesos —construida en vivo a partir de LECAPs/BONCAPs— para instrumentos en ARS), y solvers de TIR propios — un **solver por método de Brent optimizado con Numba (JIT)** para los instrumentos en pesos (tasa fija, CER, duales), y `scipy.optimize.brentq` para los bonos hard-dollar.
+
+## Comisiones y vistas Mercado / Compra / Venta
+
+Un bono no rinde lo mismo para quien lo compra hoy que para quien lo vende hoy, y ningún pricer de planilla lo refleja. Todos los motores y todo el dashboard calculan cada métrica en **tres vistas**:
+
+| Vista | Precio | Flujos | Qué mide |
+|---|---|---|---|
+| **Mercado** | último precio operado | brutos | el bono sin fricción |
+| **Compra** | punta vendedora (ask real de IOL) más la comisión, sobre precio sucio | cupones netos de la comisión de renta | lo que rinde quien entra hoy y mantiene |
+| **Venta** | punta compradora menos la comisión | — | lo que cobrás si vendés hoy |
+
+- **Tarifas verificadas contra la fuente primaria** del broker (texto crudo de su página), con IVA y derechos de mercado como parámetros; perfiles de Balanz e IOL seleccionables y editables desde la interfaz.
+- **Ningún default silencioso**: un instrumento que no se puede clasificar en su clase de arancel recibe la tarifa más alta, queda etiquetado y hace fallar un test.
+- **Una sola fórmula de retorno con costos**, compartida por Breakeven, Radar, Simulador, alertas y fichas (antes estaba copiada en cuatro lugares).
+- **Efecto que casi nadie mide**: la fricción pesa mucho en plazos cortos anualizada. Una letra a 30 días con 0,24% de ida y vuelta puede perder 3 puntos de TEA; por eso el sistema calcula los **días que tarda el carry en pagar la comisión**.
+- Las columnas de la vista Mercado son **bit-idénticas** a las anteriores a este cambio (test de regresión contra el pricer viejo).
+
+## Terminal de analista: valor relativo, TIR histórica y señales
+
+- **TIR histórica diaria reconstruida con los pricers reales**: cada precio pasado se valúa con la misma matemática del dashboard en vivo y solo con lo que se sabía ese día (CER publicado, REM vigente, TAMAR hasta el día anterior). Contrastada: con los precios de hoy reproduce 58 de 58 TIR del pricer vivo con diferencia de 0,00 pb. Incluye 101 instrumentos en pesos ya vencidos para evitar el **sesgo de supervivencia**.
+- **Valor relativo**: spreads de legislación con estudio de eventos sin mirar el futuro, vida media de reversión y edge neto de comisiones; caro/barato contra la curva soberana Nelson-Siegel (cada soberano se mide contra la curva sin él mismo).
+- **Forwards implícitas, roll-down y yield USD sintético** (paridad cubierta con futuros de dólar), siempre limitados a donde la curva llega.
+- **Carry trade como operación completa** con las cuatro patas de conversión y breakeven contra REM, ROFEX y banda cambiaria.
+- **Archivo intradía** de precios (no existía historia del día) y **respaldo semanal verificado** de lo que no se puede volver a bajar.
+- **Backtests honestos**: la señal usa datos hasta el cierre de t, se entra en la apertura de t+1, se descuentan comisiones y se mide el exceso contra la base del mismo activo.
+
+## Fiscal, sistema bancario y reservas con datos oficiales
+
+Tres vistas de Macro Argentina construidas sobre fuentes estructuradas (API, CSV y Excel), con identidades contables verificadas en cada lectura y contraste contra una segunda fuente cuando existe.
+
+- **🏛️ Reservas**: escalera de reservas brutas → netas tipo FMI → netas líquidas, verificada contra el NIR publicado por el FMI (diferencias de USD 27 y 60 millones a fines de 2024 y 2025). La composición oficial y la liquidez a un año salen de la **API de datos del FMI** (misma planilla SDDS que publica el BCRA, en formato máquina: 92 meses desde 2019 con todas las identidades verificadas).
+- **🧾 Fiscal**: recaudación total y por impuesto, resultado primario y financiero (en pesos reales y % del PIB, que reproduce el dato oficial de 1,8% en 2024 y 1,4% en 2025), deuda y financiamiento del Tesoro, previsional, cuasifiscal y empleo registrado. Con una advertencia importante que casi todo analista pasa por alto: **la recaudación total de ARCA no es recaudación fiscal** (incluye obras sociales, ART y otros fondos que no van al Tesoro).
+- **🏧 Crédito y bancos**: crecimiento real de crédito y depósitos calculado a partir de los saldos mensuales del BCRA y contrastado contra el Informe sobre Bancos (depósitos dentro de 0,2 puntos porcentuales); calidad de cartera por línea desde 2010; solvencia y rentabilidad por grupo de entidades.
+- **Menos PDF, más datos**: se reemplazó la lectura de PDF por fuentes estructuradas siempre que existen. El contraste contra el PDF anterior encontró dos errores del parser viejo (ver [Rigor de ingeniería](#rigor-de-ingeniería-y-control-de-calidad)).
+
+## Mi cartera: tenencias, riesgo y calificaciones
+
+El seguimiento de una cartera propia con el mismo rigor que el pricing:
+
+- **Diario de operaciones** con precio neto de comisión (real o del modelo, marcando el origen) y **TIR de compra con el pricer real** a la fecha de cada operación.
+- **Tenencias por FIFO**: valor de liquidación (neto de comisión), cobros asignados al lote que los recibió, **TIR del dinero** (una sola tasa que iguala lo pagado en cada compra, con su fecha) y XIRR; cada compra se descompone en carry, cambio de tasa y comisiones.
+- **Riesgo y estrés**: descomposición de Euler del riesgo por posición y por factor (inflación, dólar, soberano USD, crédito, tasa en pesos), escenarios de curva con **reprecio exacto** flujo por flujo, VaR y ES, y estrés histórico con los episodios reales del riesgo país (PASO 2019, COVID, julio 2022, balotaje 2023...).
+- **Calificaciones**: lee de la CNV los dictámenes de las agencias locales (FIX, Moody's Local, S&P Argentina), normaliza las tres notaciones a una escala común y detecta cambios. La escala internacional va en una tabla manual: esos sitios exigen registro y el sistema **no los esquiva**.
+- **Swing trading en renta fija**: hipótesis **definidas antes de correrlas**, con corrección por pruebas múltiples y resultados negativos publicados (una de las tres hipótesis iniciales pierde dinero en todas las configuraciones y se descartó). El monitor **avisa, no opera**.
+- **Optimizador** de pesos objetivo (carry menos aversión por varianza menos costo de llegar, con covarianza Ledoit-Wolf), **tesis por operación** con condiciones medibles evaluadas todos los días y alertas.
 
 ## Exportación a Excel: fichas de nivel research desk
 
@@ -319,14 +494,25 @@ ninguna de las dos vistas puede divergir de la otra sin que un test lo detecte.
 - **Semáforo de Estrés Sistémico Global (GSSI)**: índice compuesto 0-100 por percentil histórico de VIX, MOVE, VVIX y CISS, con su variación mensual como referencia de tendencia.
 - **Proyector de CER por REM**: cuando el BCRA todavía no publicó el CER oficial de una fecha futura, bootstrapea la curva de inflación mensual implícita en el REM (Relevamiento de Expectativas de Mercado) y la proyecta día a día, respetando qué mes de IPC corresponde legalmente aplicar según el día del mes.
 - **Proyector de banda cambiaria con jerarquía de 3 fuentes** (motor compartido entre Dollar Linked y Carry Trade): el ritmo diario de ensanchamiento de la banda replica empíricamente la inflación INDEC de dos meses antes (T-2) — el mismo rezago que usa el propio régimen cambiario oficial — así que se usa esa inflación real ya publicada mientras esté disponible; recién cuando el T-2 real de un mes todavía no salió (los ~2 meses más próximos a hoy, por construcción del rezago) cae a la expectativa de inflación del REM para ese mismo mes; solo como último recurso, más allá también del horizonte REM, repite la última inflación real conocida. Nunca deja la banda "congelada" en un valor viejo pudiendo usar algo mejor informado, y el dashboard distingue visualmente qué tramo de cada curva es dato firme y cuál es proyección.
-- **Scraping de INDEC gateado por su propio calendario oficial**: en vez de scrapear los 26 módulos activos todos los días, el sistema parsea el PDF de calendario de difusión semestral de INDEC (layout de 2 columnas, reconstruido por posición de palabra) y solo va a buscar cada módulo el día que le corresponde según ese calendario — con margen de tolerancia y un modo *fail-open* que nunca deja de scrapear algo por un mapeo incompleto.
+- **Scraping de INDEC gateado por su propio calendario oficial**: en vez de scrapear los más de 25 módulos activos todos los días, el sistema parsea el PDF de calendario de difusión semestral de INDEC (layout de 2 columnas, reconstruido por posición de palabra), le suma las fechas reales de publicación que figuran en la web del instituto y solo va a buscar cada módulo el día que le corresponde según ese calendario — con margen de tolerancia y un modo *fail-open* que nunca deja de scrapear algo por un mapeo incompleto.
 - **Deuda Externa Bruta, recuperada de su fuente real vigente**: el reporte standalone de Deuda Externa de INDEC está discontinuado desde 2017 (verificado navegando la página oficial en vivo); la serie completa 2006-hoy sigue publicándose, pero integrada dentro del informe combinado de Cuentas Internacionales — el parser se extendió para extraerla de ahí, en vez de asumir que "no hay dato" por seguir apuntando a la página vieja.
 - **Unificación de fuentes oficiales por sobre agregadores de terceros**: antes de migrar una serie (inflación, tasa de depósitos) de un agregador externo a la API oficial del BCRA, se verifica en vivo que ambas fuentes den exactamente el mismo historial — la migración se hace solo cuando la oficial es al menos igual de completa (y, en algún caso, más actualizada), nunca a ciegas por preferencia.
 - **Gestión de cuota de API con circuit-breaker**: el consumo mensual de la API de precios de mercado se trackea en una base local; si se acerca al límite del plan gratuito, el sistema corta las llamadas antes de arriesgar un bloqueo, en vez de descubrirlo a mitad de mes con el servicio caído. En números: ~22 llamadas por corrida de precios intradiaria, ~6.000/mes de consumo real contra un límite gratuito de 25.000/mes (24% de uso), con alerta al 90% y corte duro al 100%.
 
+## Hallazgos de análisis (con sus límites)
+
+Cinco análisis pensados para **no engañarse**: cada uno informa n, el estadístico, el azar esperable y, cuando se prueban muchas combinaciones, corrige por pruebas múltiples. Resultados descriptivos al 05/10/2026 (los tests fijan el método, no los números); precedencia estadística no es causalidad.
+
+- **Señales técnicas clásicas**: sobre 64 activos y 545 pruebas con evidencia suficiente, 23 resultan "significativas" al 5% sin corregir (se esperan ~27 por azar) y **0 sobreviven a la corrección de Benjamini-Hochberg**. Ninguna agrega valor demostrable en el conjunto.
+- **¿Los soberanos siguen al Tesoro?** No: la tasa del Tesoro de igual duration explica ~1% de la variación semanal de la TIR de los soberanos (beta indistinguible de cero). Se mueven casi por completo por riesgo propio.
+- **Riesgo país: global vs local**: los factores globales (VIX, MOVE, high yield, dólar) explican ≈3% de la variación semanal, ≈11% de la mensual y ≈15% de la trimestral; el resto es local (y es una cota: incluye ruido de medición).
+- **Dinero e inflación depende del régimen**: en 2003-2017 el dinero precede a la inflación (y sobrevive a los controles por tipo de cambio y actividad); desde 2018 es la inflación la que precede al dinero. La velocidad del dinero cayó ~60% entre 2004 y 2017 y subió ~97% desde 2018, así que no hay una relación fija.
+- **Reservas y riesgo país**: la relación existe en la historia larga y crece con el horizonte (r de −0,13 a un mes a −0,51 a doce), pero desde 2020 no es significativa (los saltos de reservas vienen de desembolsos y swaps). Una primera versión del análisis concluía "sin relación" por mirar solo cambios mensuales desde 2020: error de método, no de dato, y quedó documentado.
+- **Carry trade**: convertir pesos a dólares y volver cuesta ~2,4% de ida y vuelta (0,605% por pata, cuatro patas): el carry en una LECAP de pocos meses no lo paga salvo que el dólar se mueva poco.
+
 ## Rigor de ingeniería y control de calidad
 
-El sistema pasa por rondas periódicas de auditoría de código propia — no solo revisión de estilo, sino verificación de que los cálculos financieros sean correctos —, respaldadas por **186 tests automatizados** entre las dos capas. Algunos hallazgos reales, con impacto financiero directo, detectados y corregidos en producción:
+El sistema pasa por rondas periódicas de auditoría de código propia — no solo revisión de estilo, sino verificación de que los cálculos financieros sean correctos —, respaldadas por **casi 2.000 tests automatizados** entre las dos capas (1.815 sobre el motor de pricing y el dashboard + 173 sobre el motor de descarga). Algunos hallazgos reales, con impacto financiero directo, detectados y corregidos en producción:
 
 - **Error de signo en la sensibilidad de convexidad**: `(-0.01**2)` se evaluaba como `-0.0001` por precedencia de operadores en Python, en vez de `+0.0001` — subestimaba la ganancia de precio ante una baja de tasa de 100bps, más notorio en bonos de mayor duration/convexidad.
 - **TAMAR mal mapeado (tasa efectiva en vez de nominal)**: el BCRA publica la tasa TAMAR bajo dos IDs distintos según la base de capitalización — el sistema alimentaba la tasa efectiva anual a fórmulas que asumen explícitamente la nominal, sobrestimando la capitalización de todo bono BADLAR/TAMAR y de los duales Fija/TAMAR. Corregido y verificado contra la API oficial de BCRA en vivo.
@@ -335,7 +521,27 @@ El sistema pasa por rondas periódicas de auditoría de código propia — no so
 - **TNA capitalizada como si ya fuera una TEA anual**: en el simulador de reinversión de cupones de la Matriz de Breakeven, una tasa de caución/money market (TNA, se renueva cada pocos días) se componía directo como `(1+TNA)^años` — la fórmula de una TEA que compone una sola vez al año. A 4.9 años de horizonte, el factor de capitalización quedaba en 4.35x en vez del 5.42x correcto (TNA→TEA vía capitalización mensual). Encontrado auditando la lógica de reinversión a pedido explícito, con un test que reproduce los números exactos del bug para blindar el fix contra una futura reversión.
 - **Fecha invertida (día↔mes) en la ficha de bonos TAMAR/BADLAR**: una fecha de referencia se guardaba ya formateada como string `'dd/mm/yyyy'` (convención argentina) en vez de como objeto fecha, y el exportador la volvía a parsear sin especificar esa convención — para cualquier fecha ambigua (día ≤ 12) el resultado quedaba con día y mes invertidos en silencio (`'05/03/2026'` se mostraba como `'03/05/2026'`). Encontrado revisando en vivo los warnings de una corrida real, no en una prueba sintética.
 
+- **Error de un parser de PDF detectado al contrastar contra la fuente estructurada**: al reemplazar la lectura de un informe en PDF por los saldos mensuales oficiales, el contraste mostró que un valor "mensual" del PDF era en realidad el interanual (7,7% contra 4,6% correcto) y que otras filas de préstamos se leían como cero sin ningún error. Ambos se corrigieron y el lector del PDF quedó solo como control opcional. Lección aplicada: priorizar CSV, Excel y APIs sobre PDF, y contrastar siempre contra una segunda fuente.
+- **Lanzamientos reprogramados que la compuerta del calendario se habría salteado**: el scraper de INDEC solo va a buscar cada módulo el día que indica el calendario semestral (PDF), con ±1 día de margen. Contrastando contra las fechas reales de publicación (web del INDEC) apareció que el instituto reprograma: en septiembre de 2026, ISAC e IPI manufacturero se publicaron el 8 en lugar del 3, y el EMAE el 24 en lugar del 23. Ahora las fechas reales se unen al plan para que no se pierda ninguna.
+- **Una identidad que no cerraba apuntaba a una serie sin mapear**: la planilla de reservas del FMI no cerraba sus propias identidades contables en los meses de 2019-2021 por una diferencia constante de ~USD 380 millones; era la posición de reserva en el FMI, que faltaba en el mapeo. Con ella, los 92 meses cierran sin error.
+- **Un mes inconsistente en la fuente oficial, detectado y aislado**: en agosto de 2022 la masa salarial de los varones del boletín de seguridad social queda ~1,9% por debajo de lo que implican los trabajadores y el salario promedio publicados; se descarta ese mes y no el cuadro entero, y se informa en pantalla.
+- **Rendimiento medido, no supuesto**: perfilando cada pantalla se encontró que la vista de deuda tardaba **95 segundos** (abría el mismo libro de Excel de nuevo por cada hoja y se llamaba dos veces). Con apertura única y una caché en disco con la firma de los archivos pasó a 15 segundos la primera vez y 0,2 segundos después; una caché por archivo bajó el resto de las vistas a menos de 1 segundo por clic. Si la descarga diaria reemplaza un archivo, la firma cambia y se vuelve a leer: nunca se sirve un dato viejo.
+
 Estos hallazgos surgen de rondas de auditoría documentadas y fechadas contra el código real, no de pruebas puntuales — la idea es que un error de cálculo financiero se detecte por proceso, no por casualidad.
+
+## Qué demuestra este proyecto
+
+| Área | Evidencia concreta en este sistema |
+|---|---|
+| **Finanzas cuantitativas** | Pricing de 7 tipos de instrumento (TIR, duration, convexidad, Z-spread, DV01), curvas Nelson-Siegel, forwards implícitas, roll-down, breakeven total return, VaR y ES, descomposición de Euler del riesgo, optimización con covarianza Ledoit-Wolf |
+| **Conocimiento del mercado argentino** | CER con proyector por REM, Dollar Linked con bandas cambiarias, duales con ruteo de pata ganadora, arbitraje de legislación AL/GD, MEP/CCL implícito, carry trade con costo real de conversión, comisiones y derechos de mercado |
+| **Ingeniería de datos** | 13 fuentes en paralelo con validación y caché incremental, warehouse DuckDB/Parquet, ~30 parsers de Excel oficiales, orquestación con Prefect, 4 tareas programadas, respaldo verificado, panel de salud de datos |
+| **Rigor estadístico** | Corrección por pruebas múltiples, tests de Granger robustos, análisis sin mirar el futuro, resultados negativos publicados, distinción explícita entre precedencia y causalidad |
+| **Control de calidad** | Casi 2.000 tests, contrastes contra fuentes independientes (FMI, informes oficiales), auditorías documentadas con hallazgos reales y corregidos |
+| **Producto** | Una terminal con 5 secciones, ~35 pestañas y vistas pensadas para un analista: qué cambió hoy, alertas, fichas por instrumento, exportación a Excel de nivel research desk |
+| **Criterio** | Cada número se puede defender, cada límite se declara en pantalla y el sistema prefiere mostrar "sin dato" a una cifra fabricada |
+
+**Cómo trabajo con IA:** la lógica financiera, las decisiones de diseño y la verificación son propias; la implementación de código se desarrolló con asistentes de IA (Claude, Gemini). El valor está en dirigirlos con criterio y en el proceso de verificación (tests, contrastes y auditorías) que impide aceptar un resultado sin comprobarlo.
 
 ## Lógica destacada (ejemplo ilustrativo)
 
@@ -361,18 +567,20 @@ else:
 | Orquestación del pipeline de pricing | Prefect (5 fases: limpieza, ingesta a warehouse, pricing tasa fija/CER, pricing macro/FX, bonos duales, hard dollar) |
 | Motor de ingesta multi-fuente | Descarga paralela propia, con caché incremental y rate-limiting por API |
 | Almacenamiento analítico | DuckDB, Parquet |
-| Cálculo numérico | NumPy, SciPy, Numba (JIT) |
-| Fuentes de datos | API BCRA, INDEC (parsers de Excel oficiales), FRED, ECB, BIS, Treasury, OECD, datos.gob.ar, prospectos MAE (PDF), precios IOL, futuros de dólar (scraping) |
+| Cálculo numérico y estadística | NumPy, SciPy, Numba (JIT); Granger robusto (HC1), Newey-West, Benjamini-Hochberg, Ledoit-Wolf |
+| Fuentes de datos | API BCRA, INDEC (parsers de Excel oficiales), FRED, ECB, BIS, Tesoro de EE.UU., datos.gob.ar, ARCA, Secretaría de Finanzas, API de datos del FMI (SDMX), UTDT, CNV (calificaciones), prospectos MAE (PDF), precios y puntas de IOL, Rava, Yahoo Finance y futuros de dólar (scraping) |
 | Extracción de fichas de bonos | PyMuPDF (texto) + parsing automático por expresiones regulares del documento legal definitivo; lectura asistida por LLM en el flujo de carga manual de casos no estándar |
 | Generación de reportes | openpyxl (fichas Excel completas por instrumento, exportación masiva del universo) |
-| Dashboard | Streamlit, Plotly |
-| Validación | pytest (186 tests entre las dos capas: 124 sobre el motor de pricing/dashboard — reconciliación PVCF↔precio del exportador Excel, invariantes por familia de instrumento, paridad automatizada entre la tarea programada y la corrida manual, y funciones puras 100% sintéticas de las señales de riesgo y del simulador de Breakeven —, + 62 estructurales/incrementales del motor de ingesta de datos) + GitHub Actions (CI en cada push: compileall + pytest) |
-| Automatización | Windows Task Scheduler (2 tareas: macro diaria, precios/pricing/export cada 30 min en horario de mercado) con control de cuota de API |
+| Dashboard | Streamlit, Plotly (velas, perfil de volumen), caché de lecturas por firma de archivo |
+| Validación | pytest (casi 2.000 tests: 1.815 sobre el motor de pricing y el dashboard — reconciliación PVCF↔precio del exportador Excel, invariantes por familia de instrumento, controles cruzados contra fuentes independientes, paridad entre la tarea programada y la corrida manual, funciones puras 100% sintéticas — y 173 sobre el motor de descarga con sesiones simuladas sin red) + GitHub Actions (CI en cada push: compileall + pytest) |
+| Automatización | Windows Task Scheduler (4 tareas: macro diaria; precios, pricing y export cada 30 min en horario de mercado; mercados globales cada 30 min; historia, respaldo y calidad semanales) con control de cuota de API |
 
 ## Roadmap
 
-- **Portfolio tracking y optimización por duration target**: ya prototipado (carga de posiciones propias + optimizador de cartera con restricciones — TIR mínima, concentración máxima por activo, duration objetivo); en revisión antes de reintegrarlo al dashboard en vivo.
-- **Reservas internacionales NETAS** (brutas − encajes en USD − swaps): hoy el panel muestra solo el proxy bruto por falta de una fuente pública confiable de encajes/swaps.
+- **Más explotación de datos oficiales ya descargados**: cuadros de seguridad social por tamaño de empleador y por obra social, colocaciones en dólares y canjes del Tesoro.
+- **Historia de precios para Dollar Linked y duales**: hoy no se conserva el dólar futuro vigente de cada día, por lo que su TIR histórica no se reconstruye.
+- **Indicadores prudenciales que solo el BCRA da en prosa** (por ejemplo PDE y LCR): sin serie estructurada disponible, hoy quedan fuera.
+- **Cronogramas de pago desde un endpoint estructurado**: hoy la fuente de los flujos es el prospecto en PDF verificado en capas; se evalúa si MAE o BYMA exponen los cronogramas por API.
 
 ## Contacto
 
