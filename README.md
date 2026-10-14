@@ -144,17 +144,19 @@ Los pasos 2-4 corren también sin intervención humana vía **4 tareas programad
 ### Escritorio Macro Argentina — panel general
 Estado de reservas, tasa real, brecha cambiaria, riesgo país, resultado fiscal, actividad y desempleo en un solo panel; reservas del BCRA y riesgo país (EMBI+) con historia completa.
 
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/adab3b11-e626-4e99-9a59-e0429897974b" />
+<img width="3211" height="1253" alt="image" src="https://github.com/user-attachments/assets/deb258b1-656d-4373-9c37-1dce39f4b130" />
 
 ### Cambiario — brecha y evolución de tipos de cambio
 "La Trinidad Macro" (inflación mensual, tasa de interés y crawling peg en un mismo eje), brecha CCL/oficial histórica, y evolución completa de los distintos tipos de cambio desde convertibilidad.
 
-<img width="3120" height="910" alt="image" src="https://github.com/user-attachments/assets/4be9210a-88d0-4c1f-a581-7d5912f81282" />
+<img width="3228" height="1235" alt="image" src="https://github.com/user-attachments/assets/d2296628-f344-4bf1-b5ec-8edf28aac8db" />
 
 ### Inflación (IPC) por rubro
 Serie histórica completa del IPC (incluye la hiperinflación de 1989-90), apertura por rubro y comparación núcleo vs. estacional vs. regulados — construido sobre el parser propio de los Excel de INDEC.
 
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/dbac7f9c-6817-4cb8-b141-794d8cfb5197" />
+<img width="3157" height="707" alt="image" src="https://github.com/user-attachments/assets/9fdab976-811d-4b02-8fb2-8597784085ee" />
+<img width="3197" height="1193" alt="image" src="https://github.com/user-attachments/assets/5b6afa99-d867-4a72-a95c-562ffb3c5684" />
+<img width="3147" height="778" alt="image" src="https://github.com/user-attachments/assets/eb4d7689-1ec7-4e2d-82a8-0bf816beb599" />
 
 <!--
 📌 4 capturas que le faltan a esta sección para mostrar la cobertura completa de Macro Argentina
@@ -177,28 +179,27 @@ completo, hoy sin ninguna captura en el repo pese a ser una de las secciones má
 Evolución de la preferencia del consumidor entre efectivo y tarjetas (débito/crédito) en
 supermercados — un gráfico simple y muy legible incluso para un lector no técnico.
 
-[PEGAR CAPTURA ACÁ]
+<img width="3114" height="1233" alt="image" src="https://github.com/user-attachments/assets/e9db3ce9-56d0-49aa-a18b-ac76f63006d9" />
+<img width="3100" height="1069" alt="image" src="https://github.com/user-attachments/assets/56cde9c5-e2ff-4f5e-ad79-bfa354ec6ebe" />
+<img width="3072" height="559" alt="image" src="https://github.com/user-attachments/assets/ed8978da-76b7-44a0-9ae6-bf0d018011d7" />
 -->
 
 ### Reservas y liquidez — de las reservas brutas a las netas
 La "escalera" de reservas: brutas → netas de encajes → **netas tipo FMI** (descontando el swap con China, la línea del BIS, SEDESA y las compras al Fondo) → netas líquidas. La versión tipo FMI reproduce el dato que publica el propio FMI con una diferencia de USD 27 y 60 millones a fines de 2024 y 2025. Incluye la composición oficial de la planilla SDDS, la liquidez a un año y las compras y ventas diarias de dólares del BCRA.
 
-<!--
-📸 CAPTURA PENDIENTE — Macro Argentina → "🏛️ Reservas y liquidez".
-   1. La escalera de reservas (gráfico con los 4 niveles + la línea del NIR del FMI).
-   2. (Opcional) Composición oficial SDDS y liquidez neta a un año.
-   Formato: <img width="..." height="..." alt="image" src="https://github.com/user-attachments/assets/..." />
--->
+<img width="3066" height="740" alt="image" src="https://github.com/user-attachments/assets/f93c1446-2903-47b0-8e9d-e1281381f57c" />
+<img width="3094" height="579" alt="image" src="https://github.com/user-attachments/assets/f1f0f469-4fdf-44c6-b240-f9c9dc898795" />
+<img width="3078" height="544" alt="image" src="https://github.com/user-attachments/assets/66aac921-26b2-47ef-9e3e-54f89ef5b63f" />
 
 ### Fiscal — recaudación, resultado, deuda y seguridad social
 Nueve sub-vistas con datos oficiales: tablero con calendario de publicaciones, resumen fiscal (resultado primario/financiero en pesos reales y % del PIB), recaudación por impuesto de ARCA, deuda y financiamiento (stock por moneda e instrumento, perfil de vencimientos, colocaciones del Tesoro, tenedores), previsional, cuasifiscal, empleo y salarios del SIPA y largo plazo por región. Cada serie lleva su fecha de última actualización y controles de identidad (por ejemplo, DGI + DGA + seguridad social = recaudación total).
 
-<!--
-📸 CAPTURAS PENDIENTES — Macro Argentina → "🧾 Fiscal" (las 3 de más valor):
-   1. "🚦 Tablero y calendario": semáforo de frescura + próximas publicaciones.
-   2. "💳 Deuda y financiamiento": stock de deuda por moneda y perfil de vencimientos.
-   3. "🧮 Por impuesto (ARCA)": recaudación real por impuesto con variación interanual.
--->
+<img width="3084" height="609" alt="image" src="https://github.com/user-attachments/assets/b2bed445-e796-4949-a50e-b0c30771cd53" />
+<img width="3070" height="834" alt="image" src="https://github.com/user-attachments/assets/df651782-c144-4cec-ab6d-01ca4483492e" />
+<img width="3078" height="529" alt="image" src="https://github.com/user-attachments/assets/8de238a6-144e-4c2c-81bc-3cc34ef5ba14" />
+<img width="3108" height="885" alt="image" src="https://github.com/user-attachments/assets/190ca948-b67f-4dfd-8741-a0533902e125" />
+<img width="3107" height="1016" alt="image" src="https://github.com/user-attachments/assets/a9f49b5f-28bb-4257-b830-426b77baeaa3" />
+
 
 ### Empleo y salarios (SIPA) — mujeres y varones, y destino de la seguridad social
 Empleo registrado y salarios reales del SIPA; el boletín de ARCA abierto por **sexo y sector de actividad** (las mujeres son ~38% de los trabajadores registrados y su salario bruto promedio es ~79% del de los varones — sin controlar horas ni puestos, por eso se muestra también por sector) y el **destino de la recaudación de la seguridad social** (ANSES 63%, PAMI 9%, obras sociales y ART 25%), que explica por qué la recaudación total de ARCA no es recaudación fiscal.
@@ -212,14 +213,15 @@ Empleo registrado y salarios reales del SIPA; el boletín de ARCA abierto por **
 ### Crédito y bancos — crédito, depósitos y calidad de cartera
 Cinco secciones: **crédito por línea** con saldos diarios (adelantos, documentos, hipotecarios, prendarios, personales, tarjetas), **crecimiento real** de crédito y depósitos, **depósitos por titular y tasas** (un tercio de los depósitos privados en pesos son de fondos comunes de inversión), **calidad de cartera** (irregularidad por línea y por grupo de entidades desde 2010) y **liquidez, solvencia y rentabilidad** por grupo de bancos. Las identidades contables se verifican en cada lectura.
 
-<!--
-📸 CAPTURAS PENDIENTES — Macro Argentina → "🏧 Crédito y bancos" (una por sección, las 5 se ven distinto):
-   1. "💳 Crédito por línea"   2. "💹 Crecimiento real"   3. "🏦 Depósitos y tasas"
-   4. "⚠️ Calidad de cartera"   5. "🛡️ Liquidez, solvencia y rentabilidad"
--->
+<img width="3084" height="1101" alt="image" src="https://github.com/user-attachments/assets/19c32a16-782c-47ce-acd3-937f615caab6" />
+<img width="3094" height="1057" alt="image" src="https://github.com/user-attachments/assets/efe129be-085c-453e-90f1-736dc172d9ff" />
+<img width="3100" height="1085" alt="image" src="https://github.com/user-attachments/assets/683edf60-5b54-42f4-94ed-0cacff0440d7" />
+
 
 ### Correlaciones y análisis de evidencia
 Matriz de correlaciones macro con horizonte elegible, y cinco análisis diseñados para no engañarse (dinero e inflación, brecha como predictor, riesgo país global vs local, precisión del REM). Cada resultado informa n, el estadístico, el azar esperable y corrige por pruebas múltiples. Ver [Hallazgos de análisis](#hallazgos-de-análisis-con-sus-límites).
+
+<img width="3113" height="902" alt="image" src="https://github.com/user-attachments/assets/e9fe8f0b-4319-4743-b4e3-80d8417a5232" />
 
 <!--
 📸 CAPTURA PENDIENTE — Macro Argentina → "🔗 Correlaciones": la matriz + el panel de robustez horizonte × período de un par.
@@ -228,35 +230,39 @@ Matriz de correlaciones macro con horizonte elegible, y cinco análisis diseñad
 ### Tasa Fija y CER — curvas con ajuste Nelson-Siegel
 Curvas de rendimiento sobre precios spot para renta fija a tasa fija y ajustada por CER, con la tabla de pricing completa (TIR, TEA, TEM, Duration, Convexidad) detrás de cada punto.
 
-<img width="3437" height="1301" alt="image" src="https://github.com/user-attachments/assets/301851d5-4ff4-4e49-904b-fb8349516d6a" />
-<img width="3417" height="1171" alt="image" src="https://github.com/user-attachments/assets/c1071a39-a157-4d77-9bbd-6969b137488f" />
+<img width="3115" height="957" alt="image" src="https://github.com/user-attachments/assets/1b5fb0e9-2de0-48e8-a8a0-77830bb5aa97" />
+<img width="3008" height="530" alt="image" src="https://github.com/user-attachments/assets/379ab1a8-d3ad-414b-8731-9ae397960590" />
+<img width="3022" height="532" alt="image" src="https://github.com/user-attachments/assets/0cf7b6a8-8aa6-465d-9c4a-e33da5d45966" />
 
-<img width="3433" height="1304" alt="image" src="https://github.com/user-attachments/assets/34955e75-219f-4a72-bbf4-0461a78176c1" />
-<img width="3415" height="955" alt="image" src="https://github.com/user-attachments/assets/e21c6ed0-3eaf-4c36-8bd4-2635fecab1d3" />
+<img width="3089" height="998" alt="image" src="https://github.com/user-attachments/assets/2ec7d1f3-7003-429b-956c-6c239053199a" />
+<img width="2785" height="534" alt="image" src="https://github.com/user-attachments/assets/f9971b54-2470-49b4-b050-d7c20c254f80" />
 
 ### Dollar Linked — bandas cambiarias y proyección por escenario
 Evolución del A3500 contra el régimen oficial de bandas cambiarias, con brecha promedio (6M e histórica) contra el límite superior e inferior; dos escenarios de proyección — devaluación implícita en los futuros A3500 y en los futuros ROFEX — para comparar contra la curva de tasa fija. La banda cambiaria en sí se proyecta con una jerarquía de 3 fuentes (ver [Otros motores destacados](#otros-motores-destacados)): dato oficial del BCRA mientras exista, inflación real ya publicada con el rezago T-2 que el propio régimen usa, y expectativa REM recién cuando ninguna de las dos anteriores todavía cubre esa fecha — nunca una proyección lineal ingenua.
 
-<img width="3436" height="1280" alt="image" src="https://github.com/user-attachments/assets/9d458b3d-ba2d-467a-b605-053f4c6015b1" />
-<img width="3427" height="1308" alt="image" src="https://github.com/user-attachments/assets/598d2838-ae34-4f6f-b6fa-d20eaac505ed" />
-<img width="3422" height="1305" alt="image" src="https://github.com/user-attachments/assets/71fd6749-7ac8-47b2-8163-b126c5403154" />
-<img width="3433" height="1152" alt="image" src="https://github.com/user-attachments/assets/04b05aa4-da54-4116-81a0-c9c02fdafbbe" />
-<img width="3417" height="1225" alt="image" src="https://github.com/user-attachments/assets/e8589c58-626b-4333-90d3-8102d2694061" />
-<img width="3435" height="1223" alt="image" src="https://github.com/user-attachments/assets/bcd1548a-f2df-464a-ac2b-46d9ae082931" />
+<img width="3061" height="614" alt="image" src="https://github.com/user-attachments/assets/b32d79b1-3237-4f56-8800-02da1c6c44a6" />
+<img width="3040" height="896" alt="image" src="https://github.com/user-attachments/assets/a78c1906-247e-4dcf-a060-1f0872adcacd" />
+<img width="3022" height="873" alt="image" src="https://github.com/user-attachments/assets/5d48e96d-aceb-451a-9ad5-ef2d8f78c65e" />
+<img width="3085" height="1230" alt="image" src="https://github.com/user-attachments/assets/4993d069-1b86-41f4-b83c-4baa17bc3352" />
+<img width="3089" height="1164" alt="image" src="https://github.com/user-attachments/assets/3d860c9c-c033-4148-b3e9-52665651ea2f" />
+<img width="2835" height="1149" alt="image" src="https://github.com/user-attachments/assets/a646b6ae-56b0-423d-bac7-d0dd06a2d25e" />
+<img width="3086" height="1141" alt="image" src="https://github.com/user-attachments/assets/f3582bb7-8877-4322-bb34-65f13fcbe814" />
 
 ### Soberanos y Provinciales USD — MEP implícito y arbitraje legislativo
 Ratios de dólar MEP implícito por activo, spread en bps entre pares de bonos soberanos bajo ley local vs. extranjera (AL29/GD29, AL30/GD30, etc.), y curvas por ley (local, extranjera, deuda provincial y Bopreales).
 
-<img width="3436" height="917" alt="image" src="https://github.com/user-attachments/assets/99a8d08e-0cb1-456b-bd3e-7e03bc6221f5" />
-<img width="3433" height="1304" alt="image" src="https://github.com/user-attachments/assets/4a24b61d-111f-49e3-bfb4-92e2f22ab10c" />
-<img width="3422" height="1091" alt="image" src="https://github.com/user-attachments/assets/83fcb055-85ef-4917-8b8f-33ee11cda5d4" />
+<img width="3098" height="1242" alt="image" src="https://github.com/user-attachments/assets/4e019e9d-0310-48d2-82d0-c72ee12f1924" />
+<img width="3113" height="1249" alt="image" src="https://github.com/user-attachments/assets/4b9d0336-af4c-42e8-844a-7ff062c08fb6" />
+<img width="2933" height="475" alt="image" src="https://github.com/user-attachments/assets/d987b1e6-6c37-43d4-aef2-f83c09b04f5d" />
+<img width="1853" height="480" alt="image" src="https://github.com/user-attachments/assets/f6f96dc8-1c5f-401f-ae32-eccd9aab3329" />
 
 ### Corporativos USD — 189 Obligaciones Negociables por ley y por sector
 Universo completo de ONs corporativas, segmentadas por ley de emisión (local/extranjera) y por sector económico (agrupa emisores como YPF/PAE/Vista bajo "Oil & Gas", exige un mínimo de 3 tickers para que un sector tenga curva propia).
 
-<img width="3435" height="1197" alt="image" src="https://github.com/user-attachments/assets/f15d1943-130e-475a-859a-9a269500dd83" />
-<img width="3430" height="1282" alt="image" src="https://github.com/user-attachments/assets/34c4fbec-720d-4dd8-8f09-bb8d4d7c3d91" />
-<img width="3422" height="1259" alt="image" src="https://github.com/user-attachments/assets/33d28559-f531-4300-b2cf-cbfcdbbbabb5" />
+<img width="3112" height="953" alt="image" src="https://github.com/user-attachments/assets/54f4ace9-77e8-4e47-838b-328436d2152d" />
+<img width="3131" height="1253" alt="image" src="https://github.com/user-attachments/assets/88e4eefe-c004-4cac-89b1-00e5930dc8bc" />
+<img width="3055" height="472" alt="image" src="https://github.com/user-attachments/assets/9af7ac00-2afd-4447-80fc-aa437017f740" />
+<img width="1861" height="473" alt="image" src="https://github.com/user-attachments/assets/0341c766-20cc-44fc-a537-3b62fb3cd283" />
 
 ### Ficha de bono: drill-down completo por instrumento
 Click en cualquier ticker de las tablas de pricing de arriba abre una vista de detalle dedicada
@@ -273,16 +279,10 @@ sin tener que salir de la ficha para una primera lectura del margen de seguridad
 por duration dentro de la misma clase de emisor, otros instrumentos del mismo emisor exacto, y
 un botón para exportar la misma ficha, completa, a Excel.
 
-<!--
-📌 CAPTURA PENDIENTE (alto valor: es la vista más nueva del sistema, hoy sin ningún ejemplo
-   visual en este README). Sugerencia concreta: entrá a Soberanos USD, click en un ticker
-   como AO27 o GD30 — esa clase de instrumento arma el prospecto más completo (incluye el
-   link al documento legal). Capturá:
-   1. La parte de arriba: KPIs + Detalle del Prospecto (hasta donde arranca el cronograma).
-   2. Scrolleada más abajo: cronograma de flujos + el gráfico de sensibilidad
-      Precio-vs-TIR con las dos curvas (exacta y aproximación Duration-Convexidad).
-   Pegá cada una donde corresponda, con el mismo formato <img> que las de arriba.
--->
+<img width="3117" height="1133" alt="image" src="https://github.com/user-attachments/assets/7250b2af-bcae-421a-a462-1b611866f4c3" />
+<img width="2222" height="337" alt="image" src="https://github.com/user-attachments/assets/fa3db3b4-ea9b-4ea4-945a-48d08788c72a" />
+<img width="2234" height="508" alt="image" src="https://github.com/user-attachments/assets/8f843df9-a7cd-4434-8759-fd053c9aca11" />
+<img width="3129" height="764" alt="image" src="https://github.com/user-attachments/assets/b244e376-12c6-41f7-9f00-1e81e61c8fa5" />
 
 ### Tablero de Arbitraje: señales cuantitativas de trading
 Dos motores de detección de desfasajes de precio, con acción sugerida (comprar/vender) calculada en vivo:
@@ -290,20 +290,18 @@ Dos motores de detección de desfasajes de precio, con acción sugerida (comprar
 - **Inflación implícita vs. mercado (BEI vs. REM):** empareja una Lecap y un bono CER que vencen el mismo día para extraer la inflación que el mercado está pricing (BEI) y la compara contra el consenso de analistas (REM). Si el bono CER rinde tan poco que asume una inflación irrealmente alta, señala vender ese CER y pasarse a la Lecap (LONG FIJA).
 - **Arbitraje FX sintético (Dollar Linked vs. Tasa Fija):** simula el rendimiento de un bono Dollar Linked asumiendo que el dólar devalúa según lo que pricean los futuros de dólar (obtenidos por scraping), y lo compara contra una Lecap del mismo plazo — si la devaluación implícita en el Dollar Linked es menor a la que rendiría la tasa fija, señala vender el Dollar Linked y pasarse a tasa fija.
 
-<img width="3424" height="1299" alt="image" src="https://github.com/user-attachments/assets/ab4cd31f-4c08-4ff4-873f-d16f9d1d27bd" />
-<img width="3065" height="436" alt="image" src="https://github.com/user-attachments/assets/3db86490-585e-4c83-8719-793f8fa7fc5a" />
-<img width="3143" height="550" alt="image" src="https://github.com/user-attachments/assets/e7209efe-966f-487f-b92e-243156689fb8" />
+<img width="3115" height="1172" alt="image" src="https://github.com/user-attachments/assets/55d4605f-0d9a-4441-9e74-9527873235fb" />
+<img width="3130" height="890" alt="image" src="https://github.com/user-attachments/assets/24499fe6-2ddc-4d81-9131-f105391ca473" />
 
 ### Carry Trade — breakeven de devaluación vs. expectativas de mercado
 Para cada bono a tasa fija en pesos (LECAP/BONCAP/BONO TF), calcula el tipo de cambio *breakeven* — al que el mercado tendría que llegar en el vencimiento para que un carry trade (vender USD, comprar el bono en pesos, recomprar USD al cobrar) empate exactamente contra haberse quedado en dólares — y lo compara contra tres expectativas de mercado: REM (encuesta de expectativas del BCRA), futuros ROFEX y las bandas cambiarias oficiales, todas anualizadas por composición (TEA, no TNA — una auditoría propia de convención de tasas encontró y corrigió esa etiqueta) para poder comparar bonos de distinto plazo en igualdad de condiciones. Señala si el carry gana, pierde o queda neutro contra cada expectativa, y suma una comparación directa en pesos (sin pasar por el tipo de cambio) contra un bono Dollar Linked de duration similar.
 
 Las 3 expectativas de mercado no siempre cubren el mismo horizonte (el REM releva solo ~4-5 meses hacia adelante, los futuros ROFEX bastante más) — en vez de estirar la más corta con el último valor conocido como si fuera una proyección real, la curva y la tabla se acotan juntas a la última fecha donde las tres siguen teniendo dato genuino, y un bono que vence más allá de ese punto se excluye del análisis en lugar de mostrar una señal fabricada contra una expectativa que no existe. La línea de banda cambiaria, además, cambia de color en el punto exacto donde deja de ser cronograma oficial del BCRA y pasa a ser proyección con inflación esperada del REM — la incertidumbre queda visible, no escondida detrás de una línea continua.
 
-<!--
-📌 CAPTURA PENDIENTE (falta screenshot de esta pestaña). Capturá la curva de carry (FX REM/ROFEX/
-   Banda vs. los breakeven de cada bono) y/o la tabla de detalle por instrumento, mismo formato
-   <img> que las demás secciones de Capturas.
--->
+<img width="3123" height="917" alt="image" src="https://github.com/user-attachments/assets/0a8f1c50-9248-4cca-a749-b43d9201088d" />
+<img width="3107" height="985" alt="image" src="https://github.com/user-attachments/assets/101c227b-d731-4670-97c8-011fbba393dd" />
+<img width="3090" height="732" alt="image" src="https://github.com/user-attachments/assets/e8935e91-57a7-4d0d-b967-fbc6db71bd0a" />
+<img width="3109" height="616" alt="image" src="https://github.com/user-attachments/assets/5db1f17b-3011-49b4-8722-77bf149ae9d2" />
 
 ### Qué cambió hoy y Tasa Fija con forwards y roll-down
 Resumen de la rueda: cambio de TIR de cada clase contra la rueda anterior, cambio de la curva de letras y alertas de curva con umbrales editables. En Tasa Fija, forwards implícitas a 3 y 6 meses (solo donde la curva llega; nunca se extrapola), roll-down, colchón de tasa y **días que tarda el carry en pagar la comisión**.
