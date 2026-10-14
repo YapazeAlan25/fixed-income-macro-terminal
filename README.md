@@ -139,130 +139,267 @@ Los pasos 2-4 corren también sin intervención humana vía **4 tareas programad
 
 ## Capturas
 
-> **Capturas actualizadas al 13/10/2026**, tomadas de la **última corrida del pricing**: datos reales del sistema en funcionamiento, sin datos de ejemplo (en la sección de cartera, con los montos ocultos).
+> **Capturas actualizadas al 14/10/2026**, tomadas de la **última corrida del pricing**: datos reales del sistema en funcionamiento, sin datos de ejemplo. Las imágenes se abren a tamaño completo; las tablas y gráficos se leen mejor ampliados.
+
+### Inicio — brief matutino
+El primer panel que ve el usuario al abrir el sistema: banderas de riesgo (macro global y riesgo Argentina) con las señales que las componen, cuadro de los tipos de cambio con brecha contra el oficial, mercado local y riesgo país, renta fija en foco y contexto overnight (futuros de EE.UU., mercados asiáticos, commodities agro).
+
+<p align="center"><img src="assets/screenshots/inicio_brief_banderas_del_dia.webp" alt="Brief de apertura: banderas de riesgo (Macro Global y Riesgo Argentina) con las señales que las componen" width="100%"><br><sub>Brief de apertura: banderas de riesgo (Macro Global y Riesgo Argentina) con las señales que las componen</sub></p>
+
+<p align="center"><img src="assets/screenshots/inicio_brief_cuadro_cambiario.webp" alt="Cuadro cambiario completo con brecha contra el oficial" width="100%"><br><sub>Cuadro cambiario completo con brecha contra el oficial</sub></p>
+
+<p align="center"><img src="assets/screenshots/inicio_brief_mercado_local_y_riesgo_argentina.webp" alt="Mercado local y riesgo Argentina" width="100%"><br><sub>Mercado local y riesgo Argentina</sub></p>
+
+<p align="center"><img src="assets/screenshots/inicio_brief_renta_fija_en_foco.webp" alt="Renta fija argentina en foco" width="100%"><br><sub>Renta fija argentina en foco</sub></p>
+
+<p align="center"><img src="assets/screenshots/inicio_brief_contexto_overnight_y_agro.webp" alt="Contexto overnight (futuros, Asia) y commodities agro" width="100%"><br><sub>Contexto overnight (futuros, Asia) y commodities agro</sub></p>
 
 ### Escritorio Macro Argentina — panel general
 Estado de reservas, tasa real, brecha cambiaria, riesgo país, resultado fiscal, actividad y desempleo en un solo panel; reservas del BCRA y riesgo país (EMBI+) con historia completa.
 
-<img width="3211" height="1253" alt="image" src="https://github.com/user-attachments/assets/deb258b1-656d-4373-9c37-1dce39f4b130" />
+<p align="center"><img src="assets/screenshots/macro_cambiario_reservas_y_riesgo_pais.webp" alt="Cambiario reservas y riesgo país" width="100%"><br><sub>Cambiario reservas y riesgo país</sub></p>
 
 ### Cambiario — brecha y evolución de tipos de cambio
 "La Trinidad Macro" (inflación mensual, tasa de interés y crawling peg en un mismo eje), brecha CCL/oficial histórica, y evolución completa de los distintos tipos de cambio desde convertibilidad.
 
-<img width="3228" height="1235" alt="image" src="https://github.com/user-attachments/assets/d2296628-f344-4bf1-b5ec-8edf28aac8db" />
+<p align="center"><img src="assets/screenshots/macro_cambiario_trinidad_macro.webp" alt="Cambiario trinidad macro" width="100%"><br><sub>Cambiario trinidad macro</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_cambiario_evolucion_tipos_de_cambio.webp" alt="Cambiario evolución tipos de cambio" width="100%"><br><sub>Cambiario evolución tipos de cambio</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_cambiario_regimen_de_bandas.webp" alt="Cambiario régimen de bandas" width="100%"><br><sub>Cambiario régimen de bandas</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_cambiario_competitividad_itcrm.webp" alt="Cambiario competitividad ITCRM" width="100%"><br><sub>Cambiario competitividad ITCRM</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_cambiario_carry_trade.webp" alt="Cambiario carry trade" width="100%"><br><sub>Cambiario carry trade</sub></p>
 
 ### Inflación (IPC) por rubro
 Serie histórica completa del IPC (incluye la hiperinflación de 1989-90), apertura por rubro y comparación núcleo vs. estacional vs. regulados — construido sobre el parser propio de los Excel de INDEC.
 
-<img width="3157" height="707" alt="image" src="https://github.com/user-attachments/assets/9fdab976-811d-4b02-8fb2-8597784085ee" />
-<img width="3197" height="1193" alt="image" src="https://github.com/user-attachments/assets/5b6afa99-d867-4a72-a95c-562ffb3c5684" />
-<img width="3147" height="778" alt="image" src="https://github.com/user-attachments/assets/eb4d7689-1ec7-4e2d-82a8-0bf816beb599" />
+<p align="center"><img src="assets/screenshots/macro_precios_ipc_resumen_ejecutivo.webp" alt="Precios IPC resumen ejecutivo" width="100%"><br><sub>Precios IPC resumen ejecutivo</sub></p>
 
-<!--
-📌 4 capturas que le faltan a esta sección para mostrar la cobertura completa de Macro Argentina
-   (agregalas donde corresponda, con el mismo formato que las de arriba):
+<p align="center"><img src="assets/screenshots/macro_precios_ipc_historico_nivel_general.webp" alt="Precios IPC histórico nivel general" width="100%"><br><sub>Precios IPC histórico nivel general</sub></p>
 
-### Inicio — brief matutino
-El primer panel que ve el usuario al abrir el sistema: banderas de riesgo (macro global y
-riesgo Argentina), cuadro de los 6 tipos de cambio con brecha vs. oficial, y contexto
-overnight (futuros de EE.UU., mercados asiáticos, commodities agro).
+<p align="center"><img src="assets/screenshots/macro_precios_ipc_aperturas.webp" alt="Precios IPC aperturas" width="100%"><br><sub>Precios IPC aperturas</sub></p>
 
-[PEGAR CAPTURA ACÁ]
+<p align="center"><img src="assets/screenshots/macro_precios_ipc_dinamica_de_precios.webp" alt="Precios IPC dinámica de precios" width="100%"><br><sub>Precios IPC dinámica de precios</sub></p>
 
 ### Monetario — agregados y tasas de referencia
-M1/M2/M3 y base monetaria, BADLAR/TAMAR, balance del BCRA — el tablero de política monetaria
-completo, hoy sin ninguna captura en el repo pese a ser una de las secciones más grandes.
+M1/M2/M3 y base monetaria, costo del dinero, pasivos remunerados y balance del BCRA, sistema financiero, tasas y costo financiero, radar micro-bancario y mercado cambiario: el tablero de política monetaria completo. Los agregados mensuales dicen cuándo se espera el próximo dato oficial.
 
-[PEGAR CAPTURA ACÁ]
+<p align="center"><img src="assets/screenshots/macro_monetario_panorama.webp" alt="Monetario panorama" width="100%"><br><sub>Monetario panorama</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_monetario_sistema_financiero.webp" alt="Monetario sistema financiero" width="100%"><br><sub>Monetario sistema financiero</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_monetario_tasas_y_costo_financiero.webp" alt="Monetario tasas y costo financiero" width="100%"><br><sub>Monetario tasas y costo financiero</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_monetario_radar_micro_bancario.webp" alt="Monetario radar micro bancario" width="100%"><br><sub>Monetario radar micro bancario</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_monetario_mercado_cambiario.webp" alt="Monetario mercado cambiario" width="100%"><br><sub>Monetario mercado cambiario</sub></p>
 
 ### Consumo y Retail — medios de pago
-Evolución de la preferencia del consumidor entre efectivo y tarjetas (débito/crédito) en
-supermercados — un gráfico simple y muy legible incluso para un lector no técnico.
+Encuestas de supermercados, autoservicios mayoristas y centros de compras del INDEC: índice de ventas a precios constantes, cuadros del informe y gráficos de serie histórica completa.
 
-<img width="3114" height="1233" alt="image" src="https://github.com/user-attachments/assets/e9db3ce9-56d0-49aa-a18b-ac76f63006d9" />
-<img width="3100" height="1069" alt="image" src="https://github.com/user-attachments/assets/56cde9c5-e2ff-4f5e-ad79-bfa354ec6ebe" />
-<img width="3072" height="559" alt="image" src="https://github.com/user-attachments/assets/ed8978da-76b7-44a0-9ae6-bf0d018011d7" />
--->
+<p align="center"><img src="assets/screenshots/macro_consumo_supermercados.webp" alt="Consumo supermercados" width="100%"><br><sub>Consumo supermercados</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_consumo_autoservicios_mayoristas.webp" alt="Consumo autoservicios mayoristas" width="100%"><br><sub>Consumo autoservicios mayoristas</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_consumo_centros_de_compras.webp" alt="Consumo centros de compras" width="100%"><br><sub>Consumo centros de compras</sub></p>
 
 ### Reservas y liquidez — de las reservas brutas a las netas
 La "escalera" de reservas: brutas → netas de encajes → **netas tipo FMI** (descontando el swap con China, la línea del BIS, SEDESA y las compras al Fondo) → netas líquidas. La versión tipo FMI reproduce el dato que publica el propio FMI con una diferencia de USD 27 y 60 millones a fines de 2024 y 2025. Incluye la composición oficial de la planilla SDDS, la liquidez a un año y las compras y ventas diarias de dólares del BCRA.
 
-<img width="3066" height="740" alt="image" src="https://github.com/user-attachments/assets/f93c1446-2903-47b0-8e9d-e1281381f57c" />
-<img width="3094" height="579" alt="image" src="https://github.com/user-attachments/assets/f1f0f469-4fdf-44c6-b240-f9c9dc898795" />
-<img width="3078" height="544" alt="image" src="https://github.com/user-attachments/assets/66aac921-26b2-47ef-9e3e-54f89ef5b63f" />
+<p align="center"><img src="assets/screenshots/macro_reservas_escalera_brutas_a_netas.webp" alt="Reservas escalera brutas a netas" width="100%"><br><sub>Reservas escalera brutas a netas</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_reservas_compras_y_ventas_bcra.webp" alt="Reservas compras y ventas BCRA" width="100%"><br><sub>Reservas compras y ventas BCRA</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_reservas_composicion_sdds_y_nir_fmi.webp" alt="Reservas composición SDDS y NIR FMI" width="100%"><br><sub>Reservas composición SDDS y NIR FMI</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_reservas_factores_de_variacion.webp" alt="Reservas factores de variación" width="100%"><br><sub>Reservas factores de variación</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_reservas_cobertura_y_dolarizacion.webp" alt="Reservas cobertura y dolarizacion" width="100%"><br><sub>Reservas cobertura y dolarizacion</sub></p>
 
 ### Fiscal — recaudación, resultado, deuda y seguridad social
 Nueve sub-vistas con datos oficiales: tablero con calendario de publicaciones, resumen fiscal (resultado primario/financiero en pesos reales y % del PIB), recaudación por impuesto de ARCA, deuda y financiamiento (stock por moneda e instrumento, perfil de vencimientos, colocaciones del Tesoro, tenedores), previsional, cuasifiscal, empleo y salarios del SIPA y largo plazo por región. Cada serie lleva su fecha de última actualización y controles de identidad (por ejemplo, DGI + DGA + seguridad social = recaudación total).
 
-<img width="3084" height="609" alt="image" src="https://github.com/user-attachments/assets/b2bed445-e796-4949-a50e-b0c30771cd53" />
-<img width="3070" height="834" alt="image" src="https://github.com/user-attachments/assets/df651782-c144-4cec-ab6d-01ca4483492e" />
-<img width="3078" height="529" alt="image" src="https://github.com/user-attachments/assets/8de238a6-144e-4c2c-81bc-3cc34ef5ba14" />
-<img width="3108" height="885" alt="image" src="https://github.com/user-attachments/assets/190ca948-b67f-4dfd-8741-a0533902e125" />
-<img width="3107" height="1016" alt="image" src="https://github.com/user-attachments/assets/a9f49b5f-28bb-4257-b830-426b77baeaa3" />
+<p align="center"><img src="assets/screenshots/macro_fiscal_tablero_y_calendario.webp" alt="Fiscal tablero y calendario" width="100%"><br><sub>Fiscal tablero y calendario</sub></p>
 
+<p align="center"><img src="assets/screenshots/macro_fiscal_resumen_fiscal.webp" alt="Fiscal resumen fiscal" width="100%"><br><sub>Fiscal resumen fiscal</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_fiscal_recaudacion_por_impuesto_arca.webp" alt="Fiscal recaudacion por impuesto ARCA" width="100%"><br><sub>Fiscal recaudacion por impuesto ARCA</sub></p>
+
+<details>
+<summary>📷 Ver las 5 capturas restantes de esta sección</summary>
+
+<p align="center"><img src="assets/screenshots/macro_fiscal_recaudacion_y_actividad.webp" alt="Fiscal recaudacion y actividad" width="100%"><br><sub>Fiscal recaudacion y actividad</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_fiscal_deuda_y_financiamiento.webp" alt="Fiscal deuda y financiamiento" width="100%"><br><sub>Fiscal deuda y financiamiento</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_fiscal_previsional.webp" alt="Fiscal previsional" width="100%"><br><sub>Fiscal previsional</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_fiscal_cuasifiscal_y_credito.webp" alt="Fiscal cuasifiscal y crédito" width="100%"><br><sub>Fiscal cuasifiscal y crédito</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_fiscal_largo_plazo_y_regiones.webp" alt="Fiscal largo plazo y regiones" width="100%"><br><sub>Fiscal largo plazo y regiones</sub></p>
+
+</details>
 
 ### Empleo y salarios (SIPA) — mujeres y varones, y destino de la seguridad social
 Empleo registrado y salarios reales del SIPA; el boletín de ARCA abierto por **sexo y sector de actividad** (las mujeres son ~38% de los trabajadores registrados y su salario bruto promedio es ~79% del de los varones — sin controlar horas ni puestos, por eso se muestra también por sector) y el **destino de la recaudación de la seguridad social** (ANSES 63%, PAMI 9%, obras sociales y ART 25%), que explica por qué la recaudación total de ARCA no es recaudación fiscal.
 
-<!--
-📸 CAPTURAS PENDIENTES — Macro Argentina → Fiscal → "👷 Empleo y salarios (SIPA)":
-   1. Sección "Mujeres y varones": KPIs + salario relativo por sector.
-   2. Sección "Recaudación de la seguridad social: conceptos y destino".
--->
+<p align="center"><img src="assets/screenshots/macro_fiscal_sipa_empleo_y_salarios.webp" alt="Fiscal SIPA empleo y salarios" width="100%"><br><sub>Fiscal SIPA empleo y salarios</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_fiscal_sipa_mujeres_y_varones.webp" alt="Fiscal SIPA mujeres y varones" width="100%"><br><sub>Fiscal SIPA mujeres y varones</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_fiscal_sipa_seguridad_social_conceptos_y_destino.webp" alt="Fiscal SIPA seguridad social conceptos y destino" width="100%"><br><sub>Fiscal SIPA seguridad social conceptos y destino</sub></p>
 
 ### Crédito y bancos — crédito, depósitos y calidad de cartera
 Cinco secciones: **crédito por línea** con saldos diarios (adelantos, documentos, hipotecarios, prendarios, personales, tarjetas), **crecimiento real** de crédito y depósitos, **depósitos por titular y tasas** (un tercio de los depósitos privados en pesos son de fondos comunes de inversión), **calidad de cartera** (irregularidad por línea y por grupo de entidades desde 2010) y **liquidez, solvencia y rentabilidad** por grupo de bancos. Las identidades contables se verifican en cada lectura.
 
-<img width="3084" height="1101" alt="image" src="https://github.com/user-attachments/assets/19c32a16-782c-47ce-acd3-937f615caab6" />
-<img width="3094" height="1057" alt="image" src="https://github.com/user-attachments/assets/efe129be-085c-453e-90f1-736dc172d9ff" />
-<img width="3100" height="1085" alt="image" src="https://github.com/user-attachments/assets/683edf60-5b54-42f4-94ed-0cacff0440d7" />
+<p align="center"><img src="assets/screenshots/macro_credito_por_linea.webp" alt="Crédito por linea" width="100%"><br><sub>Crédito por linea</sub></p>
 
+<p align="center"><img src="assets/screenshots/macro_credito_crecimiento_real.webp" alt="Crédito crecimiento real" width="100%"><br><sub>Crédito crecimiento real</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_credito_depositos_y_tasas.webp" alt="Crédito depositos y tasas" width="100%"><br><sub>Crédito depositos y tasas</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_credito_calidad_de_cartera.webp" alt="Crédito calidad de cartera" width="100%"><br><sub>Crédito calidad de cartera</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_credito_liquidez_solvencia_rentabilidad.webp" alt="Crédito liquidez solvencia rentabilidad" width="100%"><br><sub>Crédito liquidez solvencia rentabilidad</sub></p>
 
 ### Correlaciones y análisis de evidencia
 Matriz de correlaciones macro con horizonte elegible, y cinco análisis diseñados para no engañarse (dinero e inflación, brecha como predictor, riesgo país global vs local, precisión del REM). Cada resultado informa n, el estadístico, el azar esperable y corrige por pruebas múltiples. Ver [Hallazgos de análisis](#hallazgos-de-análisis-con-sus-límites).
 
-<img width="3113" height="902" alt="image" src="https://github.com/user-attachments/assets/e9fe8f0b-4319-4743-b4e3-80d8417a5232" />
+<p align="center"><img src="assets/screenshots/macro_correlaciones_matriz.webp" alt="Correlaciones matriz" width="100%"><br><sub>Correlaciones matriz</sub></p>
 
-<!--
-📸 CAPTURA PENDIENTE — Macro Argentina → "🔗 Correlaciones": la matriz + el panel de robustez horizonte × período de un par.
--->
+<p align="center"><img src="assets/screenshots/macro_correlaciones_un_par_en_detalle.webp" alt="Correlaciones un par en detalle" width="100%"><br><sub>Correlaciones un par en detalle</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_correlaciones_dinero_e_inflacion.webp" alt="Correlaciones dinero e inflación" width="100%"><br><sub>Correlaciones dinero e inflación</sub></p>
+
+<details>
+<summary>📷 Ver las 3 capturas restantes de esta sección</summary>
+
+<p align="center"><img src="assets/screenshots/macro_correlaciones_brecha_como_predictor.webp" alt="Correlaciones brecha como predictor" width="100%"><br><sub>Correlaciones brecha como predictor</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_correlaciones_riesgo_pais_global_vs_local.webp" alt="Correlaciones riesgo país global vs local" width="100%"><br><sub>Correlaciones riesgo país global vs local</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_correlaciones_precision_del_rem.webp" alt="Correlaciones precision del REM" width="100%"><br><sub>Correlaciones precision del REM</sub></p>
+
+</details>
+
+### Más módulos de Macro Argentina — actividad, PIB, empleo y sociedad, precios, sector externo, expectativas y mercados
+El escritorio cubre además la actividad (EMAE, industria, construcción), las cuentas nacionales (PIB, capacidad instalada, generación del ingreso), el mercado de trabajo, salarios, canastas, pobreza y distribución del ingreso de la EPH, los precios mayoristas y el costo de la construcción, el sector externo (intercambio comercial, balanza de pagos, turismo), el REM con su *track record* y el Merval con los commodities del agro. Cada informe del INDEC se puede ver «a la fecha» de cualquier publicación anterior.
+
+<details>
+<summary><b>Actividad real</b> (3 capturas)</summary>
+
+<p align="center"><img src="assets/screenshots/macro_actividad_emae.webp" alt="Actividad EMAE" width="100%"><br><sub>Actividad EMAE</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_actividad_ipi_manufacturero.webp" alt="Actividad IPI manufacturero" width="100%"><br><sub>Actividad IPI manufacturero</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_actividad_isac_construccion.webp" alt="Actividad ISAC construcción" width="100%"><br><sub>Actividad ISAC construcción</sub></p>
+
+</details>
+
+<details>
+<summary><b>PIB y cuentas nacionales</b> (3 capturas)</summary>
+
+<p align="center"><img src="assets/screenshots/macro_pib_y_demanda_global.webp" alt="Pib y demanda global" width="100%"><br><sub>Pib y demanda global</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_pib_capacidad_instalada_uci.webp" alt="Pib capacidad instalada UCI" width="100%"><br><sub>Pib capacidad instalada UCI</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_pib_generacion_del_ingreso_cgi.webp" alt="Pib generación del ingreso CGI" width="100%"><br><sub>Pib generación del ingreso CGI</sub></p>
+
+</details>
+
+<details>
+<summary><b>Empleo y sociedad</b> (5 capturas)</summary>
+
+<p align="center"><img src="assets/screenshots/macro_empleo_eph_mercado_de_trabajo.webp" alt="Empleo EPH mercado de trabajo" width="100%"><br><sub>Empleo EPH mercado de trabajo</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_empleo_salarios.webp" alt="Empleo salarios" width="100%"><br><sub>Empleo salarios</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_empleo_canasta_basica.webp" alt="Empleo canasta basica" width="100%"><br><sub>Empleo canasta basica</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_empleo_pobreza.webp" alt="Empleo pobreza" width="100%"><br><sub>Empleo pobreza</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_empleo_distribucion_del_ingreso.webp" alt="Empleo distribución del ingreso" width="100%"><br><sub>Empleo distribución del ingreso</sub></p>
+
+</details>
+
+<details>
+<summary><b>Precios mayoristas y costo de la construcción</b> (2 capturas)</summary>
+
+<p align="center"><img src="assets/screenshots/macro_precios_mayoristas_ipim.webp" alt="Precios mayoristas IPIM" width="100%"><br><sub>Precios mayoristas IPIM</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_precios_costos_de_construccion_icc.webp" alt="Precios costos de construcción ICC" width="100%"><br><sub>Precios costos de construcción ICC</sub></p>
+
+</details>
+
+<details>
+<summary><b>Sector externo</b> (3 capturas)</summary>
+
+<p align="center"><img src="assets/screenshots/macro_externo_intercambio_comercial_ica.webp" alt="Externo intercambio comercial ICA" width="100%"><br><sub>Externo intercambio comercial ICA</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_externo_balanza_de_pagos_y_deuda.webp" alt="Externo balanza de pagos y deuda" width="100%"><br><sub>Externo balanza de pagos y deuda</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_externo_turismo_internacional.webp" alt="Externo turismo internacional" width="100%"><br><sub>Externo turismo internacional</sub></p>
+
+</details>
+
+<details>
+<summary><b>Expectativas (REM) y mercados</b> (3 capturas)</summary>
+
+<p align="center"><img src="assets/screenshots/macro_expectativas_rem.webp" alt="Expectativas REM" width="100%"><br><sub>Expectativas REM</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_expectativas_track_record_rem.webp" alt="Expectativas track record REM" width="100%"><br><sub>Expectativas track record REM</sub></p>
+
+<p align="center"><img src="assets/screenshots/macro_mercados_merval_y_commodities.webp" alt="Mercados merval y commodities" width="100%"><br><sub>Mercados merval y commodities</sub></p>
+
+</details>
 
 ### Tasa Fija y CER — curvas con ajuste Nelson-Siegel
 Curvas de rendimiento sobre precios spot para renta fija a tasa fija y ajustada por CER, con la tabla de pricing completa (TIR, TEA, TEM, Duration, Convexidad) detrás de cada punto.
 
-<img width="3115" height="957" alt="image" src="https://github.com/user-attachments/assets/1b5fb0e9-2de0-48e8-a8a0-77830bb5aa97" />
-<img width="3008" height="530" alt="image" src="https://github.com/user-attachments/assets/379ab1a8-d3ad-414b-8731-9ae397960590" />
-<img width="3022" height="532" alt="image" src="https://github.com/user-attachments/assets/0cf7b6a8-8aa6-465d-9c4a-e33da5d45966" />
+<p align="center"><img src="assets/screenshots/rf_tasa_fija_kpis_curva_nelson_siegel.webp" alt="Tasa fija kpis curva nelson siegel" width="100%"><br><sub>Tasa fija kpis curva nelson siegel</sub></p>
 
-<img width="3089" height="998" alt="image" src="https://github.com/user-attachments/assets/2ec7d1f3-7003-429b-956c-6c239053199a" />
-<img width="2785" height="534" alt="image" src="https://github.com/user-attachments/assets/f9971b54-2470-49b4-b050-d7c20c254f80" />
+<p align="center"><img src="assets/screenshots/rf_tasa_fija_tabla_pricing.webp" alt="Tasa fija tabla pricing" width="100%"><br><sub>Tasa fija tabla pricing</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_cer_kpis_curvas_nelson_siegel.webp" alt="CER kpis curvas nelson siegel" width="100%"><br><sub>CER kpis curvas nelson siegel</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_cer_tabla_pricing.webp" alt="CER tabla pricing" width="100%"><br><sub>CER tabla pricing</sub></p>
 
 ### Dollar Linked — bandas cambiarias y proyección por escenario
 Evolución del A3500 contra el régimen oficial de bandas cambiarias, con brecha promedio (6M e histórica) contra el límite superior e inferior; dos escenarios de proyección — devaluación implícita en los futuros A3500 y en los futuros ROFEX — para comparar contra la curva de tasa fija. La banda cambiaria en sí se proyecta con una jerarquía de 3 fuentes (ver [Otros motores destacados](#otros-motores-destacados)): dato oficial del BCRA mientras exista, inflación real ya publicada con el rezago T-2 que el propio régimen usa, y expectativa REM recién cuando ninguna de las dos anteriores todavía cubre esa fecha — nunca una proyección lineal ingenua.
 
-<img width="3061" height="614" alt="image" src="https://github.com/user-attachments/assets/b32d79b1-3237-4f56-8800-02da1c6c44a6" />
-<img width="3040" height="896" alt="image" src="https://github.com/user-attachments/assets/a78c1906-247e-4dcf-a060-1f0872adcacd" />
-<img width="3022" height="873" alt="image" src="https://github.com/user-attachments/assets/5d48e96d-aceb-451a-9ad5-ef2d8f78c65e" />
-<img width="3085" height="1230" alt="image" src="https://github.com/user-attachments/assets/4993d069-1b86-41f4-b83c-4baa17bc3352" />
-<img width="3089" height="1164" alt="image" src="https://github.com/user-attachments/assets/3d860c9c-c033-4148-b3e9-52665651ea2f" />
-<img width="2835" height="1149" alt="image" src="https://github.com/user-attachments/assets/a646b6ae-56b0-423d-bac7-d0dd06a2d25e" />
-<img width="3086" height="1141" alt="image" src="https://github.com/user-attachments/assets/f3582bb7-8877-4322-bb34-65f13fcbe814" />
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_bandas_cambiarias.webp" alt="Dollar linked bandas cambiarias" width="100%"><br><sub>Dollar linked bandas cambiarias</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_escenario_a3500.webp" alt="Dollar linked escenario A3500" width="100%"><br><sub>Dollar linked escenario A3500</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_escenario_rofex.webp" alt="Dollar linked escenario ROFEX" width="100%"><br><sub>Dollar linked escenario ROFEX</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_escenario_rem.webp" alt="Dollar linked escenario REM" width="100%"><br><sub>Dollar linked escenario REM</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_escenario_banda_alta.webp" alt="Dollar linked escenario banda alta" width="100%"><br><sub>Dollar linked escenario banda alta</sub></p>
 
 ### Soberanos y Provinciales USD — MEP implícito y arbitraje legislativo
 Ratios de dólar MEP implícito por activo, spread en bps entre pares de bonos soberanos bajo ley local vs. extranjera (AL29/GD29, AL30/GD30, etc.), y curvas por ley (local, extranjera, deuda provincial y Bopreales).
 
-<img width="3098" height="1242" alt="image" src="https://github.com/user-attachments/assets/4e019e9d-0310-48d2-82d0-c72ee12f1924" />
-<img width="3113" height="1249" alt="image" src="https://github.com/user-attachments/assets/4b9d0336-af4c-42e8-844a-7ff062c08fb6" />
-<img width="2933" height="475" alt="image" src="https://github.com/user-attachments/assets/d987b1e6-6c37-43d4-aef2-f83c09b04f5d" />
-<img width="1853" height="480" alt="image" src="https://github.com/user-attachments/assets/f6f96dc8-1c5f-401f-ae32-eccd9aab3329" />
+<p align="center"><img src="assets/screenshots/rf_soberanos_usd_kpis_riesgo_pais.webp" alt="Soberanos USD kpis riesgo país" width="100%"><br><sub>Soberanos USD kpis riesgo país</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_soberanos_usd_mep_implicito_arbitraje_legislativo.webp" alt="Soberanos USD MEP implicito arbitraje legislativo" width="100%"><br><sub>Soberanos USD MEP implicito arbitraje legislativo</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_soberanos_usd_tabla_pricing.webp" alt="Soberanos USD tabla pricing" width="100%"><br><sub>Soberanos USD tabla pricing</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_soberanos_usd_curvas_por_clase.webp" alt="Soberanos USD curvas por clase" width="100%"><br><sub>Soberanos USD curvas por clase</sub></p>
 
 ### Corporativos USD — 189 Obligaciones Negociables por ley y por sector
 Universo completo de ONs corporativas, segmentadas por ley de emisión (local/extranjera) y por sector económico (agrupa emisores como YPF/PAE/Vista bajo "Oil & Gas", exige un mínimo de 3 tickers para que un sector tenga curva propia).
 
-<img width="3112" height="953" alt="image" src="https://github.com/user-attachments/assets/54f4ace9-77e8-4e47-838b-328436d2152d" />
-<img width="3131" height="1253" alt="image" src="https://github.com/user-attachments/assets/88e4eefe-c004-4cac-89b1-00e5930dc8bc" />
-<img width="3055" height="472" alt="image" src="https://github.com/user-attachments/assets/9af7ac00-2afd-4447-80fc-aa437017f740" />
-<img width="1861" height="473" alt="image" src="https://github.com/user-attachments/assets/0341c766-20cc-44fc-a537-3b62fb3cd283" />
+<p align="center"><img src="assets/screenshots/rf_corporativos_usd_curvas_por_ley.webp" alt="Corporativos USD curvas por ley" width="100%"><br><sub>Corporativos USD curvas por ley</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_corporativos_usd_curvas_por_sector_emisor.webp" alt="Corporativos USD curvas por sector emisor" width="100%"><br><sub>Corporativos USD curvas por sector emisor</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_corporativos_usd_relative_value.webp" alt="Corporativos USD relative value" width="100%"><br><sub>Corporativos USD relative value</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_corporativos_ars_curvas_por_tipo_emisor.webp" alt="Corporativos ARS curvas por tipo emisor" width="100%"><br><sub>Corporativos ARS curvas por tipo emisor</sub></p>
 
 ### Ficha de bono: drill-down completo por instrumento
 Click en cualquier ticker de las tablas de pricing de arriba abre una vista de detalle dedicada
@@ -279,10 +416,38 @@ sin tener que salir de la ficha para una primera lectura del margen de seguridad
 por duration dentro de la misma clase de emisor, otros instrumentos del mismo emisor exacto, y
 un botón para exportar la misma ficha, completa, a Excel.
 
-<img width="3117" height="1133" alt="image" src="https://github.com/user-attachments/assets/7250b2af-bcae-421a-a462-1b611866f4c3" />
-<img width="2222" height="337" alt="image" src="https://github.com/user-attachments/assets/fa3db3b4-ea9b-4ea4-945a-48d08788c72a" />
-<img width="2234" height="508" alt="image" src="https://github.com/user-attachments/assets/8f843df9-a7cd-4434-8759-fd053c9aca11" />
-<img width="3129" height="764" alt="image" src="https://github.com/user-attachments/assets/b244e376-12c6-41f7-9f00-1e81e61c8fa5" />
+<p align="center"><img src="assets/screenshots/ficha_hard_dollar_AL30_kpis_riesgo_vistas.webp" alt="Ficha AL30: KPIs, riesgo crediticio y vistas de precio Mercado / Compra / Venta" width="100%"><br><sub>Ficha AL30: KPIs, riesgo crediticio y vistas de precio Mercado / Compra / Venta</sub></p>
+
+<p align="center"><img src="assets/screenshots/ficha_hard_dollar_AL30_prospecto_cronograma.webp" alt="Ficha AL30: detalle del prospecto y cronograma de flujos con PVCF y fila de totales" width="100%"><br><sub>Ficha AL30: detalle del prospecto y cronograma de flujos con PVCF y fila de totales</sub></p>
+
+<p align="center"><img src="assets/screenshots/ficha_hard_dollar_AL30_breakeven_comparables.webp" alt="Ficha AL30: mini-breakeven a 3, 6 y 12 meses y comparables" width="100%"><br><sub>Ficha AL30: mini-breakeven a 3, 6 y 12 meses y comparables</sub></p>
+
+<details>
+<summary>📷 Ver las 11 capturas restantes de esta sección</summary>
+
+<p align="center"><img src="assets/screenshots/ficha_cer_TX28_kpis_riesgo_vistas.webp" alt="Ficha CER (TX28): TIR real, coeficiente CER y vistas de precio" width="100%"><br><sub>Ficha CER (TX28): TIR real, coeficiente CER y vistas de precio</sub></p>
+
+<p align="center"><img src="assets/screenshots/ficha_cer_TX28_prospecto_cronograma.webp" alt="Ficha CER (TX28): cronograma en pesos nominales con coeficiente CER proyectado" width="100%"><br><sub>Ficha CER (TX28): cronograma en pesos nominales con coeficiente CER proyectado</sub></p>
+
+<p align="center"><img src="assets/screenshots/ficha_cer_TX28_breakeven_comparables.webp" alt="Ficha CER (TX28): mini-breakeven y comparables" width="100%"><br><sub>Ficha CER (TX28): mini-breakeven y comparables</sub></p>
+
+<p align="center"><img src="assets/screenshots/ficha_tasa_fija_S30O6_kpis_riesgo_vistas.webp" alt="Ficha Tasa Fija (S30O6): TEA, TNA y vistas de precio" width="100%"><br><sub>Ficha Tasa Fija (S30O6): TEA, TNA y vistas de precio</sub></p>
+
+<p align="center"><img src="assets/screenshots/ficha_tasa_fija_S30O6_prospecto_cronograma.webp" alt="Ficha Tasa Fija (S30O6): prospecto y cronograma" width="100%"><br><sub>Ficha Tasa Fija (S30O6): prospecto y cronograma</sub></p>
+
+<p align="center"><img src="assets/screenshots/ficha_tasa_fija_S30O6_breakeven_comparables.webp" alt="Ficha Tasa Fija (S30O6): mini-breakeven y comparables" width="100%"><br><sub>Ficha Tasa Fija (S30O6): mini-breakeven y comparables</sub></p>
+
+<p align="center"><img src="assets/screenshots/ficha_dollar_linked_TZV27_kpis_vistas.webp" alt="Ficha Dollar Linked (TZV27): escenario de dólar, KPIs y vistas de precio" width="100%"><br><sub>Ficha Dollar Linked (TZV27): escenario de dólar, KPIs y vistas de precio</sub></p>
+
+<p align="center"><img src="assets/screenshots/ficha_dollar_linked_TZV27_cronograma.webp" alt="Ficha Dollar Linked (TZV27): cronograma en USD y ARS" width="100%"><br><sub>Ficha Dollar Linked (TZV27): cronograma en USD y ARS</sub></p>
+
+<p align="center"><img src="assets/screenshots/ficha_corporativo_ars_RVS1O_kpis_riesgo_vistas.webp" alt="Ficha corporativo en pesos (RVS1O): KPIs y vistas de precio" width="100%"><br><sub>Ficha corporativo en pesos (RVS1O): KPIs y vistas de precio</sub></p>
+
+<p align="center"><img src="assets/screenshots/ficha_corporativo_ars_RVS1O_prospecto_cronograma.webp" alt="Ficha corporativo en pesos (RVS1O): prospecto y cronograma" width="100%"><br><sub>Ficha corporativo en pesos (RVS1O): prospecto y cronograma</sub></p>
+
+<p align="center"><img src="assets/screenshots/ficha_corporativo_ars_RVS1O_breakeven_comparables.webp" alt="Ficha corporativo en pesos (RVS1O): mini-breakeven y comparables" width="100%"><br><sub>Ficha corporativo en pesos (RVS1O): mini-breakeven y comparables</sub></p>
+
+</details>
 
 ### Tablero de Arbitraje: señales cuantitativas de trading
 Dos motores de detección de desfasajes de precio, con acción sugerida (comprar/vender) calculada en vivo:
@@ -290,53 +455,119 @@ Dos motores de detección de desfasajes de precio, con acción sugerida (comprar
 - **Inflación implícita vs. mercado (BEI vs. REM):** empareja una Lecap y un bono CER que vencen el mismo día para extraer la inflación que el mercado está pricing (BEI) y la compara contra el consenso de analistas (REM). Si el bono CER rinde tan poco que asume una inflación irrealmente alta, señala vender ese CER y pasarse a la Lecap (LONG FIJA).
 - **Arbitraje FX sintético (Dollar Linked vs. Tasa Fija):** simula el rendimiento de un bono Dollar Linked asumiendo que el dólar devalúa según lo que pricean los futuros de dólar (obtenidos por scraping), y lo compara contra una Lecap del mismo plazo — si la devaluación implícita en el Dollar Linked es menor a la que rendiría la tasa fija, señala vender el Dollar Linked y pasarse a tasa fija.
 
-<img width="3115" height="1172" alt="image" src="https://github.com/user-attachments/assets/55d4605f-0d9a-4441-9e74-9527873235fb" />
-<img width="3130" height="890" alt="image" src="https://github.com/user-attachments/assets/24499fe6-2ddc-4d81-9131-f105391ca473" />
+<p align="center"><img src="assets/screenshots/rf_tablero_arbitraje_bei_fija_vs_cer.webp" alt="Tablero arbitraje BEI fija vs CER" width="100%"><br><sub>Tablero arbitraje BEI fija vs CER</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_tablero_arbitraje_historia_breakeven.webp" alt="Tablero arbitraje historia breakeven" width="100%"><br><sub>Tablero arbitraje historia breakeven</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_tablero_arbitraje_fx_sintetico.webp" alt="Tablero arbitraje FX sintético" width="100%"><br><sub>Tablero arbitraje FX sintético</sub></p>
 
 ### Carry Trade — breakeven de devaluación vs. expectativas de mercado
 Para cada bono a tasa fija en pesos (LECAP/BONCAP/BONO TF), calcula el tipo de cambio *breakeven* — al que el mercado tendría que llegar en el vencimiento para que un carry trade (vender USD, comprar el bono en pesos, recomprar USD al cobrar) empate exactamente contra haberse quedado en dólares — y lo compara contra tres expectativas de mercado: REM (encuesta de expectativas del BCRA), futuros ROFEX y las bandas cambiarias oficiales, todas anualizadas por composición (TEA, no TNA — una auditoría propia de convención de tasas encontró y corrigió esa etiqueta) para poder comparar bonos de distinto plazo en igualdad de condiciones. Señala si el carry gana, pierde o queda neutro contra cada expectativa, y suma una comparación directa en pesos (sin pasar por el tipo de cambio) contra un bono Dollar Linked de duration similar.
 
 Las 3 expectativas de mercado no siempre cubren el mismo horizonte (el REM releva solo ~4-5 meses hacia adelante, los futuros ROFEX bastante más) — en vez de estirar la más corta con el último valor conocido como si fuera una proyección real, la curva y la tabla se acotan juntas a la última fecha donde las tres siguen teniendo dato genuino, y un bono que vence más allá de ese punto se excluye del análisis en lugar de mostrar una señal fabricada contra una expectativa que no existe. La línea de banda cambiaria, además, cambia de color en el punto exacto donde deja de ser cronograma oficial del BCRA y pasa a ser proyección con inflación esperada del REM — la incertidumbre queda visible, no escondida detrás de una línea continua.
 
-<img width="3123" height="917" alt="image" src="https://github.com/user-attachments/assets/0a8f1c50-9248-4cca-a749-b43d9201088d" />
-<img width="3107" height="985" alt="image" src="https://github.com/user-attachments/assets/101c227b-d731-4670-97c8-011fbba393dd" />
-<img width="3090" height="732" alt="image" src="https://github.com/user-attachments/assets/e8935e91-57a7-4d0d-b967-fbc6db71bd0a" />
-<img width="3109" height="616" alt="image" src="https://github.com/user-attachments/assets/5db1f17b-3011-49b4-8722-77bf149ae9d2" />
+<p align="center"><img src="assets/screenshots/rf_carry_trade_curva_de_carry.webp" alt="Carry trade curva de carry" width="100%"><br><sub>Carry trade curva de carry</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_carry_trade_yield_usd_sintetico.webp" alt="Carry trade yield USD sintético" width="100%"><br><sub>Carry trade yield USD sintético</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_carry_trade_operacion_completa.webp" alt="Carry trade operación completa" width="100%"><br><sub>Carry trade operación completa</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_carry_trade_simulador_interactivo.webp" alt="Carry trade simulador interactivo" width="100%"><br><sub>Carry trade simulador interactivo</sub></p>
 
 ### Qué cambió hoy y Tasa Fija con forwards y roll-down
 Resumen de la rueda: cambio de TIR de cada clase contra la rueda anterior, cambio de la curva de letras y alertas de curva con umbrales editables. En Tasa Fija, forwards implícitas a 3 y 6 meses (solo donde la curva llega; nunca se extrapola), roll-down, colchón de tasa y **días que tarda el carry en pagar la comisión**.
 
-<!--
-📸 CAPTURAS PENDIENTES — Renta Fija:
-   1. "📰 Qué cambió hoy" completa (KPIs + alertas).
-   2. Tasa Fija → "Forwards y roll-down".
--->
+<p align="center"><img src="assets/screenshots/rf_que_cambio_hoy.webp" alt="Qué cambio hoy" width="100%"><br><sub>Qué cambio hoy</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_que_cambio_hoy_movimiento_tir.webp" alt="Qué cambio hoy movimiento TIR" width="100%"><br><sub>Qué cambio hoy movimiento TIR</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_tasa_fija_curva_y_forwards.webp" alt="Tasa fija curva y forwards" width="100%"><br><sub>Tasa fija curva y forwards</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_tasa_fija_roll_down_y_colchon.webp" alt="Tasa fija roll down y colchon" width="100%"><br><sub>Tasa fija roll down y colchon</sub></p>
 
 ### Valor Relativo — spreads de legislación con estudio de eventos
 AL/GD por par (AL29/GD29, AL30/GD30, AL35/GD35, AE38/GD38, AL41/GD41): z-score contra su propia historia, vida media de reversión, estadístico tipo Dickey-Fuller y **edge neto de comisiones**; estudio de eventos calculado solo con datos anteriores a cada señal; y caro/barato de cada bono contra la curva Nelson-Siegel soberana. Distingue "cubre el costo de rotar", "desvío menor al costo" y "no revierte", para no confundir un cambio de nivel con una oportunidad.
 
-<!--
-📸 CAPTURAS PENDIENTES — Renta Fija → "⚖️ Valor Relativo":
-   1. Tabla de pares con z-score, vida media y edge neto.
-   2. Serie del spread de un par (AL30/GD30) con bandas.
--->
+<p align="center"><img src="assets/screenshots/rf_valor_relativo_spreads_de_legislacion.webp" alt="Valor relativo spreads de legislacion" width="100%"><br><sub>Valor relativo spreads de legislacion</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_valor_relativo_explorador_de_pares.webp" alt="Valor relativo explorador de pares" width="100%"><br><sub>Valor relativo explorador de pares</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_valor_relativo_caro_barato_curva_soberana.webp" alt="Valor relativo caro barato curva soberana" width="100%"><br><sub>Valor relativo caro barato curva soberana</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_valor_relativo_spread_crediticio_sector.webp" alt="Valor relativo spread crediticio sector" width="100%"><br><sub>Valor relativo spread crediticio sector</sub></p>
 
 ### UST vs Soberanos, MEP/Brecha y Carry Trade completo
 ¿Los soberanos siguen al Tesoro? Correlación, beta y R² contra el Tesoro de igual duration (resultado: explica ~1% de la variación semanal de la TIR). MEP y CCL implícitos por bono con la brecha contra el A3500 y el costo real de convertir. El carry trade como **operación completa de cuatro patas** (USD → bono → pesos → activo → pesos → bono → USD) con comisiones en cada pata y varios escenarios de dólar de salida.
 
-<!--
-📸 CAPTURAS PENDIENTES — Renta Fija:
-   1. "🇺🇸 UST vs Soberanos": mapa bono × tenor + lectura automática.
-   2. "💱 MEP / Brecha": tabla de conversión por bono + brecha histórica.
-   3. "Carry Trade": operación completa con breakeven y escenarios.
--->
+<p align="center"><img src="assets/screenshots/rf_ust_vs_soberanos_niveles_y_correlacion.webp" alt="UST vs soberanos niveles y correlación" width="100%"><br><sub>UST vs soberanos niveles y correlación</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_ust_vs_soberanos_mapa_bono_por_tenor.webp" alt="UST vs soberanos mapa bono por tenor" width="100%"><br><sub>UST vs soberanos mapa bono por tenor</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_mep_brecha_en_vivo.webp" alt="MEP brecha en vivo" width="100%"><br><sub>MEP brecha en vivo</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_mep_brecha_historica.webp" alt="MEP brecha histórica" width="100%"><br><sub>MEP brecha histórica</sub></p>
 
 ### Armador de Portafolios, Radar y Simulador de Posición
 Armador de portafolios hard dollar (duration objetivo, TIR objetivo o Markowitz) donde el monto es el **desembolso total con comisiones**, con costo de implementación y TIR de ida y vuelta; Radar de oportunidades; y un simulador "¿y si compro o vendo X?" con el resultado neto de ida y vuelta.
 
-<!--
-📸 CAPTURAS PENDIENTES — Renta Fija → "💼 Armador de Portafolios" (composición sugerida con comisiones y KPIs) y "🧮 Simulador de Posición".
--->
+<p align="center"><img src="assets/screenshots/rf_radar_de_oportunidades.webp" alt="Radar de oportunidades" width="100%"><br><sub>Radar de oportunidades</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_simulador_de_posicion.webp" alt="Simulador de posición" width="100%"><br><sub>Simulador de posición</sub></p>
+
+### Armador con optimización de Markowitz — cartera de 9 bonos con topes por emisor y por sector
+El Armador construye la cartera de **máximo Sharpe** (el óptimo de Markowitz en el sentido habitual; la alternativa es mínima varianza pura) sobre el universo de soberanos y corporativos en dólares, con la covarianza estimada de la historia de precios y **sin mirar el futuro**. Esta corrida usa los filtros de un inversor real:
+
+- **Liquidez**: volumen mínimo de **100.000 nominales operados hoy** (49 bonos elegibles; 208 quedan afuera por volumen).
+- **Capital**: **USD 10.000** (el monto es el desembolso **total, comisiones incluidas**: precio neto de compra con comisión e IVA, cupones netos de la comisión de renta).
+- **Concentración**: de **6 a 10 bonos**, **tope del 25 % por emisor** y **30 % por sector**.
+
+El resultado (9 bonos) cumple los topes: el mayor emisor pesa 25.00 % y el mayor sector (Oil & Gas) 30.00 %. Comisión e IVA de la compra: USD 63.88.
+
+| Ticker | Emisor | Sector | Peso | Monto (USD) | Nominal (VN) | Precio neto | TIR | Duration | Volumen hoy |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| **DNCBO** | Empresa Distribuidora y Comercializadora Norte S.A. (EDENOR) | Energía (Distribución Eléctrica) | 25.00% | $2,500.00 | $2,553.92 | $97.89 | 9.47% | 2.2405 | 250,844 |
+| **CO35D** | Provincia de Cordoba | Provincial | 16.02% | $1,601.96 | $1,589.94 | $100.76 | 8.92% | 5.0238 | 163,000 |
+| **YM43O** | YPF S.A. | Oil & Gas | 14.26% | $1,426.32 | $1,417.75 | $100.61 | 6.26% | 2.9586 | 402,132 |
+| **MCC3O** | Pecom Servicios Energía S.A.U. | Oil & Gas | 13.59% | $1,358.64 | $1,323.99 | $102.62 | 7.81% | 2.8764 | 294,109 |
+| **TSC4O** | Transportadora de Gas del Sur S.A. (TGS) | Energía (Transporte de Gas Natural) | 12.59% | $1,258.72 | $1,182.01 | $106.49 | 7.33% | 6.1075 | 247,000 |
+| **MGCRO** | Pampa Energia S.A. | Energia | 5.86% | $586.03 | $564.44 | $103.82 | 7.78% | 6.8876 | 1,985,000 |
+| **AN29** | Estado Nacional | Soberano | 5.81% | $580.57 | $650.45 | $89.26 | 11.96% | 2.4865 | 369,293 |
+| **AO28** | Estado Nacional | Soberano | 4.73% | $472.72 | $502.06 | $94.16 | 9.70% | 1.7511 | 3,298,621 |
+| **VSCXO** | Vista Energy Argentina S.A.U. | Oil & Gas | 2.15% | $215.04 | $206.82 | $103.98 | 7.44% | 6.8768 | 1,010,000 |
+
+Debajo de la composición, el Armador muestra las métricas de la cartera como un flujo agregado (TIR y duration «rigurosas» contra el promedio ponderado simple), el costo de implementación y la TIR de ida y vuelta a 12 meses, el calendario de flujos proyectado por bono, **por qué esta combinación**, el estrés de tasa con re-descuento completo, la correlación entre los bonos elegidos, la **frontera eficiente**, el backtest retroactivo y las métricas de riesgo (VaR, CVaR, Sortino) calculadas sobre esa serie.
+
+<p align="center"><img src="assets/screenshots/armador_markowitz_1_configuracion.webp" alt="Configuración: máximo Sharpe, volumen mínimo 100.000, USD 10.000, 6 a 10 bonos, tope 25 % por emisor y 30 % por sector" width="100%"><br><sub>Configuración: máximo Sharpe, volumen mínimo 100.000, USD 10.000, 6 a 10 bonos, tope 25 % por emisor y 30 % por sector</sub></p>
+
+<p align="center"><img src="assets/screenshots/armador_markowitz_2_composicion_sugerida.webp" alt="Composición sugerida con peso, monto, nominales, precio neto de compra, TIR y duration" width="100%"><br><sub>Composición sugerida con peso, monto, nominales, precio neto de compra, TIR y duration</sub></p>
+
+<p align="center"><img src="assets/screenshots/armador_markowitz_3_metricas_de_la_cartera.webp" alt="Métricas de la cartera: TIR y duration rigurosas, costo de implementación y TIR de ida y vuelta" width="100%"><br><sub>Métricas de la cartera: TIR y duration rigurosas, costo de implementación y TIR de ida y vuelta</sub></p>
+
+<details>
+<summary>📷 Ver las 7 capturas restantes de esta sección</summary>
+
+<p align="center"><img src="assets/screenshots/armador_markowitz_4_calendario_de_flujos.webp" alt="Calendario de flujos proyectado por bono y recupero acumulado" width="100%"><br><sub>Calendario de flujos proyectado por bono y recupero acumulado</sub></p>
+
+<p align="center"><img src="assets/screenshots/armador_markowitz_5_por_que_esta_combinacion.webp" alt="Por qué esta combinación: objetivo, desvío, VaR y concentración" width="100%"><br><sub>Por qué esta combinación: objetivo, desvío, VaR y concentración</sub></p>
+
+<p align="center"><img src="assets/screenshots/armador_markowitz_6_estres_de_tasa.webp" alt="Estrés de tasa con re-descuento completo" width="100%"><br><sub>Estrés de tasa con re-descuento completo</sub></p>
+
+<p align="center"><img src="assets/screenshots/armador_markowitz_7_correlacion.webp" alt="Correlación entre los bonos sugeridos" width="100%"><br><sub>Correlación entre los bonos sugeridos</sub></p>
+
+<p align="center"><img src="assets/screenshots/armador_markowitz_8_frontera_eficiente.webp" alt="Frontera eficiente" width="100%"><br><sub>Frontera eficiente</sub></p>
+
+<p align="center"><img src="assets/screenshots/armador_markowitz_9_backtest_historico.webp" alt="Backtest histórico retroactivo de la cartera" width="100%"><br><sub>Backtest histórico retroactivo de la cartera</sub></p>
+
+<p align="center"><img src="assets/screenshots/armador_markowitz_10_metricas_de_riesgo.webp" alt="Métricas de riesgo sobre la serie del backtest (VaR, CVaR, Sortino)" width="100%"><br><sub>Métricas de riesgo sobre la serie del backtest (VaR, CVaR, Sortino)</sub></p>
+
+</details>
+
+### Comisiones del broker y vistas Mercado / Compra / Venta
+Selector global de **vista de precios** (*Mercado* = último precio operado, sin comisión; *Compra* = precio neto de comprar, con comisión e IVA; *Venta* = lo que se cobra al vender) y panel de **comisiones del broker**: tarifas por clase de activo con su fuente y vigencia, IVA y derechos de mercado editables, y recálculo del pricing con el perfil elegido. Ver [Comisiones y vistas Mercado / Compra / Venta](#comisiones-y-vistas-mercado--compra--venta).
+
+<p align="center"><img src="assets/screenshots/rf_sidebar_filtros_globales_vista_de_precios.webp" alt="Vista de precios Mercado / Compra / Venta en la barra lateral" width="100%"><br><sub>Vista de precios Mercado / Compra / Venta en la barra lateral</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_panel_comisiones_del_broker.webp" alt="Panel de comisiones del broker: tarifas por clase, IVA y derechos de mercado editables" width="100%"><br><sub>Panel de comisiones del broker: tarifas por clase, IVA y derechos de mercado editables</sub></p>
 
 ### Matriz de Sensibilidad: TIR Breakeven (Total Return)
 Para cada instrumento de una categoría (Hard Dollar, CER, Tasa Fija, Dollar Linked, Corporativos ARS, Duales), calcula el retorno total de comprar hoy y vender en una fecha objetivo elegida, contra una grilla de TIRs de salida hipotéticas, con 3 estrategias de reinversión de los cupones cobrados en el camino (caja al 0%, tasa de mercado dinámica, o reinversión a la TIR del propio bono) — y una columna **BREAKEVEN**: la TIR de salida máxima que el instrumento puede tolerar antes de que la posición pase a pérdida nominal, más una columna **Margen** (Breakeven − TIR de hoy, en puntos porcentuales) para leer de un vistazo qué tan ajustada está cada posición. Un resumen agregado arriba de la tabla (bonos totales, margen promedio, cuántos con margen bajo o negativo) evita tener que leer fila por fila para notar que una categoría entera quedó apretada, y una alerta equivalente aparece directo en el brief matutino para los Soberanos Hard Dollar.
@@ -345,52 +576,133 @@ Cada categoría respeta su propia unidad de tasa en vez de forzar una sola conve
 
 Los bonos Duales entran a la matriz con la pata (TAMAR/CER/Fija/Dollar Linked) que efectivamente paga más **en cada fecha de pago** — no la que gana hoy asumida fija para siempre — reusando el mismo cronograma que ya resuelve la TIR del instrumento internamente. Cada ficha de bono individual, además, muestra un mini-Breakeven directo (+3/+6/+12 meses) sin tener que ir a buscarlo a esta pestaña, y toda la matriz se puede exportar a Excel con los valores numéricos reales (no el texto ya formateado de pantalla), con escala de color condicional.
 
-<!--
-📌 CAPTURA PENDIENTE (es la vista más nueva y más densa del sistema, hoy sin ningún ejemplo
-   visual en este README). Sugerencia: capturá la tabla completa con el resumen de riesgo
-   agregado arriba (Bonos en la matriz / Margen promedio / Margen < 5pp / Margen negativo) y,
-   si entra en el mismo screenshot o en uno aparte, el gráfico de Perfil de Retorno Total
-   (Convexidad) con 2-3 bonos superpuestos. Mismo formato <img> que las demás secciones.
--->
+<p align="center"><img src="assets/screenshots/breakeven_1_supuestos_y_resumen.webp" alt="Matriz de sensibilidad: supuestos y resumen de riesgo agregado" width="100%"><br><sub>Matriz de sensibilidad: supuestos y resumen de riesgo agregado</sub></p>
+
+<p align="center"><img src="assets/screenshots/breakeven_2_perfil_retorno_total_soberanos_ley_local_real.webp" alt="Perfil de retorno total en términos reales: soberanos ley local (AL29, AL30, AL35, AL41) y AO28 / AO29" width="100%"><br><sub>Perfil de retorno total en términos reales: soberanos ley local (AL29, AL30, AL35, AL41) y AO28 / AO29</sub></p>
+
+<p align="center"><img src="assets/screenshots/breakeven_3_matriz_tir_breakeven_ordenada_por_bono.webp" alt="Matriz de TIR breakeven por bono y TIR de salida (retorno nominal y real)" width="100%"><br><sub>Matriz de TIR breakeven por bono y TIR de salida (retorno nominal y real)</sub></p>
 
 ### Semáforo de estrés sistémico global (GSSI) y tasas americanas
 Índice compuesto de estrés de mercado (percentiles históricos de VIX, MOVE, VVIX, CISS), curva del Tesoro americano, TIPS, inflación breakeven, y las dos curvas que la propia Fed de Nueva York usa como modelo oficial de probabilidad de recesión (T10Y2Y y T10Y3M), con historia desde fines de los '70.
 
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/0bad6d37-7111-44b8-b031-99605fc0d881" />
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/e0ee9e9d-ab98-4d65-bddf-d76dd59bd429" />
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/6195296e-12a4-4324-ae8f-eb49c403ff0e" />
-<img width="3440" height="1440" alt="image" src="https://github.com/user-attachments/assets/af55d776-1bbe-445c-862a-ff389ca0de82" />
-<img width="2051" height="489" alt="image" src="https://github.com/user-attachments/assets/9ef78718-2894-45e6-af0e-c7a500636725" />
+<p align="center"><img src="assets/screenshots/liquidez_gssi_semaforo_de_estres_sistemico.webp" alt="GSSI semaforo de estrés sistemico" width="100%"><br><sub>GSSI semaforo de estrés sistemico</sub></p>
+
+<p align="center"><img src="assets/screenshots/liquidez_curva_del_tesoro_americano.webp" alt="Curva del tesoro americano" width="100%"><br><sub>Curva del tesoro americano</sub></p>
+
+<p align="center"><img src="assets/screenshots/liquidez_curva_tips_e_inflacion_esperada.webp" alt="Curva TIPS e inflación esperada" width="100%"><br><sub>Curva TIPS e inflación esperada</sub></p>
+
+<details>
+<summary>📷 Ver las 3 capturas restantes de esta sección</summary>
+
+<p align="center"><img src="assets/screenshots/liquidez_historia_de_la_curva_tenor_por_tenor.webp" alt="Historia de la curva tenor por tenor" width="100%"><br><sub>Historia de la curva tenor por tenor</sub></p>
+
+<p align="center"><img src="assets/screenshots/liquidez_fed_balance_sheet_y_net_liquidity.webp" alt="Fed balance sheet y net liquidity" width="100%"><br><sub>Fed balance sheet y net liquidity</sub></p>
+
+<p align="center"><img src="assets/screenshots/liquidez_contexto_internacional_bis_bce.webp" alt="Contexto internacional BIS BCE" width="100%"><br><sub>Contexto internacional BIS BCE</sub></p>
+
+</details>
+
+### Mercados globales, Macro EE.UU. y economía real
+Liquidez Global no es solo la Fed: tabla de *movers* del día, acciones (índices y sectores de EE.UU., índices del mundo), renta fija en ETFs, commodities, energía y forex; y la economía real de EE.UU. — inflación y tasas, mercado laboral, actividad y ciclo, probabilidad de recesión, mercado inmobiliario, salud del consumidor y producción industrial. Cada gráfico lleva su fecha de última actualización.
+
+<p align="center"><img src="assets/screenshots/liquidez_mercados_movers_del_dia.webp" alt="Mercados movers del dia" width="100%"><br><sub>Mercados movers del dia</sub></p>
+
+<p align="center"><img src="assets/screenshots/liquidez_mercados_acciones_indices_eeuu.webp" alt="Mercados acciones indices EE.UU." width="100%"><br><sub>Mercados acciones indices EE.UU.</sub></p>
+
+<p align="center"><img src="assets/screenshots/liquidez_mercados_acciones_sectores_eeuu.webp" alt="Mercados acciones sectores EE.UU." width="100%"><br><sub>Mercados acciones sectores EE.UU.</sub></p>
+
+<details>
+<summary>📷 Ver las 12 capturas restantes de esta sección</summary>
+
+<p align="center"><img src="assets/screenshots/liquidez_mercados_acciones_indices_mundo.webp" alt="Mercados acciones indices mundo" width="100%"><br><sub>Mercados acciones indices mundo</sub></p>
+
+<p align="center"><img src="assets/screenshots/liquidez_mercados_renta_fija_etfs.webp" alt="Mercados renta fija ETFs" width="100%"><br><sub>Mercados renta fija ETFs</sub></p>
+
+<p align="center"><img src="assets/screenshots/liquidez_mercados_commodities.webp" alt="Mercados commodities" width="100%"><br><sub>Mercados commodities</sub></p>
+
+<p align="center"><img src="assets/screenshots/liquidez_mercados_energia.webp" alt="Mercados energia" width="100%"><br><sub>Mercados energia</sub></p>
+
+<p align="center"><img src="assets/screenshots/liquidez_mercados_forex.webp" alt="Mercados forex" width="100%"><br><sub>Mercados forex</sub></p>
+
+<p align="center"><img src="assets/screenshots/liquidez_macro_eeuu_inflacion_y_tasas.webp" alt="Macro EE.UU. inflación y tasas" width="100%"><br><sub>Macro EE.UU. inflación y tasas</sub></p>
+
+<p align="center"><img src="assets/screenshots/liquidez_macro_eeuu_mercado_laboral.webp" alt="Macro EE.UU. mercado laboral" width="100%"><br><sub>Macro EE.UU. mercado laboral</sub></p>
+
+<p align="center"><img src="assets/screenshots/liquidez_macro_eeuu_actividad_y_ciclo.webp" alt="Macro EE.UU. actividad y ciclo" width="100%"><br><sub>Macro EE.UU. actividad y ciclo</sub></p>
+
+<p align="center"><img src="assets/screenshots/liquidez_macro_eeuu_recesion_y_nowcasting.webp" alt="Macro EE.UU. recesion y nowcasting" width="100%"><br><sub>Macro EE.UU. recesion y nowcasting</sub></p>
+
+<p align="center"><img src="assets/screenshots/liquidez_economia_real_inmobiliario.webp" alt="Economía real inmobiliario" width="100%"><br><sub>Economía real inmobiliario</sub></p>
+
+<p align="center"><img src="assets/screenshots/liquidez_economia_real_consumidor.webp" alt="Economía real consumidor" width="100%"><br><sub>Economía real consumidor</sub></p>
+
+<p align="center"><img src="assets/screenshots/liquidez_economia_real_produccion_industrial.webp" alt="Economía real produccion industrial" width="100%"><br><sub>Economía real produccion industrial</sub></p>
+
+</details>
 
 ### Charting estilo TradingView, niveles y backtest honesto de señales
 Velas diarias, semanales, mensuales e intradía de 30 minutos sobre ~65 activos (y cualquier ticker a demanda), con medias móviles, RSI de Wilder con **divergencias marcadas en la vela en que se pudieron operar**, MACD, Bollinger, Ichimoku, perfil de volumen y **soportes y resistencias en zonas** (confluencia diario/semanal/mensual, con R:R neto de comisiones). El backtest de señales mide el exceso sobre entrar en cualquier vela y corrige por pruebas múltiples: ninguna señal clásica agrega valor demostrable en el conjunto, y la pantalla lo dice.
 
-<!--
-📸 CAPTURAS PENDIENTES — Liquidez Global → "📈 Charting":
-   1. "📈 Gráfico": velas + SMA + RSI con divergencias (un activo conocido, por ejemplo SPY).
-   2. "🎯 Niveles": zonas confluentes y tabla accionable.
-   3. "🧪 Backtest de señales": tabla con n, exceso y significancia corregida.
--->
+<p align="center"><img src="assets/screenshots/liquidez_charting_grafico_velas_sma_rsi.webp" alt="Charting grafico velas SMA RSI" width="100%"><br><sub>Charting grafico velas SMA RSI</sub></p>
 
-### Mi cartera — tenencias, riesgo y calificaciones
-Diario de operaciones con precio neto de comisión y TIR de compra con el pricer real, tenencias por FIFO con valor de liquidación y TIR del dinero, riesgo por factor y estrés, calificaciones de las agencias locales leídas de la CNV, swing trading en renta fija y optimizador de pesos.
+<p align="center"><img src="assets/screenshots/liquidez_charting_niveles_zonas_confluentes.webp" alt="Charting niveles zonas confluentes" width="100%"><br><sub>Charting niveles zonas confluentes</sub></p>
 
-<!--
-📸 CAPTURAS PENDIENTES — "💼 Mi cartera" (recomendación: usar una cartera de ejemplo o desenfocar montos y cantidades reales antes de publicar):
-   1. Tenencias: tabla por posición con TIR del dinero, duration y DV01.
-   2. "Riesgo y estrés": descomposición por factor y escenarios de curva.
-   3. "🏛️ Calificaciones": nota de cada agencia por bono + escala común.
-   4. Swing: valuación relativa y señales activas.
--->
+<p align="center"><img src="assets/screenshots/liquidez_charting_backtest_de_senales.webp" alt="Charting backtest de señales" width="100%"><br><sub>Charting backtest de señales</sub></p>
 
 ### Salud de datos y reloj de mercados
 Panel permanente de salud de datos: frescura de cada fuente contra su propia frecuencia de publicación, claves duplicadas, fechas inconsistentes, saltos anómalos y semáforos por serie. Reloj de mercados con banderas y solapes de rueda arriba de todo el escritorio.
 
-<!--
-📸 CAPTURAS PENDIENTES:
-   1. Panel "🩺 Salud de datos" abierto (semáforos por fuente).
-   2. El reloj de mercados en la cabecera del dashboard.
--->
+<p align="center"><img src="assets/screenshots/inicio_reloj_mercados_del_mundo.webp" alt="Reloj de mercados del mundo: hora, estado de la rueda y solapamientos de 9 mercados + cripto" width="100%"><br><sub>Reloj de mercados del mundo: hora, estado de la rueda y solapamientos de 9 mercados + cripto</sub></p>
+
+<p align="center"><img src="assets/screenshots/sidebar_salud_de_datos.webp" alt="Panel «Salud de datos» de la barra lateral: semáforos y avisos por fuente" width="100%"><br><sub>Panel «Salud de datos» de la barra lateral: semáforos y avisos por fuente</sub></p>
+
+### Mi cartera — tenencias, riesgo y calificaciones
+Diario de operaciones con precio neto de comisión y TIR de compra con el pricer real, tenencias por FIFO con valor de liquidación y TIR del dinero, riesgo por factor y estrés, calificaciones de las agencias locales leídas de la CNV, swing trading en renta fija y optimizador de pesos.
+
+La cartera que se muestra es **real**: una posición chica en el soberano **AO28** (USD 2.000-2.500) con su **tesis de compra** registrada (por qué se compró, qué la invalida y las condiciones medibles que el sistema evalúa todos los días), y se compara contra la cartera que sugirió el Armador con criterio de Markowitz (ver arriba). Cada vista usa el pricer real: precio neto de comisión, TIR del dinero por FIFO, riesgo por factor, calificaciones de las agencias leídas de la CNV, liquidez y estrés.
+
+<p align="center"><img src="assets/screenshots/cartera_tenencias_kpis_y_resultado.webp" alt="Mi cartera: valor de liquidación, TIR del dinero, duration y DV01" width="100%"><br><sub>Mi cartera: valor de liquidación, TIR del dinero, duration y DV01</sub></p>
+
+<p align="center"><img src="assets/screenshots/cartera_tenencias_posiciones.webp" alt="Mi cartera: posiciones, rendimiento, riesgo y cascada del resultado de un bono" width="100%"><br><sub>Mi cartera: posiciones, rendimiento, riesgo y cascada del resultado de un bono</sub></p>
+
+<p align="center"><img src="assets/screenshots/cartera_tenencias_tesis_de_cada_compra.webp" alt="Mi cartera: tesis de cada compra (la nota de AO28)" width="100%"><br><sub>Mi cartera: tesis de cada compra (la nota de AO28)</sub></p>
+
+<p align="center"><img src="assets/screenshots/cartera_tenencias_riesgo_y_estres.webp" alt="Mi cartera: riesgo, correlación y aporte de cada posición" width="100%"><br><sub>Mi cartera: riesgo, correlación y aporte de cada posición</sub></p>
+
+<details>
+<summary>📷 Ver las 15 capturas restantes de Mi cartera (diario, compras, historial, calificaciones, swing, rotación y fuerza relativa)</summary>
+
+<p align="center"><img src="assets/screenshots/cartera_diario_de_operaciones.webp" alt="Mi cartera: diario de operaciones con precio neto de comisión y TIR de compra" width="100%"><br><sub>Mi cartera: diario de operaciones con precio neto de comisión y TIR de compra</sub></p>
+
+<p align="center"><img src="assets/screenshots/cartera_tenencias_tus_compras_fueron_buenas.webp" alt="Mi cartera: ¿fueron buenas las compras? (carry, cambio de tasa y comisiones)" width="100%"><br><sub>Mi cartera: ¿fueron buenas las compras? (carry, cambio de tasa y comisiones)</sub></p>
+
+<p align="center"><img src="assets/screenshots/cartera_tenencias_historial.webp" alt="Mi cartera: historial reconstruido de valor, TIR y concentración" width="100%"><br><sub>Mi cartera: historial reconstruido de valor, TIR y concentración</sub></p>
+
+<p align="center"><img src="assets/screenshots/cartera_tenencias_calificaciones.webp" alt="Mi cartera: calificaciones de las agencias leídas de la CNV y escala común" width="100%"><br><sub>Mi cartera: calificaciones de las agencias leídas de la CNV y escala común</sub></p>
+
+<p align="center"><img src="assets/screenshots/cartera_tenencias_credito_y_liquidez.webp" alt="Mi cartera: ¿y si un emisor cae en default? y días para salir" width="100%"><br><sub>Mi cartera: ¿y si un emisor cae en default? y días para salir</sub></p>
+
+<p align="center"><img src="assets/screenshots/cartera_tenencias_breakeven_y_sensibilidad.webp" alt="Mi cartera: TIR breakeven por bono y horizonte, y matriz de sensibilidad" width="100%"><br><sub>Mi cartera: TIR breakeven por bono y horizonte, y matriz de sensibilidad</sub></p>
+
+<p align="center"><img src="assets/screenshots/cartera_tenencias_flujos_y_reinversion.webp" alt="Mi cartera: calendario de cobros y plan de reinversión de cupones" width="100%"><br><sub>Mi cartera: calendario de cobros y plan de reinversión de cupones</sub></p>
+
+<p align="center"><img src="assets/screenshots/cartera_tenencias_que_hacer.webp" alt="Mi cartera: lectura automática de qué hacer" width="100%"><br><sub>Mi cartera: lectura automática de qué hacer</sub></p>
+
+<p align="center"><img src="assets/screenshots/cartera_swing_hoy_fundamentos_valuacion_y_senales.webp" alt="Swing en renta fija: fundamentos macro, valuación relativa y señales" width="100%"><br><sub>Swing en renta fija: fundamentos macro, valuación relativa y señales</sub></p>
+
+<p align="center"><img src="assets/screenshots/cartera_swing_rotacion_de_nominales.webp" alt="Rotación de nominales: canje de pares AL/GD con edge neto de costos" width="100%"><br><sub>Rotación de nominales: canje de pares AL/GD con edge neto de costos</sub></p>
+
+<p align="center"><img src="assets/screenshots/cartera_swing_evidencia_historica_de_aciertos.webp" alt="Swing: evidencia histórica de aciertos con corrección por pruebas múltiples" width="100%"><br><sub>Swing: evidencia histórica de aciertos con corrección por pruebas múltiples</sub></p>
+
+<p align="center"><img src="assets/screenshots/cartera_swing_seguimiento_hacia_adelante.webp" alt="Swing: seguimiento hacia adelante en vivo" width="100%"><br><sub>Swing: seguimiento hacia adelante en vivo</sub></p>
+
+<p align="center"><img src="assets/screenshots/cartera_fuerza_relativa_y_rotacion.webp" alt="Fuerza relativa y rotación de tus bonos" width="100%"><br><sub>Fuerza relativa y rotación de tus bonos</sub></p>
+
+<p align="center"><img src="assets/screenshots/armador_markowitz_11_comparar_contra_tu_cartera_actual.webp" alt="Comparación contra la cartera actual y plan de rebalanceo en nominales, con comisiones" width="100%"><br><sub>Comparación contra la cartera actual y plan de rebalanceo en nominales, con comisiones</sub></p>
+
+<p align="center"><img src="assets/screenshots/armador_markowitz_12_panel_de_riesgo_desvio_historico.webp" alt="Panel de riesgo: desvío histórico anualizado por bono" width="100%"><br><sub>Panel de riesgo: desvío histórico anualizado por bono</sub></p>
+
+</details>
 
 ## Qué resuelve
 
@@ -519,45 +831,57 @@ Cada ficha trae, en una sola hoja: métricas de sensibilidad, las tres vistas de
 
 **Hard Dollar (soberanos, provinciales y ONs)** — cronograma en USD, con el control que reconcilia la suma de los PVCF contra el precio pagado.
 
-<!--
-📸 PEGAR CAPTURA — ficha Hard Dollar (por ejemplo BPOB8, AL30 o una ON): KPIs, "Vistas de precio", "Detalle del Prospecto" y cronograma con PVCF. Si entra, también la tabla de sensibilidad ±10 pp con su gráfico.
--->
+<p align="center"><img src="assets/screenshots/excel_ficha_hard_dollar_AL30_metricas_vistas.webp" alt="Ficha Excel AL30: métricas financieras y vistas de precio" width="100%"><br><sub>Ficha Excel AL30: métricas financieras y vistas de precio</sub></p>
+
+<p align="center"><img src="assets/screenshots/excel_ficha_hard_dollar_AL30_riesgo_contexto.webp" alt="Ficha Excel AL30: riesgo, ejecución y contexto de la TIR" width="100%"><br><sub>Ficha Excel AL30: riesgo, ejecución y contexto de la TIR</sub></p>
+
+<p align="center"><img src="assets/screenshots/excel_ficha_hard_dollar_AL30_prospecto_cronograma.webp" alt="Ficha Excel AL30: prospecto y cronograma con PVCF" width="100%"><br><sub>Ficha Excel AL30: prospecto y cronograma con PVCF</sub></p>
+
+<p align="center"><img src="assets/screenshots/excel_ficha_hard_dollar_AL30_sensibilidad.webp" alt="Ficha Excel AL30: análisis de sensibilidad con gráfico" width="100%"><br><sub>Ficha Excel AL30: análisis de sensibilidad con gráfico</sub></p>
+
+<p align="center"><img src="assets/screenshots/excel_ficha_hard_dollar_AL30_comparables_repago.webp" alt="Ficha Excel AL30: comparables y repago" width="100%"><br><sub>Ficha Excel AL30: comparables y repago</sub></p>
 
 **CER** — cronograma en **pesos nominales**: cada flujo usa el coeficiente CER proyectado a su propia fecha de pago, así un cupón contractualmente parejo se ve crecer en pesos; la TIR y la sensibilidad siguen en términos reales.
 
-<!--
-📸 PEGAR CAPTURA — ficha CER (por ejemplo TX28): mostrar la columna "Coef. CER (proyectado)" y los flujos nominales.
--->
+<p align="center"><img src="assets/screenshots/excel_ficha_cer_TX28_metricas_vistas.webp" alt="Ficha Excel CER (TX28): métricas y vistas" width="100%"><br><sub>Ficha Excel CER (TX28): métricas y vistas</sub></p>
+
+<p align="center"><img src="assets/screenshots/excel_ficha_cer_TX28_prospecto_cronograma.webp" alt="Ficha Excel CER (TX28): cronograma nominal con coeficiente CER" width="100%"><br><sub>Ficha Excel CER (TX28): cronograma nominal con coeficiente CER</sub></p>
 
 **Tasa Fija / LECAP / BONCAP** — flujos a tasa fija en pesos, con TEA, TNA y TEM y las tres vistas de precio.
 
-<!--
-📸 PEGAR CAPTURA — ficha Tasa Fija (por ejemplo una LECAP o BONCAP vigente).
--->
+<p align="center"><img src="assets/screenshots/excel_ficha_tasa_fija_S30O6_metricas_vistas.webp" alt="Ficha Excel Tasa Fija (S30O6): métricas y vistas" width="100%"><br><sub>Ficha Excel Tasa Fija (S30O6): métricas y vistas</sub></p>
+
+<p align="center"><img src="assets/screenshots/excel_ficha_tasa_fija_S30O6_prospecto_cronograma.webp" alt="Ficha Excel Tasa Fija (S30O6): cronograma" width="100%"><br><sub>Ficha Excel Tasa Fija (S30O6): cronograma</sub></p>
 
 **Dollar Linked** — cada flujo en USD y en ARS al tipo de cambio proyectado de ese día bajo cada uno de los cuatro escenarios (REM, ROFEX, A3500 y Banda).
 
-<!--
-📸 PEGAR CAPTURA — ficha Dollar Linked: el cronograma con las columnas de los escenarios de dólar.
--->
+<p align="center"><img src="assets/screenshots/excel_ficha_dollar_linked_TZV27_metricas_vistas.webp" alt="Ficha Excel Dollar Linked (TZV27): métricas y escenarios" width="100%"><br><sub>Ficha Excel Dollar Linked (TZV27): métricas y escenarios</sub></p>
+
+<p align="center"><img src="assets/screenshots/excel_ficha_dollar_linked_TZV27_prospecto_cronograma.webp" alt="Ficha Excel Dollar Linked (TZV27): cronograma" width="100%"><br><sub>Ficha Excel Dollar Linked (TZV27): cronograma</sub></p>
 
 **Corporativos y provinciales en ARS, y Duales** — mismas secciones, con el ruteo por pata ganadora en los duales.
 
-<!--
-📸 PEGAR CAPTURA (opcional) — ficha de un corporativo/provincial en ARS o de un dual.
--->
+<p align="center"><img src="assets/screenshots/excel_ficha_corporativo_ars_RVS1O_metricas_vistas.webp" alt="Ficha Excel corporativo ARS (RVS1O): métricas y vistas" width="100%"><br><sub>Ficha Excel corporativo ARS (RVS1O): métricas y vistas</sub></p>
+
+<p align="center"><img src="assets/screenshots/excel_ficha_corporativo_ars_RVS1O_prospecto_cronograma.webp" alt="Ficha Excel corporativo ARS (RVS1O): cronograma" width="100%"><br><sub>Ficha Excel corporativo ARS (RVS1O): cronograma</sub></p>
 
 **Archivo "Global" por clase** — hoja *Resumen* con hipervínculos a la hoja de cada ticker, escala de color condicional en TIR y paridad, y la curva Nelson-Siegel por grupo de emisor.
 
-<!--
-📸 PEGAR CAPTURA — hoja "Resumen" de un archivo <Clase>_Global.xlsx de la exportación masiva (se ve la escala de color y los hipervínculos).
--->
+<p align="center"><img src="assets/screenshots/excel_global_hard_dollar_resumen.webp" alt="Excel Global Hard Dollar: hoja Resumen con escala de color y vínculos a cada ficha" width="100%"><br><sub>Excel Global Hard Dollar: hoja Resumen con escala de color y vínculos a cada ficha</sub></p>
+
+<p align="center"><img src="assets/screenshots/excel_global_tasa_fija_resumen.webp" alt="Excel Global Tasa Fija: hoja Resumen" width="100%"><br><sub>Excel Global Tasa Fija: hoja Resumen</sub></p>
+
+<p align="center"><img src="assets/screenshots/excel_global_cer_resumen.webp" alt="Excel Global CER: hoja Resumen" width="100%"><br><sub>Excel Global CER: hoja Resumen</sub></p>
 
 **Research Report en PDF** — el reporte para enviar a un cliente o inversor: resumen ejecutivo con las banderas de riesgo, contexto macro y cambiario, las curvas de rendimiento y las métricas tácticas. Usa los mismos gráficos y cálculos que ve el analista en pantalla.
 
-<!--
-📸 PEGAR CAPTURA — dos o tres páginas del Research Report en PDF: el resumen ejecutivo (banderas y KPIs) y una página con las curvas de rendimiento. Se genera desde el botón de exportación de Renta Fija.
--->
+<p align="center"><img src="assets/screenshots/pdf_research_report_1_resumen_ejecutivo.webp" alt="Research Report en PDF: resumen ejecutivo con banderas de riesgo" width="100%"><br><sub>Research Report en PDF: resumen ejecutivo con banderas de riesgo</sub></p>
+
+<p align="center"><img src="assets/screenshots/pdf_research_report_2_curva_tasa_fija_y_metricas.webp" alt="Research Report en PDF: curva de rendimiento de Tasa Fija y métricas" width="100%"><br><sub>Research Report en PDF: curva de rendimiento de Tasa Fija y métricas</sub></p>
+
+<p align="center"><img src="assets/screenshots/pdf_research_report_3_metricas_hard_dollar_soberanos.webp" alt="Research Report en PDF: métricas de soberanos y provinciales en dólares" width="100%"><br><sub>Research Report en PDF: métricas de soberanos y provinciales en dólares</sub></p>
+
+<p align="center"><img src="assets/screenshots/pdf_research_report_4_matriz_de_breakeven.webp" alt="Research Report en PDF: matriz de breakeven" width="100%"><br><sub>Research Report en PDF: matriz de breakeven</sub></p>
 
 ## Otros motores destacados
 
