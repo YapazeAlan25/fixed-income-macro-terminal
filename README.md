@@ -25,9 +25,20 @@ Escritorio de análisis financiero propio que cubre bonos argentinos (pricing, v
 
 <img src="assets/architecture.svg" alt="Arquitectura: fuentes de datos → motor de ingesta → warehouse DuckDB/Parquet → motores de pricing y capa de señales → dashboard Streamlit → entregables, con operación y calidad" width="100%" />
 
+## Un vistazo en seis imágenes
+
+Capturas reales de la última corrida del pricing (14/10/2026). Cada imagen lleva a su sección; el recorrido completo está en [Capturas](#capturas).
+
+<table>
+<tr><td width="50%" valign="top"><a href="#armador-con-optimización-de-markowitz--cartera-de-9-bonos-con-topes-por-emisor-y-por-sector"><img src="assets/screenshots/armador_markowitz_2_composicion_sugerida.webp" alt="Armador de portafolios con Markowitz: cartera de 9 bonos con topes por emisor y por sector, nominales y precio neto con comisiones" width="100%"></a><br><sub>Armador de portafolios con Markowitz: cartera de 9 bonos con topes por emisor y por sector, nominales y precio neto con comisiones</sub></td><td width="50%" valign="top"><a href="#ficha-de-bono-drill-down-completo-por-instrumento"><img src="assets/screenshots/ficha_hard_dollar_AL30_kpis_riesgo_vistas.webp" alt="Ficha de bono: KPIs, riesgo crediticio y las tres vistas de precio (Mercado, Compra y Venta)" width="100%"></a><br><sub>Ficha de bono: KPIs, riesgo crediticio y las tres vistas de precio (Mercado, Compra y Venta)</sub></td></tr>
+<tr><td width="50%" valign="top"><a href="#tasa-fija-y-cer--curvas-con-ajuste-nelson-siegel"><img src="assets/screenshots/rf_tasa_fija_kpis_curva_nelson_siegel.webp" alt="Curva de Tasa Fija con ajuste Nelson-Siegel y la rueda anterior superpuesta" width="100%"></a><br><sub>Curva de Tasa Fija con ajuste Nelson-Siegel y la rueda anterior superpuesta</sub></td><td width="50%" valign="top"><a href="#inicio--brief-matutino"><img src="assets/screenshots/inicio_brief_banderas_del_dia.webp" alt="Brief de apertura: banderas de riesgo macro global y riesgo Argentina" width="100%"></a><br><sub>Brief de apertura: banderas de riesgo macro global y riesgo Argentina</sub></td></tr>
+<tr><td width="50%" valign="top"><a href="#salud-de-datos-y-reloj-de-mercados"><img src="assets/screenshots/inicio_reloj_mercados_del_mundo.webp" alt="Reloj de mercados del mundo con solapamientos de rueda" width="100%"></a><br><sub>Reloj de mercados del mundo con solapamientos de rueda</sub></td><td width="50%" valign="top"><a href="#ejemplos-de-fichas-exportadas"><img src="assets/screenshots/excel_ficha_hard_dollar_GD46_metricas_vistas.webp" alt="Ficha Excel por instrumento: métricas y vistas de precio, lista para un research desk" width="100%"></a><br><sub>Ficha Excel por instrumento: métricas y vistas de precio, lista para un research desk</sub></td></tr>
+</table>
+
 ## Índice
 
 - [En 30 segundos](#en-30-segundos)
+- [Un vistazo en seis imágenes](#un-vistazo-en-seis-imágenes)
 - [El proyecto en números](#el-proyecto-en-números)
 - [Novedades de septiembre-octubre 2026](#novedades-de-septiembre-octubre-2026)
 - [Qué es](#qué-es)
@@ -39,6 +50,7 @@ Escritorio de análisis financiero propio que cubre bonos argentinos (pricing, v
 - [Un día de trabajo de un analista](#un-día-de-trabajo-de-un-analista)
 - [Motores de pricing](#motores-de-pricing)
 - [Comisiones y vistas Mercado / Compra / Venta](#comisiones-y-vistas-mercado--compra--venta)
+- [Armador de portafolios: Markowitz con restricciones reales](#armador-de-portafolios-markowitz-con-restricciones-reales)
 - [Terminal de analista: valor relativo, TIR histórica y señales](#terminal-de-analista-valor-relativo-tir-histórica-y-señales)
 - [Fiscal, sistema bancario y reservas con datos oficiales](#fiscal-sistema-bancario-y-reservas-con-datos-oficiales)
 - [Mi cartera: tenencias, riesgo y calificaciones](#mi-cartera-tenencias-riesgo-y-calificaciones)
@@ -141,6 +153,14 @@ Los pasos 2-4 corren también sin intervención humana vía **4 tareas programad
 ## Capturas
 
 > **Capturas actualizadas al 14/10/2026**, tomadas de la **última corrida del pricing**: datos reales del sistema en funcionamiento, sin datos de ejemplo. Las imágenes se abren a tamaño completo; las tablas y gráficos se leen mejor ampliados.
+
+**Ir directo a:**
+
+- **Renta Fija**: [Tasa Fija y CER](#tasa-fija-y-cer--curvas-con-ajuste-nelson-siegel) · [Dollar Linked](#dollar-linked--bandas-cambiarias-y-proyección-por-escenario) · [Soberanos y Provinciales USD](#soberanos-y-provinciales-usd--mep-implícito-y-arbitraje-legislativo) · [Corporativos USD](#corporativos-usd--189-obligaciones-negociables-por-ley-y-por-sector) · [Ficha de bono](#ficha-de-bono-drill-down-completo-por-instrumento) · [Tablero de Arbitraje](#tablero-de-arbitraje-señales-cuantitativas-de-trading) · [Carry Trade](#carry-trade--breakeven-de-devaluación-vs-expectativas-de-mercado) · [Qué cambió hoy y Tasa Fija con forwards y roll-down](#qué-cambió-hoy-y-tasa-fija-con-forwards-y-roll-down) · [Valor Relativo](#valor-relativo--spreads-de-legislación-con-estudio-de-eventos) · [UST vs Soberanos, MEP/Brecha y Carry Trade completo](#ust-vs-soberanos-mepbrecha-y-carry-trade-completo) · [Armador de Portafolios, Radar y Simulador de Posición](#armador-de-portafolios-radar-y-simulador-de-posición) · [Armador con optimización de Markowitz](#armador-con-optimización-de-markowitz--cartera-de-9-bonos-con-topes-por-emisor-y-por-sector) · [Comisiones del broker y vistas Mercado / Compra / Venta](#comisiones-del-broker-y-vistas-mercado--compra--venta) · [Matriz de Sensibilidad](#matriz-de-sensibilidad-tir-breakeven-total-return)
+- **Macro Argentina**: [Inicio](#inicio--brief-matutino) · [Escritorio Macro Argentina](#escritorio-macro-argentina--panel-general) · [Cambiario](#cambiario--brecha-y-evolución-de-tipos-de-cambio) · [Inflación (IPC) por rubro](#inflación-ipc-por-rubro) · [Monetario](#monetario--agregados-y-tasas-de-referencia) · [Consumo y Retail](#consumo-y-retail--medios-de-pago) · [Reservas y liquidez](#reservas-y-liquidez--de-las-reservas-brutas-a-las-netas) · [Fiscal](#fiscal--recaudación-resultado-deuda-y-seguridad-social) · [Empleo y salarios (SIPA)](#empleo-y-salarios-sipa--mujeres-y-varones-y-destino-de-la-seguridad-social) · [Crédito y bancos](#crédito-y-bancos--crédito-depósitos-y-calidad-de-cartera) · [Correlaciones y análisis de evidencia](#correlaciones-y-análisis-de-evidencia) · [Más módulos de Macro Argentina](#más-módulos-de-macro-argentina--actividad-pib-empleo-y-sociedad-precios-sector-externo-expectativas-y-mercados)
+- **Liquidez Global**: [Semáforo de estrés sistémico global (GSSI) y tasas americanas](#semáforo-de-estrés-sistémico-global-gssi-y-tasas-americanas) · [Mercados globales, Macro EE.UU. y economía real](#mercados-globales-macro-eeuu-y-economía-real) · [Charting estilo TradingView, niveles y backtest honesto de señales](#charting-estilo-tradingview-niveles-y-backtest-honesto-de-señales)
+- **Cartera y operación**: [Mi cartera](#mi-cartera--tenencias-riesgo-y-calificaciones) · [Salud de datos y reloj de mercados](#salud-de-datos-y-reloj-de-mercados)
+- **Entregables**: [Fichas Excel, archivos Global y Research Report en PDF](#ejemplos-de-fichas-exportadas)
 
 ### Inicio — brief matutino
 El primer panel que ve el usuario al abrir el sistema: banderas de riesgo (macro global y riesgo Argentina) con las señales que las componen, cuadro de los tipos de cambio con brecha contra el oficial, mercado local y riesgo país, renta fija en foco y contexto overnight (futuros de EE.UU., mercados asiáticos, commodities agro).
@@ -614,7 +634,7 @@ El resultado (9 bonos) cumple los topes: el mayor emisor pesa 25.00 % y el mayor
 | **AO28** | Estado Nacional | Soberano | 4.73% | $472.72 | $502.06 | $94.16 | 9.70% | 1.7511 | 3,298,621 |
 | **VSCXO** | Vista Energy Argentina S.A.U. | Oil & Gas | 2.15% | $215.04 | $206.82 | $103.98 | 7.44% | 6.8768 | 1,010,000 |
 
-Debajo de la composición, el Armador muestra las métricas de la cartera como un flujo agregado (TIR y duration «rigurosas» contra el promedio ponderado simple), el costo de implementación y la TIR de ida y vuelta a 12 meses, el calendario de flujos proyectado por bono, **por qué esta combinación**, el estrés de tasa con re-descuento completo, la correlación entre los bonos elegidos, la **frontera eficiente**, el backtest retroactivo y las métricas de riesgo (VaR, CVaR, Sortino) calculadas sobre esa serie. **El sistema muestra también sus límites**: esas métricas cubren 7 de los 9 bonos (DNCBO y MCC3O no tienen 12 meses de historia de precios y quedan afuera, con los pesos renormalizados) y el Sortino del backtest retroactivo sale negativo (−2,23); el aviso está en pantalla, no escondido.
+Debajo de la composición, el Armador muestra las métricas de la cartera como un flujo agregado (TIR y duration «rigurosas» contra el promedio ponderado simple), el costo de implementación y la TIR de ida y vuelta a 12 meses, el calendario de flujos proyectado por bono, **por qué esta combinación**, el estrés de tasa con re-descuento completo, la correlación entre los bonos elegidos, la **frontera eficiente**, el backtest retroactivo y las métricas de riesgo (VaR, CVaR, Sortino) calculadas sobre esa serie. **El sistema muestra también sus límites**: esas métricas cubren 7 de los 9 bonos (DNCBO y MCC3O no alcanzan el 50 % de cobertura de precios de los últimos 12 meses y quedan afuera, con los pesos renormalizados) y el Sortino del backtest retroactivo sale negativo (−2,23); el aviso está en pantalla, no escondido.
 
 <p align="center"><img src="assets/screenshots/armador_markowitz_1_configuracion.webp" alt="Configuración: máximo Sharpe, volumen mínimo 100.000, USD 10.000, 6 a 10 bonos, tope 25 % por emisor y 30 % por sector" width="100%"><br><sub>Configuración: máximo Sharpe, volumen mínimo 100.000, USD 10.000, 6 a 10 bonos, tope 25 % por emisor y 30 % por sector</sub></p>
 
@@ -831,6 +851,20 @@ Un bono no rinde lo mismo para quien lo compra hoy que para quien lo vende hoy, 
 - **Una sola fórmula de retorno con costos**, compartida por Breakeven, Radar, Simulador, alertas y fichas (antes estaba copiada en cuatro lugares).
 - **Efecto que casi nadie mide**: la fricción pesa mucho en plazos cortos anualizada. Una letra a 30 días con 0,24% de ida y vuelta puede perder 3 puntos de TEA; por eso el sistema calcula los **días que tarda el carry en pagar la comisión**.
 - Las columnas de la vista Mercado son **bit-idénticas** a las anteriores a este cambio (test de regresión contra el pricer viejo).
+
+## Armador de portafolios: Markowitz con restricciones reales
+
+Construye una cartera **hard dollar** (soberanos y Obligaciones Negociables en USD) a partir de un objetivo y de las restricciones de un inversor, y devuelve **nominales a comprar** con las comisiones incluidas: el monto que se carga es el desembolso total.
+
+- **Tres objetivos**: *Target Duration* (con tolerancia), *Target Yield* y *Óptimo de Markowitz* (máximo Sharpe, o mínima varianza pura como referencia).
+- **Restricciones y filtros**: volumen mínimo operado hoy, soberanos y/o corporativos, cantidad mínima y máxima de bonos, **tope por emisor y por sector**, TIR mínima, duration fija con tolerancia, preferencia por liquidez y **frecuencia de cobro como restricción dura** (la cartera tiene que pagar cupón o amortización en cada mes elegido; si el universo no lo permite, avisa qué mes queda sin cobertura antes de optimizar).
+- **Método**: *Target Duration* y *Target Yield* se resuelven con programación lineal entera (MILP con HiGHS), que sí puede imponer la cantidad de bonos; Markowitz usa pesos continuos (SLSQP) sobre los bonos con historia de precios suficiente, con covarianza muestral de los retornos diarios en dólares. Para respetar la cantidad de bonos elegida se preselecciona por Sharpe individual respetando los topes de cada grupo, y antes de optimizar se verifica que las restricciones sean compatibles: si no lo son, informa que no es factible, con un mensaje explicable, en vez de fallar.
+- **Métricas rigurosas**: la TIR y la duration de la cartera son las del **flujo de fondos agregado** (como en Fabozzi, *The Handbook of Fixed Income Securities*), no el promedio ponderado de cada bono; se muestran lado a lado para ver la diferencia.
+- **Qué devuelve**: composición con peso, monto, nominales y precio neto de compra; costo de implementación y TIR de ida y vuelta a un horizonte elegido; calendario de flujos por bono; por qué esa combinación; estrés de tasa con re-descuento completo; correlación entre los bonos; frontera eficiente; backtest retroactivo con VaR, CVaR y Sortino; panel de riesgo por bono; y exclusión de bonos con recálculo. Dos auditorías automáticas quedan en pantalla: que ningún bono se aleje más de ±300 pb de la curva de su emisor o sector, y que todos tengan clase de arancel.
+- **Comparar contra tu cartera**: un botón carga lo registrado en *Mi cartera* y arma el **plan de rebalanceo en nominales**, con la comisión de cada pata. Si la TIR de la cartera sugerida no supera a la actual una vez descontado el valor de liquidación, lo dice («rotar solo suma costo»), en vez de empujar a operar.
+- **Límites que muestra el propio sistema**: Markowitz no es una frontera con cardinalidad exacta sobre todo el universo (pesos continuos sobre un conjunto preseleccionado); las métricas de riesgo y el backtest cubren solo los bonos con al menos 50 % de cobertura de precios en los últimos 12 meses (en el ejemplo de las capturas, 7 de 9) y el aviso aparece en pantalla; y es una herramienta de análisis, no una recomendación de inversión.
+
+Las capturas de una corrida real (USD 10.000, volumen mínimo 100.000, tope 25 % por emisor y 30 % por sector, 6 a 10 bonos) están en [Armador con optimización de Markowitz](#armador-con-optimización-de-markowitz--cartera-de-9-bonos-con-topes-por-emisor-y-por-sector).
 
 ## Terminal de analista: valor relativo, TIR histórica y señales
 
@@ -1052,6 +1086,8 @@ else:
 
 ## Roadmap
 
+- **Control de frescura en todas las fuentes**: hoy el control por período publicado cubre los 23 módulos del INDEC (compara el último informe del calendario real de difusión con el último período de la serie); se evalúa llevarlo a las otras fuentes con calendario propio (BCRA, ARCA, Secretaría de Finanzas).
+- **Armador con cardinalidad exacta en Markowitz**: hoy elige los bonos por Sharpe individual y optimiza pesos continuos sobre ese conjunto; una formulación entera con riesgo sobre todo el universo evitaría la preselección. Y ampliar la historia de precios para que los bonos recién emitidos o poco operados entren en las métricas de riesgo.
 - **Más explotación de datos oficiales ya descargados**: cuadros de seguridad social por tamaño de empleador y por obra social, colocaciones en dólares y canjes del Tesoro.
 - **Historia de precios para Dollar Linked y duales**: hoy no se conserva el dólar futuro vigente de cada día, por lo que su TIR histórica no se reconstruye.
 - **Indicadores prudenciales que solo el BCRA da en prosa** (por ejemplo PDE y LCR): sin serie estructurada disponible, hoy quedan fuera.
