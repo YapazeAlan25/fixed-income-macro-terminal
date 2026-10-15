@@ -62,7 +62,7 @@ Escritorio de análisis financiero propio que cubre bonos argentinos (pricing, v
 | **5** | secciones del escritorio: Inicio, Renta Fija (16 pestañas), Liquidez Global (5 pestañas), Macro Argentina (14 vistas) y Mi cartera |
 | **~460** | funciones de acceso a datos sobre el warehouse (una por serie o grupo de series) |
 | **~30** | módulos con parser propio para los Excel oficiales de INDEC |
-| **~2.000** | tests automatizados en las dos capas del sistema (1.836 sobre el motor de pricing y el dashboard + 173 sobre el motor de descarga): desde imports y parsing hasta la reconciliación de cada ficha Excel contra el precio de mercado, el dashboard en vivo con datos reales y controles cruzados contra fuentes independientes. Se verifica además que la tarea programada corra exactamente el mismo pipeline que una corrida manual |
+| **~2.000** | tests automatizados en las dos capas del sistema (1.859 sobre el motor de pricing y el dashboard + 180 sobre el motor de descarga): desde imports y parsing hasta la reconciliación de cada ficha Excel contra el precio de mercado, el dashboard en vivo con datos reales y controles cruzados contra fuentes independientes. Se verifica además que la tarea programada corra exactamente el mismo pipeline que una corrida manual |
 | **4** | tareas programadas (Windows Task Scheduler) que mantienen datos, precios, mercados e historia al día sin intervención manual |
 | **~1m 40s** | descarga completa de las fuentes en paralelo (medido con 13 fuentes) |
 | **21s** | pipeline de pricing completo (motor de pricing + carga a warehouse), 3.5x más rápido tras una optimización de la etapa de ingesta |
@@ -78,6 +78,7 @@ La versión anterior de este README documentaba el pricer y el escritorio macro.
 - **Liquidez global**: Charting estilo TradingView con niveles de soporte y resistencia, perfil de volumen, divergencias y un backtest de señales que informa lo que **no** funciona.
 - **Menos PDF, más datos estructurados**: las reservas se leen de la API de datos del FMI y la calidad de cartera del anexo Excel del BCRA; los PDF quedaron como control opcional. Los análisis nuevos se contrastan contra la fuente independiente antes de mostrarse.
 - **Operación robusta**: archivo intradía, respaldo semanal verificado, panel de salud de datos, reloj de mercados y caché de lecturas.
+- **Datos siempre al día, con control propio**: cuando el INDEC renombró el Excel del IPC, la descarga siguió «OK» y las series se quedaron un mes atrás sin que ningún control lo viera. Ahora (1) el scraper compara en cada visita lo que la página publica contra lo guardado y avisa de archivos renombrados, nuevos o desaparecidos; (2) un control de frescura compara el último período publicado en el calendario real de difusión con el último período de las series de **23 módulos del INDEC** (hoy 23/23 al día); (3) los módulos con informe reciente se reintentan hasta que se vean los archivos; y (4) un aviso de «dato vencido» mide el rezago desde el cierre del período, no desde su primer día, para no alarmar con datos que están al día. Cada hallazgo de este tipo quedó con su test.
 
 ## Qué es
 
@@ -908,7 +909,7 @@ Cinco análisis pensados para **no engañarse**: cada uno informa n, el estadís
 
 ## Rigor de ingeniería y control de calidad
 
-El sistema pasa por rondas periódicas de auditoría de código propia — no solo revisión de estilo, sino verificación de que los cálculos financieros sean correctos —, respaldadas por **casi 2.000 tests automatizados** entre las dos capas (1.836 sobre el motor de pricing y el dashboard + 173 sobre el motor de descarga). Algunos hallazgos reales, con impacto financiero directo, detectados y corregidos en producción:
+El sistema pasa por rondas periódicas de auditoría de código propia — no solo revisión de estilo, sino verificación de que los cálculos financieros sean correctos —, respaldadas por **casi 2.000 tests automatizados** entre las dos capas (1.859 sobre el motor de pricing y el dashboard + 180 sobre el motor de descarga). Algunos hallazgos reales, con impacto financiero directo, detectados y corregidos en producción:
 
 - **Error de signo en la sensibilidad de convexidad**: `(-0.01**2)` se evaluaba como `-0.0001` por precedencia de operadores en Python, en vez de `+0.0001` — subestimaba la ganancia de precio ante una baja de tasa de 100bps, más notorio en bonos de mayor duration/convexidad.
 - **TAMAR mal mapeado (tasa efectiva en vez de nominal)**: el BCRA publica la tasa TAMAR bajo dos IDs distintos según la base de capitalización — el sistema alimentaba la tasa efectiva anual a fórmulas que asumen explícitamente la nominal, sobrestimando la capitalización de todo bono BADLAR/TAMAR y de los duales Fija/TAMAR. Corregido y verificado contra la API oficial de BCRA en vivo.
