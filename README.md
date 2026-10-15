@@ -594,9 +594,9 @@ Armador de portafolios hard dollar (duration objetivo, TIR objetivo o Markowitz)
 <p align="center"><img src="assets/screenshots/rf_simulador_de_posicion.webp" alt="Simulador de posición: qué pasa si compro o vendo un bono, con el resultado neto de ida y vuelta" width="100%"><br><sub>Simulador de posición: qué pasa si compro o vendo un bono, con el resultado neto de ida y vuelta</sub></p>
 
 ### Armador con optimización de Markowitz — cartera de 9 bonos con topes por emisor y por sector
-El Armador construye la cartera de **máximo Sharpe** (el óptimo de Markowitz en el sentido habitual; la alternativa es mínima varianza pura) sobre el universo de soberanos y corporativos en dólares, con la covarianza estimada de la historia de precios y **sin mirar el futuro**. Esta corrida usa los filtros de un inversor real:
+El Armador construye la cartera de **máximo Sharpe** (el óptimo de Markowitz en el sentido habitual; la alternativa es mínima varianza pura) sobre el universo de soberanos y corporativos en dólares, con la covarianza estimada de los retornos diarios en dólares de la historia de precios. Esta corrida usa los filtros de un inversor real:
 
-- **Liquidez**: volumen mínimo de **100.000 nominales operados hoy** (49 bonos elegibles; 208 quedan afuera por volumen).
+- **Liquidez**: volumen mínimo de **100.000 nominales operados hoy** (69 bonos elegibles ese día; 188 quedan afuera por volumen).
 - **Capital**: **USD 10.000** (el monto es el desembolso **total, comisiones incluidas**: precio neto de compra con comisión e IVA, cupones netos de la comisión de renta).
 - **Concentración**: de **6 a 10 bonos**, **tope del 25 % por emisor** y **30 % por sector**.
 
@@ -614,7 +614,7 @@ El resultado (9 bonos) cumple los topes: el mayor emisor pesa 25.00 % y el mayor
 | **AO28** | Estado Nacional | Soberano | 4.73% | $472.72 | $502.06 | $94.16 | 9.70% | 1.7511 | 3,298,621 |
 | **VSCXO** | Vista Energy Argentina S.A.U. | Oil & Gas | 2.15% | $215.04 | $206.82 | $103.98 | 7.44% | 6.8768 | 1,010,000 |
 
-Debajo de la composición, el Armador muestra las métricas de la cartera como un flujo agregado (TIR y duration «rigurosas» contra el promedio ponderado simple), el costo de implementación y la TIR de ida y vuelta a 12 meses, el calendario de flujos proyectado por bono, **por qué esta combinación**, el estrés de tasa con re-descuento completo, la correlación entre los bonos elegidos, la **frontera eficiente**, el backtest retroactivo y las métricas de riesgo (VaR, CVaR, Sortino) calculadas sobre esa serie.
+Debajo de la composición, el Armador muestra las métricas de la cartera como un flujo agregado (TIR y duration «rigurosas» contra el promedio ponderado simple), el costo de implementación y la TIR de ida y vuelta a 12 meses, el calendario de flujos proyectado por bono, **por qué esta combinación**, el estrés de tasa con re-descuento completo, la correlación entre los bonos elegidos, la **frontera eficiente**, el backtest retroactivo y las métricas de riesgo (VaR, CVaR, Sortino) calculadas sobre esa serie. **El sistema muestra también sus límites**: esas métricas cubren 7 de los 9 bonos (DNCBO y MCC3O no tienen 12 meses de historia de precios y quedan afuera, con los pesos renormalizados) y el Sortino del backtest retroactivo sale negativo (−2,23); el aviso está en pantalla, no escondido.
 
 <p align="center"><img src="assets/screenshots/armador_markowitz_1_configuracion.webp" alt="Configuración: máximo Sharpe, volumen mínimo 100.000, USD 10.000, 6 a 10 bonos, tope 25 % por emisor y 30 % por sector" width="100%"><br><sub>Configuración: máximo Sharpe, volumen mínimo 100.000, USD 10.000, 6 a 10 bonos, tope 25 % por emisor y 30 % por sector</sub></p>
 
@@ -738,7 +738,7 @@ Panel permanente de salud de datos: frescura de cada fuente contra su propia fre
 ### Mi cartera — tenencias, riesgo y calificaciones
 Diario de operaciones con precio neto de comisión y TIR de compra con el pricer real, tenencias por FIFO con valor de liquidación y TIR del dinero, riesgo por factor y estrés, calificaciones de las agencias locales leídas de la CNV, swing trading en renta fija y optimizador de pesos.
 
-La cartera que se muestra es **real**: una posición chica en el soberano **AO28** (USD 2.000-2.500) con su **tesis de compra** registrada (por qué se compró, qué la invalida y las condiciones medibles que el sistema evalúa todos los días), y se compara contra la cartera que sugirió el Armador con criterio de Markowitz (ver arriba). Cada vista usa el pricer real: precio neto de comisión, TIR del dinero por FIFO, riesgo por factor, calificaciones de las agencias leídas de la CNV, liquidez y estrés.
+La cartera que se muestra es **real**: una cartera chica (valor de liquidación de unos USD 2.100) en seis bonos —AN29, AO28, DNCAO, IRCPO, TLCTO y YM43O—, con el soberano **AO28** (~29 % de la cartera) y su **tesis de compra** registrada (por qué se compró, qué la invalida y las condiciones medibles que el sistema evalúa todos los días), y se compara contra la cartera que sugirió el Armador con criterio de Markowitz (ver arriba). Cada vista usa el pricer real: precio neto de comisión, TIR del dinero por FIFO, riesgo por factor, calificaciones de las agencias leídas de la CNV, liquidez y estrés.
 
 <p align="center"><img src="assets/screenshots/cartera_tenencias_kpis_y_resultado.webp" alt="Mi cartera: valor de liquidación, TIR del dinero, duration y DV01" width="100%"><br><sub>Mi cartera: valor de liquidación, TIR del dinero, duration y DV01</sub></p>
 
