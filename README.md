@@ -158,6 +158,8 @@ El primer panel que ve el usuario al abrir el sistema: banderas de riesgo (macro
 ### Escritorio Macro Argentina — panel general
 Estado de reservas, tasa real, brecha cambiaria, riesgo país, resultado fiscal, actividad y desempleo en un solo panel; reservas del BCRA y riesgo país (EMBI+) con historia completa.
 
+<p align="center"><img src="assets/screenshots/macro_panel_general_kpis.webp" alt="Escritorio Macro Argentina: semáforos de reservas, tasa real, brecha CCL, riesgo país, actividad, cobertura y desempleo, con el selector de las 14 secciones" width="100%"><br><sub>Escritorio Macro Argentina: semáforos de reservas, tasa real, brecha CCL, riesgo país, actividad, cobertura y desempleo, con el selector de las 14 secciones</sub></p>
+
 <p align="center"><img src="assets/screenshots/macro_cambiario_reservas_y_riesgo_pais.webp" alt="Cambiario reservas y riesgo país" width="100%"><br><sub>Cambiario reservas y riesgo país</sub></p>
 
 ### Cambiario — brecha y evolución de tipos de cambio
@@ -655,7 +657,7 @@ Panel permanente de salud de datos: frescura de cada fuente contra su propia fre
 
 <p align="center"><img src="assets/screenshots/inicio_reloj_mercados_del_mundo.webp" alt="Reloj de mercados del mundo: hora, estado de la rueda y solapamientos de 9 mercados + cripto" width="100%"><br><sub>Reloj de mercados del mundo: hora, estado de la rueda y solapamientos de 9 mercados + cripto</sub></p>
 
-<p align="center"><img src="assets/screenshots/sidebar_salud_de_datos.webp" alt="Panel «Salud de datos» de la barra lateral: semáforos y avisos por fuente" width="100%"><br><sub>Panel «Salud de datos» de la barra lateral: semáforos y avisos por fuente</sub></p>
+<p align="center"><img src="assets/screenshots/sidebar_salud_de_datos.webp" alt="Panel «Salud de datos» de la barra lateral: semáforos y avisos por fuente" width="35%"><br><sub>Panel «Salud de datos» de la barra lateral: semáforos y avisos por fuente</sub></p>
 
 ### Mi cartera — tenencias, riesgo y calificaciones
 Diario de operaciones con precio neto de comisión y TIR de compra con el pricer real, tenencias por FIFO con valor de liquidación y TIR del dinero, riesgo por factor y estrés, calificaciones de las agencias locales leídas de la CNV, swing trading en renta fija y optimizador de pesos.
