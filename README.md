@@ -969,7 +969,7 @@ else:
 | Extracción de fichas de bonos | PyMuPDF (texto) + parsing automático por expresiones regulares del documento legal definitivo; lectura asistida por LLM en el flujo de carga manual de casos no estándar |
 | Generación de reportes | openpyxl (fichas Excel completas por instrumento, exportación masiva del universo) |
 | Dashboard | Streamlit, Plotly (velas, perfil de volumen), caché de lecturas por firma de archivo |
-| Validación | pytest (casi 2.000 tests: 1.836 sobre el motor de pricing y el dashboard — reconciliación PVCF↔precio del exportador Excel, invariantes por familia de instrumento, controles cruzados contra fuentes independientes, paridad entre la tarea programada y la corrida manual, funciones puras 100% sintéticas — y 173 sobre el motor de descarga con sesiones simuladas sin red) + GitHub Actions (CI en cada push: compileall + pytest) |
+| Validación | pytest (casi 2.000 tests: 1.859 sobre el motor de pricing y el dashboard — reconciliación PVCF↔precio del exportador Excel, invariantes por familia de instrumento, controles cruzados contra fuentes independientes, paridad entre la tarea programada y la corrida manual, funciones puras 100% sintéticas — y 173 sobre el motor de descarga con sesiones simuladas sin red) + GitHub Actions (CI en cada push: compileall + pytest) |
 | Automatización | Windows Task Scheduler (4 tareas: macro diaria; precios, pricing y export cada 30 min en horario de mercado; mercados globales cada 30 min; historia, respaldo y calidad semanales) con control de cuota de API |
 
 ## Roadmap
