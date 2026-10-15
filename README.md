@@ -387,6 +387,8 @@ Las tablas de pricing tienen unas 26 columnas, por eso cada una se muestra en 3 
 ### Dollar Linked — bandas cambiarias y proyección por escenario
 Evolución del A3500 contra el régimen oficial de bandas cambiarias, con brecha promedio (6M e histórica) contra el límite superior e inferior; dos escenarios de proyección — devaluación implícita en los futuros A3500 y en los futuros ROFEX — para comparar contra la curva de tasa fija. La banda cambiaria en sí se proyecta con una jerarquía de 3 fuentes (ver [Otros motores destacados](#otros-motores-destacados)): dato oficial del BCRA mientras exista, inflación real ya publicada con el rezago T-2 que el propio régimen usa, y expectativa REM recién cuando ninguna de las dos anteriores todavía cubre esa fecha — nunca una proyección lineal ingenua. La tabla de pricing se muestra para los cuatro escenarios de dólar (A3500, ROFEX, REM y banda alta); cada escenario cambia la TEA, la TNA y la duration de cada bono.
 
+> **La banda alta es un escenario de estrés, no un pronóstico.** Supone que en cada fecha de pago el dólar vale el **techo de la banda cambiaria oficial**, en lugar de lo que descuentan los futuros (ROFEX), la encuesta REM o el A3500 de hoy. Sirve para medir cuánto rinde un Dollar Linked si la devaluación llega al límite del régimen, y por eso muestra TEA muy altas en los bonos cortos (una devaluación hasta el techo comprimida en pocas semanas) y deja sin dato a los bonos que vencen más allá del horizonte con banda proyectada. Para decidir entre Tasa Fija y Dollar Linked se compara contra ROFEX y REM, que son los escenarios de mercado y de expectativas.
+
 <p align="center"><img src="assets/screenshots/rf_dollar_linked_bandas_cambiarias.webp" alt="Dollar Linked: evolución del A3500 contra el régimen oficial de bandas cambiarias" width="100%"><br><sub>Dollar Linked: evolución del A3500 contra el régimen oficial de bandas cambiarias</sub></p>
 
 <p align="center"><img src="assets/screenshots/rf_dollar_linked_escenario_a3500.webp" alt="Dollar Linked: curva con el escenario de dólar A3500" width="100%"><br><sub>Dollar Linked: curva con el escenario de dólar A3500</sub></p>
@@ -398,7 +400,7 @@ Evolución del A3500 contra el régimen oficial de bandas cambiarias, con brecha
 
 <p align="center"><img src="assets/screenshots/rf_dollar_linked_escenario_rem.webp" alt="Dollar Linked: curva con el escenario REM" width="100%"><br><sub>Dollar Linked: curva con el escenario REM</sub></p>
 
-<p align="center"><img src="assets/screenshots/rf_dollar_linked_escenario_banda_alta.webp" alt="Dollar Linked: curva con el escenario de banda alta" width="100%"><br><sub>Dollar Linked: curva con el escenario de banda alta</sub></p>
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_escenario_banda_alta.webp" alt="Dollar Linked: curva con el escenario de estrés de banda alta (dólar en el techo de la banda)" width="100%"><br><sub>Dollar Linked: curva con el escenario de estrés de banda alta (dólar en el techo de la banda)</sub></p>
 
 <p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_a3500_parte1.webp" alt="Tabla de pricing de Dollar Linked, escenario de dólar A3500: columnas de la pantalla 1 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario de dólar A3500: columnas de la pantalla 1 de 3 (Activo fijo a la izquierda)</sub></p>
 
@@ -418,11 +420,11 @@ Evolución del A3500 contra el régimen oficial de bandas cambiarias, con brecha
 
 <p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_rem_parte3.webp" alt="Tabla de pricing de Dollar Linked, escenario REM: columnas de la pantalla 3 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario REM: columnas de la pantalla 3 de 3 (Activo fijo a la izquierda)</sub></p>
 
-<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_banda_alta_parte1.webp" alt="Tabla de pricing de Dollar Linked, escenario de banda alta: columnas de la pantalla 1 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario de banda alta: columnas de la pantalla 1 de 3 (Activo fijo a la izquierda)</sub></p>
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_banda_alta_parte1.webp" alt="Tabla de pricing de Dollar Linked, escenario de estrés de banda alta (dólar en el techo de la banda): columnas de la pantalla 1 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario de estrés de banda alta (dólar en el techo de la banda): columnas de la pantalla 1 de 3 (Activo fijo a la izquierda)</sub></p>
 
-<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_banda_alta_parte2.webp" alt="Tabla de pricing de Dollar Linked, escenario de banda alta: columnas de la pantalla 2 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario de banda alta: columnas de la pantalla 2 de 3 (Activo fijo a la izquierda)</sub></p>
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_banda_alta_parte2.webp" alt="Tabla de pricing de Dollar Linked, escenario de estrés de banda alta (dólar en el techo de la banda): columnas de la pantalla 2 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario de estrés de banda alta (dólar en el techo de la banda): columnas de la pantalla 2 de 3 (Activo fijo a la izquierda)</sub></p>
 
-<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_banda_alta_parte3.webp" alt="Tabla de pricing de Dollar Linked, escenario de banda alta: columnas de la pantalla 3 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario de banda alta: columnas de la pantalla 3 de 3 (Activo fijo a la izquierda)</sub></p>
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_banda_alta_parte3.webp" alt="Tabla de pricing de Dollar Linked, escenario de estrés de banda alta (dólar en el techo de la banda): columnas de la pantalla 3 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario de estrés de banda alta (dólar en el techo de la banda): columnas de la pantalla 3 de 3 (Activo fijo a la izquierda)</sub></p>
 
 </details>
 
