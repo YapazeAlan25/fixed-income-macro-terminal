@@ -385,7 +385,7 @@ Las tablas de pricing tienen unas 26 columnas, por eso cada una se muestra en 3 
 </details>
 
 ### Dollar Linked — bandas cambiarias y proyección por escenario
-Evolución del A3500 contra el régimen oficial de bandas cambiarias, con brecha promedio (6M e histórica) contra el límite superior e inferior; dos escenarios de proyección — devaluación implícita en los futuros A3500 y en los futuros ROFEX — para comparar contra la curva de tasa fija. La banda cambiaria en sí se proyecta con una jerarquía de 3 fuentes (ver [Otros motores destacados](#otros-motores-destacados)): dato oficial del BCRA mientras exista, inflación real ya publicada con el rezago T-2 que el propio régimen usa, y expectativa REM recién cuando ninguna de las dos anteriores todavía cubre esa fecha — nunca una proyección lineal ingenua.
+Evolución del A3500 contra el régimen oficial de bandas cambiarias, con brecha promedio (6M e histórica) contra el límite superior e inferior; dos escenarios de proyección — devaluación implícita en los futuros A3500 y en los futuros ROFEX — para comparar contra la curva de tasa fija. La banda cambiaria en sí se proyecta con una jerarquía de 3 fuentes (ver [Otros motores destacados](#otros-motores-destacados)): dato oficial del BCRA mientras exista, inflación real ya publicada con el rezago T-2 que el propio régimen usa, y expectativa REM recién cuando ninguna de las dos anteriores todavía cubre esa fecha — nunca una proyección lineal ingenua. La tabla de pricing se muestra para los cuatro escenarios de dólar (A3500, ROFEX, REM y banda alta); cada escenario cambia la TEA, la TNA y la duration de cada bono.
 
 <p align="center"><img src="assets/screenshots/rf_dollar_linked_bandas_cambiarias.webp" alt="Dollar Linked: evolución del A3500 contra el régimen oficial de bandas cambiarias" width="100%"><br><sub>Dollar Linked: evolución del A3500 contra el régimen oficial de bandas cambiarias</sub></p>
 
@@ -394,17 +394,35 @@ Evolución del A3500 contra el régimen oficial de bandas cambiarias, con brecha
 <p align="center"><img src="assets/screenshots/rf_dollar_linked_escenario_rofex.webp" alt="Dollar Linked: curva con el escenario de futuros ROFEX" width="100%"><br><sub>Dollar Linked: curva con el escenario de futuros ROFEX</sub></p>
 
 <details>
-<summary>📷 Ver las 5 capturas restantes de esta sección</summary>
+<summary>📷 Ver las 14 capturas restantes de esta sección</summary>
 
 <p align="center"><img src="assets/screenshots/rf_dollar_linked_escenario_rem.webp" alt="Dollar Linked: curva con el escenario REM" width="100%"><br><sub>Dollar Linked: curva con el escenario REM</sub></p>
 
 <p align="center"><img src="assets/screenshots/rf_dollar_linked_escenario_banda_alta.webp" alt="Dollar Linked: curva con el escenario de banda alta" width="100%"><br><sub>Dollar Linked: curva con el escenario de banda alta</sub></p>
 
-<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_parte1.webp" alt="Tabla de pricing de Dollar Linked: columnas de la pantalla 1 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked: columnas de la pantalla 1 de 3 (Activo fijo a la izquierda)</sub></p>
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_a3500_parte1.webp" alt="Tabla de pricing de Dollar Linked, escenario de dólar A3500: columnas de la pantalla 1 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario de dólar A3500: columnas de la pantalla 1 de 3 (Activo fijo a la izquierda)</sub></p>
 
-<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_parte2.webp" alt="Tabla de pricing de Dollar Linked: columnas de la pantalla 2 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked: columnas de la pantalla 2 de 3 (Activo fijo a la izquierda)</sub></p>
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_a3500_parte2.webp" alt="Tabla de pricing de Dollar Linked, escenario de dólar A3500: columnas de la pantalla 2 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario de dólar A3500: columnas de la pantalla 2 de 3 (Activo fijo a la izquierda)</sub></p>
 
-<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_parte3.webp" alt="Tabla de pricing de Dollar Linked: columnas de la pantalla 3 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked: columnas de la pantalla 3 de 3 (Activo fijo a la izquierda)</sub></p>
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_a3500_parte3.webp" alt="Tabla de pricing de Dollar Linked, escenario de dólar A3500: columnas de la pantalla 3 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario de dólar A3500: columnas de la pantalla 3 de 3 (Activo fijo a la izquierda)</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_rofex_parte1.webp" alt="Tabla de pricing de Dollar Linked, escenario de futuros ROFEX: columnas de la pantalla 1 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario de futuros ROFEX: columnas de la pantalla 1 de 3 (Activo fijo a la izquierda)</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_rofex_parte2.webp" alt="Tabla de pricing de Dollar Linked, escenario de futuros ROFEX: columnas de la pantalla 2 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario de futuros ROFEX: columnas de la pantalla 2 de 3 (Activo fijo a la izquierda)</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_rofex_parte3.webp" alt="Tabla de pricing de Dollar Linked, escenario de futuros ROFEX: columnas de la pantalla 3 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario de futuros ROFEX: columnas de la pantalla 3 de 3 (Activo fijo a la izquierda)</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_rem_parte1.webp" alt="Tabla de pricing de Dollar Linked, escenario REM: columnas de la pantalla 1 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario REM: columnas de la pantalla 1 de 3 (Activo fijo a la izquierda)</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_rem_parte2.webp" alt="Tabla de pricing de Dollar Linked, escenario REM: columnas de la pantalla 2 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario REM: columnas de la pantalla 2 de 3 (Activo fijo a la izquierda)</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_rem_parte3.webp" alt="Tabla de pricing de Dollar Linked, escenario REM: columnas de la pantalla 3 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario REM: columnas de la pantalla 3 de 3 (Activo fijo a la izquierda)</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_banda_alta_parte1.webp" alt="Tabla de pricing de Dollar Linked, escenario de banda alta: columnas de la pantalla 1 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario de banda alta: columnas de la pantalla 1 de 3 (Activo fijo a la izquierda)</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_banda_alta_parte2.webp" alt="Tabla de pricing de Dollar Linked, escenario de banda alta: columnas de la pantalla 2 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario de banda alta: columnas de la pantalla 2 de 3 (Activo fijo a la izquierda)</sub></p>
+
+<p align="center"><img src="assets/screenshots/rf_dollar_linked_tabla_pricing_banda_alta_parte3.webp" alt="Tabla de pricing de Dollar Linked, escenario de banda alta: columnas de la pantalla 3 de 3 (Activo fijo a la izquierda)" width="100%"><br><sub>Tabla de pricing de Dollar Linked, escenario de banda alta: columnas de la pantalla 3 de 3 (Activo fijo a la izquierda)</sub></p>
 
 </details>
 
