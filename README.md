@@ -832,17 +832,17 @@ ninguna de las dos vistas puede divergir de la otra sin que un test lo detecte.
 
 Cada ficha trae, en una sola hoja: métricas de sensibilidad, las tres vistas de precio, el detalle del prospecto, el cronograma con el valor presente de cada flujo, el análisis de sensibilidad con su gráfico y los comparables. El pie de cada hoja indica la fecha y hora de generación.
 
-**Hard Dollar (soberanos, provinciales y ONs)** — cronograma en USD, con el control que reconcilia la suma de los PVCF contra el precio pagado.
+**Hard Dollar (soberanos, provinciales y ONs)** — ejemplo: el **GD46** (soberano ley Nueva York, amortizable en 40 pagos). Cronograma en USD, con el control que reconcilia la suma de los PVCF contra el precio pagado.
 
-<p align="center"><img src="assets/screenshots/excel_ficha_hard_dollar_AL30_metricas_vistas.webp" alt="Ficha Excel AL30: métricas financieras y vistas de precio" width="100%"><br><sub>Ficha Excel AL30: métricas financieras y vistas de precio</sub></p>
+<p align="center"><img src="assets/screenshots/excel_ficha_hard_dollar_GD46_metricas_vistas.webp" alt="Ficha Excel GD46: métricas financieras y vistas de precio" width="100%"><br><sub>Ficha Excel GD46: métricas financieras y vistas de precio</sub></p>
 
-<p align="center"><img src="assets/screenshots/excel_ficha_hard_dollar_AL30_riesgo_contexto.webp" alt="Ficha Excel AL30: riesgo, ejecución y contexto de la TIR" width="100%"><br><sub>Ficha Excel AL30: riesgo, ejecución y contexto de la TIR</sub></p>
+<p align="center"><img src="assets/screenshots/excel_ficha_hard_dollar_GD46_riesgo_contexto.webp" alt="Ficha Excel GD46: riesgo, ejecución y contexto de la TIR" width="100%"><br><sub>Ficha Excel GD46: riesgo, ejecución y contexto de la TIR</sub></p>
 
-<p align="center"><img src="assets/screenshots/excel_ficha_hard_dollar_AL30_prospecto_cronograma.webp" alt="Ficha Excel AL30: prospecto y cronograma con PVCF" width="100%"><br><sub>Ficha Excel AL30: prospecto y cronograma con PVCF</sub></p>
+<p align="center"><img src="assets/screenshots/excel_ficha_hard_dollar_GD46_prospecto_cronograma.webp" alt="Ficha Excel GD46: prospecto y cronograma con PVCF" width="100%"><br><sub>Ficha Excel GD46: prospecto y cronograma con PVCF</sub></p>
 
-<p align="center"><img src="assets/screenshots/excel_ficha_hard_dollar_AL30_sensibilidad.webp" alt="Ficha Excel AL30: análisis de sensibilidad con gráfico" width="100%"><br><sub>Ficha Excel AL30: análisis de sensibilidad con gráfico</sub></p>
+<p align="center"><img src="assets/screenshots/excel_ficha_hard_dollar_GD46_sensibilidad.webp" alt="Ficha Excel GD46: análisis de sensibilidad con gráfico" width="100%"><br><sub>Ficha Excel GD46: análisis de sensibilidad con gráfico</sub></p>
 
-<p align="center"><img src="assets/screenshots/excel_ficha_hard_dollar_AL30_comparables_repago.webp" alt="Ficha Excel AL30: comparables y repago" width="100%"><br><sub>Ficha Excel AL30: comparables y repago</sub></p>
+<p align="center"><img src="assets/screenshots/excel_ficha_hard_dollar_GD46_comparables_repago.webp" alt="Ficha Excel GD46: comparables y repago" width="100%"><br><sub>Ficha Excel GD46: comparables y repago</sub></p>
 
 **CER** — cronograma en **pesos nominales**: cada flujo usa el coeficiente CER proyectado a su propia fecha de pago, así un cupón contractualmente parejo se ve crecer en pesos; la TIR y la sensibilidad siguen en términos reales.
 
