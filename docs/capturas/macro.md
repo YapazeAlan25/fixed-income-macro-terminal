@@ -44,7 +44,11 @@ La economía real y financiera del país con datos oficiales: postura monetaria,
 
 ## Monetario
 
-<img src="../../assets/screenshots/macro_monetario.webp" alt="Monetario" width="100%">
+*Pantalla larga: se muestra en 2 partes, de arriba hacia abajo.*
+
+<img src="../../assets/screenshots/macro_monetario.webp" alt="Monetario (parte 1 de 2)" width="100%">
+
+<img src="../../assets/screenshots/macro_monetario__p2.webp" alt="Monetario (parte 2 de 2)" width="100%">
 
 > Con los otros agregados: Base monetaria: Contractiva por cantidad · M1: Neutral · M2: Contractiva por cantidad · M3: Neutral. Con umbrales ±40 %: Tasa real baja y dinero que se licúa / Neutral; la etiqueta no cambia en el 63 % de los 260 meses. 📖 Cómo leer. Cada línea es cuánto creció (o cayó) en términos reales —descontada la inflación— cada agregado en los últimos 12 meses; la línea blanca punteada es el crecimiento de la actividad. Si el dinero real crece más que la actividad hay más liquidez de la que la economía absorbe (expansivo); si crece menos o cae, hay menos (contractivo). M2 en pesos incluye billetes, cuentas corrientes y cajas de ahorro; M3 su
 
@@ -62,7 +66,11 @@ La economía real y financiera del país con datos oficiales: postura monetaria,
 
 ## PIB y Cuentas Nac.
 
-<img src="../../assets/screenshots/macro_pib_y_cuentas_nac.webp" alt="PIB y Cuentas Nac." width="100%">
+*Pantalla larga: se muestra en 2 partes, de arriba hacia abajo.*
+
+<img src="../../assets/screenshots/macro_pib_y_cuentas_nac.webp" alt="PIB y Cuentas Nac. (parte 1 de 2)" width="100%">
+
+<img src="../../assets/screenshots/macro_pib_y_cuentas_nac__p2.webp" alt="PIB y Cuentas Nac. (parte 2 de 2)" width="100%">
 
 > Variación porcentual interanual respecto a igual período del año anterior Nota: El INDEC no publica en sus anexos Excel la serie Tendencia-ciclo para el PIB, por lo que solo se muestran la Original y la Desestacionalizada.
 
@@ -74,7 +82,11 @@ La economía real y financiera del país con datos oficiales: postura monetaria,
 
 ## Precios
 
-<img src="../../assets/screenshots/macro_precios.webp" alt="Precios" width="100%">
+*Pantalla larga: se muestra en 2 partes, de arriba hacia abajo.*
+
+<img src="../../assets/screenshots/macro_precios.webp" alt="Precios (parte 1 de 2)" width="100%">
+
+<img src="../../assets/screenshots/macro_precios__p2.webp" alt="Precios (parte 2 de 2)" width="100%">
 
 > El nivel general del Índice de precios al consumidor registró un alza mensual de 1.9% en septiembre de 2026, y acumuló en el año una variación de 23.6%. A nivel de las categorías, los precios del IPC Núcleo (1.7%), Regulados (2.3%) y Estacionales (2.9%) marcaron la tendencia del mes.
 

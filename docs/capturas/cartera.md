@@ -32,7 +32,11 @@ Diario de operaciones, tenencias con TIR del dinero, riesgo y estrés, calificac
 
 ## Tenencias y riesgo › Riesgo y estrés
 
-<img src="../../assets/screenshots/cartera_tenencias_y_riesgo_riesgo_y_estres.webp" alt="Tenencias y riesgo › Riesgo y estrés" width="100%">
+*Pantalla larga: se muestra en 2 partes, de arriba hacia abajo.*
+
+<img src="../../assets/screenshots/cartera_tenencias_y_riesgo_riesgo_y_estres.webp" alt="Tenencias y riesgo › Riesgo y estrés (parte 1 de 2)" width="100%">
+
+<img src="../../assets/screenshots/cartera_tenencias_y_riesgo_riesgo_y_estres__p2.webp" alt="Tenencias y riesgo › Riesgo y estrés (parte 2 de 2)" width="100%">
 
 > ℹ️ Se están contando 2 cobro(s) estimados que no están en tu diario: DNCAO 28/10 (14.19), AO28 30/10 (3.25). Cargalos en «💵 Flujos». Ventana: 121 ruedas (29/04/2026 a 22/10/2026) en común de 6 bonos, que cubren 100% de la cartera. Retorno total diario aproximado (carry + efecto de la tasa), con los pesos de hoy mantenidos constantes.
 

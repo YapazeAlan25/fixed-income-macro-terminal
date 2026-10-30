@@ -50,7 +50,7 @@ Estos hallazgos surgen de rondas de auditoría documentadas y fechadas contra el
 | **Ingeniería de datos** | 13 fuentes en paralelo con validación y caché incremental, warehouse DuckDB/Parquet, ~30 parsers de Excel oficiales, orquestación con Prefect, 4 tareas programadas, respaldo verificado, panel de salud de datos |
 | **Rigor estadístico** | Corrección por pruebas múltiples, tests de Granger robustos, análisis sin mirar el futuro, resultados negativos publicados, distinción explícita entre precedencia y causalidad |
 | **Control de calidad** | 2.704 tests, contrastes contra fuentes independientes (FMI, informes oficiales), auditorías documentadas con hallazgos reales y corregidos |
-| **Producto** | Una terminal con 7 secciones y 147 pantallas y vistas pensadas para un analista: qué cambió hoy, alertas, fichas por instrumento, exportación a Excel de nivel research desk |
+| **Producto** | Una terminal con 7 secciones y 153 pantallas y vistas pensadas para un analista: qué cambió hoy, alertas, fichas por instrumento, exportación a Excel de nivel research desk |
 | **Criterio** | Cada número se puede defender, cada límite se declara en pantalla y el sistema prefiere mostrar "sin dato" a una cifra fabricada |
 
 **Cómo trabajo con IA:** la lógica financiera, las decisiones de diseño y la verificación son propias; la implementación de código se desarrolló con asistentes de IA (Claude, Gemini). El valor está en dirigirlos con criterio y en el proceso de verificación (tests, contrastes y auditorías) que impide aceptar un resultado sin comprobarlo.

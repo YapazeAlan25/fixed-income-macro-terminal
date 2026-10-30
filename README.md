@@ -12,14 +12,14 @@
 
 > 📌 **Este repositorio es una vidriera del proyecto.** Muestra el sistema funcionando, con capturas reales del 30/10/2026. El código fuente es privado.
 >
-> 🇬🇧 *English in five lines: a private, production-grade analyst terminal for Argentine fixed income and macro. 13 automated data sources, 200+ bonds priced with in-house engines in three price views (market / buy / sell, commissions included), 7 sections and ~147 screens (BCRA, INDEC, fiscal, banking, FX, global liquidity, recession clock, valuation, portfolio tools), Excel research sheets per instrument, and 2.704 automated tests plus an 11-round calculation audit. Negative results are published; statistical claims are corrected for multiple testing. Code is private; this repo documents it with real screenshots.*
+> 🇬🇧 *English in five lines: a private, production-grade analyst terminal for Argentine fixed income and macro. 13 automated data sources, 200+ bonds priced with in-house engines in three price views (market / buy / sell, commissions included), 7 sections and ~153 screens (BCRA, INDEC, fiscal, banking, FX, global liquidity, recession clock, valuation, portfolio tools), Excel research sheets per instrument, and 2.704 automated tests plus an 11-round calculation audit. Negative results are published; statistical claims are corrected for multiple testing. Code is private; this repo documents it with real screenshots.*
 
 **Autor:** Alan Yapaze — analista independiente · [LinkedIn](https://www.linkedin.com/in/alan-yapaze/)
 **Vigencia:** 2023 – presente (iniciado como modelado manual en Excel, migrado en 2026 a una arquitectura Python automatizada)
 
 ## 🧭 Por dónde entrar
 
-> Esta página es la portada. **Todo el detalle está en [`docs/`](docs/README.md)**: las 147 pantallas con su captura y la explicación de cada una, cómo calcula cada motor, los hallazgos con sus límites y la ingeniería detrás.
+> Esta página es la portada. **Todo el detalle está en [`docs/`](docs/README.md)**: las 153 pantallas con su captura y la explicación de cada una, cómo calcula cada motor, los hallazgos con sus límites y la ingeniería detrás.
 
 | Si querés... | Entrá a |
 |---|---|
@@ -51,9 +51,9 @@ El escritorio tiene **7 secciones**. Cada una tiene su recorrido completo con ca
 | Sección | Qué resuelve | Pantallas |
 |---|---|---|
 | [🏠 Inicio](docs/capturas/inicio.md) | El brief de la mañana: banderas de riesgo, cuadro cambiario con brecha, contexto overnight y el reloj de mercados del mundo. | 1 |
-| [🌊 Liquidez Global](docs/capturas/liquidez.md) | El contexto global que mueve al mercado: régimen de riesgo, reloj del ciclo de EE.UU., valuación, burbujas, exposición, pronósticos, política de riesgo, spreads, liquidez y curvas. | 28 |
+| [🌊 Liquidez Global](docs/capturas/liquidez.md) | El contexto global que mueve al mercado: régimen de riesgo, reloj del ciclo de EE.UU., valuación, burbujas, exposición, pronósticos, política de riesgo, spreads, liquidez y curvas. | 29 |
 | [🇦🇷 Macro Argentina](docs/capturas/macro.md) | La economía real y financiera del país con datos oficiales: postura monetaria, cambiario, reservas, fiscal, monetario, crédito y bancos, actividad, precios, empleo, consumo, externo y expectativas. | 19 |
-| [📊 Renta Fija / Bonos](docs/capturas/renta-fija.md) | Pricing de 7 tipos de instrumento en tres vistas de precio, curvas, valor relativo, arbitraje, carry trade, armador de portafolios y fichas por bono. | 25 |
+| [📊 Renta Fija / Bonos](docs/capturas/renta-fija.md) | Pricing de 7 tipos de instrumento en tres vistas de precio, curvas, valor relativo, arbitraje, carry trade, armador de portafolios y fichas por bono. | 24 |
 | [📈 Renta Variable](docs/capturas/renta-variable.md) | Análisis fundamental de empresas a partir de los estados contables presentados ante la SEC. | 5 |
 | [💼 Mi cartera](docs/capturas/cartera.md) | Diario de operaciones, tenencias con TIR del dinero, riesgo y estrés, calificaciones, swing en renta fija, fuerza relativa y rotación. | 15 |
 | [📅 Calendarios](docs/capturas/calendarios.md) | Cuándo salen los informes del INDEC y del BCRA, y cuándo cobra cada bono. | 3 |
@@ -65,7 +65,7 @@ El escritorio tiene **7 secciones**. Cada una tiene su recorrido completo con ca
 | **13** | fuentes de descarga automática en paralelo (BCRA, INDEC, FRED, ECB, BIS, Tesoro de EE.UU., datos.gob.ar, ARCA, Secretaría de Finanzas, FMI, UTDT, mercados AR y yfinance), más precios de IOL, prospectos del MAE y calificaciones de la CNV |
 | **200+** | instrumentos de renta fija cubiertos (36 soberanos/provinciales, 189 Obligaciones Negociables y letras y bonos en pesos) |
 | **7** | tipos de instrumento con motor de pricing propio, cada uno en tres vistas de precio (Mercado, Compra y Venta, con comisiones del broker) |
-| **7 / 147** | secciones del escritorio / pantallas documentadas con captura |
+| **7 / 153** | secciones del escritorio / pantallas documentadas con captura |
 | **2.704** | tests automatizados (pricing, dashboard, descarga, cálculos macro y estadísticos, contrastes contra fuentes independientes) |
 | **11** | oleadas de auditoría de cálculos, cada hallazgo con su test de regresión |
 | **4** | tareas programadas (Windows Task Scheduler) que mantienen datos, precios, mercados e historia al día sin intervención manual |
@@ -111,7 +111,7 @@ Más en [`docs/ingenieria.md`](docs/ingenieria.md).
 
 | Página | Qué encontrás |
 |---|---|
-| [Capturas por sección](docs/capturas/README.md) | Las 147 pantallas del terminal, con la explicación que trae cada una |
+| [Capturas por sección](docs/capturas/README.md) | Las 153 pantallas del terminal, con la explicación que trae cada una |
 | [Novedades](docs/novedades.md) | Qué se sumó desde la versión anterior de esta vidriera |
 | [Motores y herramientas](docs/motores.md) | Pricing, comisiones y vistas Mercado / Compra / Venta, Armador de portafolios, terminal de analista, fiscal y bancos, Mi cartera |
 | [Exportación a Excel y PDF](docs/excel.md) | Fichas por instrumento con el valor presente de cada flujo, archivos «Global» y Research Report |

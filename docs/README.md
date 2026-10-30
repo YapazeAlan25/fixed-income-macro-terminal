@@ -1,6 +1,6 @@
 # Documentación
 
-> **Todo el detalle del proyecto está en esta carpeta**: las 147 pantallas con su captura y la explicación de cada una, cómo calcula cada motor, los hallazgos con sus límites y la ingeniería detrás.
+> **Todo el detalle del proyecto está en esta carpeta**: las 153 pantallas con su captura y la explicación de cada una, cómo calcula cada motor, los hallazgos con sus límites y la ingeniería detrás.
 
 | Si querés... | Entrá a |
 |---|---|

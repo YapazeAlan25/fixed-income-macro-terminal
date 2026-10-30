@@ -2,7 +2,7 @@
 
 El contexto global que mueve al mercado: régimen de riesgo, reloj del ciclo de EE.UU., valuación, burbujas, exposición, pronósticos, política de riesgo, spreads, liquidez y curvas.
 
-**28 pantallas.** [Volver al índice](README.md) · [Inicio del repositorio](../../README.md)
+**29 pantallas.** [Volver al índice](README.md) · [Inicio del repositorio](../../README.md)
 
 > ℹ️ **Sobre estas capturas:** muestran una herramienta de análisis con datos de mercado del día. Los tickers, rendimientos y señales que aparecen son resultados del cálculo para ilustrar su funcionamiento: **no son recomendaciones de inversión** ni ofertas de compra o venta.
 
@@ -68,7 +68,17 @@ El contexto global que mueve al mercado: régimen de riesgo, reloj del ciclo de 
 
 ## Liquidez y Tasas
 
-<img src="../../assets/screenshots/liquidez_liquidez_y_tasas.webp" alt="Liquidez y Tasas" width="100%">
+*Pantalla larga: se muestra en 2 partes, de arriba hacia abajo.*
+
+<img src="../../assets/screenshots/liquidez_liquidez_y_tasas.webp" alt="Liquidez y Tasas (parte 1 de 2)" width="100%">
+
+<img src="../../assets/screenshots/liquidez_liquidez_y_tasas__p2.webp" alt="Liquidez y Tasas (parte 2 de 2)" width="100%">
+
+> Promedio del percentil contra los 5 años previos de cuatro medidas de estrés: VIX, MOVE (bonos), VVIX (volatilidad del VIX) y CISS (estrés sistémico del BCE). 0 = el estrés más bajo de los 5 años, 100 = el más alto. Cómo leerlo. Las probabilidades salen de lo que ocurrió después de cada tramo (desde 2004); no son pronósticos. El GSSI ordena bien el riesgo de caída y de volatilidad (AUC 0.77, IC 95 % 0.66-0.86), pero no es independiente del Régimen de riesgo: es en la práctica su subconjunto de volatilidad y estrés (correlación de rangos 0.74; el compuesto completo da AUC 0.76, IC 0.69-0.82). El retorno medio posterior no ordena 
+
+## Liquidez y Tasas › Reserva Federal & Liquidez US
+
+<img src="../../assets/screenshots/liquidez_liquidez_y_tasas_reserva_federal_liquidez_us.webp" alt="Liquidez y Tasas › Reserva Federal & Liquidez US" width="100%">
 
 > Promedio del percentil contra los 5 años previos de cuatro medidas de estrés: VIX, MOVE (bonos), VVIX (volatilidad del VIX) y CISS (estrés sistémico del BCE). 0 = el estrés más bajo de los 5 años, 100 = el más alto. Cómo leerlo. Las probabilidades salen de lo que ocurrió después de cada tramo (desde 2004); no son pronósticos. El GSSI ordena bien el riesgo de caída y de volatilidad (AUC 0.77, IC 95 % 0.66-0.86), pero no es independiente del Régimen de riesgo: es en la práctica su subconjunto de volatilidad y estrés (correlación de rangos 0.74; el compuesto completo da AUC 0.76, IC 0.69-0.82). El retorno medio posterior no ordena 
 

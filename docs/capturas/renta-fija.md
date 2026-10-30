@@ -2,7 +2,7 @@
 
 Pricing de 7 tipos de instrumento en tres vistas de precio, curvas, valor relativo, arbitraje, carry trade, armador de portafolios y fichas por bono.
 
-**25 pantallas.** [Volver al índice](README.md) · [Inicio del repositorio](../../README.md)
+**24 pantallas.** [Volver al índice](README.md) · [Inicio del repositorio](../../README.md)
 
 > ℹ️ **Sobre estas capturas:** muestran una herramienta de análisis con datos de mercado del día. Los tickers, rendimientos y señales que aparecen son resultados del cálculo para ilustrar su funcionamiento: **no son recomendaciones de inversión** ni ofertas de compra o venta.
 
@@ -34,43 +34,37 @@ Pricing de 7 tipos de instrumento en tres vistas de precio, curvas, valor relati
 
 <img src="../../assets/screenshots/renta-fija_mercado_por_clase_dollar_linked.webp" alt="Mercado por clase › Dollar Linked" width="100%">
 
-> 🕒 Datos de Renta Fija al 30/10/2026 13:30 hs (última corrida del pipeline de pricing). 🗂️ Frescura de los datos: 🟢 Precios de bonos 30/10 · 🟢 Curva del Tesoro (Fed, GSW) 23/10 (7 d) · 🟢 Tasas del Tesoro (FRED) 28/10 (2 d) · 🟢 Riesgo país (EMBI+) 28/10 (2 d) · 🟢 Dólar oficial (A3500) 29/10 (1 d) · 🟢 Historial de TIR 22/10 (8 d)
-
-## Mercado por clase › Dollar Linked › A3500
-
-<img src="../../assets/screenshots/renta-fija_mercado_por_clase_dollar_linked_a3500.webp" alt="Mercado por clase › Dollar Linked › A3500" width="100%">
-
-> 🕒 Datos de Renta Fija al 30/10/2026 13:30 hs (última corrida del pipeline de pricing). 🗂️ Frescura de los datos: 🟢 Precios de bonos 30/10 · 🟢 Curva del Tesoro (Fed, GSW) 23/10 (7 d) · 🟢 Tasas del Tesoro (FRED) 28/10 (2 d) · 🟢 Riesgo país (EMBI+) 28/10 (2 d) · 🟢 Dólar oficial (A3500) 29/10 (1 d) · 🟢 Historial de TIR 22/10 (8 d)
+> 🕒 Datos de Renta Fija al 30/10/2026 15:30 hs (última corrida del pipeline de pricing). 🗂️ Frescura de los datos: 🟢 Precios de bonos 30/10 · 🟢 Curva del Tesoro (Fed, GSW) 23/10 (7 d) · 🟢 Tasas del Tesoro (FRED) 28/10 (2 d) · 🟢 Riesgo país (EMBI+) 28/10 (2 d) · 🟢 Dólar oficial (A3500) 29/10 (1 d) · 🟢 Historial de TIR 22/10 (8 d)
 
 ## Mercado por clase › Dollar Linked › Minorista
 
 <img src="../../assets/screenshots/renta-fija_mercado_por_clase_dollar_linked_minorista.webp" alt="Mercado por clase › Dollar Linked › Minorista" width="100%">
 
-> 🕒 Datos de Renta Fija al 30/10/2026 13:30 hs (última corrida del pipeline de pricing). 🗂️ Frescura de los datos: 🟢 Precios de bonos 30/10 · 🟢 Curva del Tesoro (Fed, GSW) 23/10 (7 d) · 🟢 Tasas del Tesoro (FRED) 28/10 (2 d) · 🟢 Riesgo país (EMBI+) 28/10 (2 d) · 🟢 Dólar oficial (A3500) 29/10 (1 d) · 🟢 Historial de TIR 22/10 (8 d)
+> 🕒 Datos de Renta Fija al 30/10/2026 15:30 hs (última corrida del pipeline de pricing). 🗂️ Frescura de los datos: 🟢 Precios de bonos 30/10 · 🟢 Curva del Tesoro (Fed, GSW) 23/10 (7 d) · 🟢 Tasas del Tesoro (FRED) 28/10 (2 d) · 🟢 Riesgo país (EMBI+) 28/10 (2 d) · 🟢 Dólar oficial (A3500) 29/10 (1 d) · 🟢 Historial de TIR 22/10 (8 d)
 
 ## Mercado por clase › Dollar Linked › MEP
 
 <img src="../../assets/screenshots/renta-fija_mercado_por_clase_dollar_linked_mep.webp" alt="Mercado por clase › Dollar Linked › MEP" width="100%">
 
-> 🕒 Datos de Renta Fija al 30/10/2026 13:30 hs (última corrida del pipeline de pricing). 🗂️ Frescura de los datos: 🟢 Precios de bonos 30/10 · 🟢 Curva del Tesoro (Fed, GSW) 23/10 (7 d) · 🟢 Tasas del Tesoro (FRED) 28/10 (2 d) · 🟢 Riesgo país (EMBI+) 28/10 (2 d) · 🟢 Dólar oficial (A3500) 29/10 (1 d) · 🟢 Historial de TIR 22/10 (8 d)
+> 🕒 Datos de Renta Fija al 30/10/2026 15:30 hs (última corrida del pipeline de pricing). 🗂️ Frescura de los datos: 🟢 Precios de bonos 30/10 · 🟢 Curva del Tesoro (Fed, GSW) 23/10 (7 d) · 🟢 Tasas del Tesoro (FRED) 28/10 (2 d) · 🟢 Riesgo país (EMBI+) 28/10 (2 d) · 🟢 Dólar oficial (A3500) 29/10 (1 d) · 🟢 Historial de TIR 22/10 (8 d)
 
 ## Mercado por clase › Dollar Linked › CCL
 
 <img src="../../assets/screenshots/renta-fija_mercado_por_clase_dollar_linked_ccl.webp" alt="Mercado por clase › Dollar Linked › CCL" width="100%">
 
-> 🕒 Datos de Renta Fija al 30/10/2026 13:30 hs (última corrida del pipeline de pricing). 🗂️ Frescura de los datos: 🟢 Precios de bonos 30/10 · 🟢 Curva del Tesoro (Fed, GSW) 23/10 (7 d) · 🟢 Tasas del Tesoro (FRED) 28/10 (2 d) · 🟢 Riesgo país (EMBI+) 28/10 (2 d) · 🟢 Dólar oficial (A3500) 29/10 (1 d) · 🟢 Historial de TIR 22/10 (8 d)
+> 🕒 Datos de Renta Fija al 30/10/2026 15:30 hs (última corrida del pipeline de pricing). 🗂️ Frescura de los datos: 🟢 Precios de bonos 30/10 · 🟢 Curva del Tesoro (Fed, GSW) 23/10 (7 d) · 🟢 Tasas del Tesoro (FRED) 28/10 (2 d) · 🟢 Riesgo país (EMBI+) 28/10 (2 d) · 🟢 Dólar oficial (A3500) 29/10 (1 d) · 🟢 Historial de TIR 22/10 (8 d)
 
 ## Mercado por clase › Dollar Linked › Blue
 
 <img src="../../assets/screenshots/renta-fija_mercado_por_clase_dollar_linked_blue.webp" alt="Mercado por clase › Dollar Linked › Blue" width="100%">
 
-> 🕒 Datos de Renta Fija al 30/10/2026 13:30 hs (última corrida del pipeline de pricing). 🗂️ Frescura de los datos: 🟢 Precios de bonos 30/10 · 🟢 Curva del Tesoro (Fed, GSW) 23/10 (7 d) · 🟢 Tasas del Tesoro (FRED) 28/10 (2 d) · 🟢 Riesgo país (EMBI+) 28/10 (2 d) · 🟢 Dólar oficial (A3500) 29/10 (1 d) · 🟢 Historial de TIR 22/10 (8 d)
+> 🕒 Datos de Renta Fija al 30/10/2026 15:30 hs (última corrida del pipeline de pricing). 🗂️ Frescura de los datos: 🟢 Precios de bonos 30/10 · 🟢 Curva del Tesoro (Fed, GSW) 23/10 (7 d) · 🟢 Tasas del Tesoro (FRED) 28/10 (2 d) · 🟢 Riesgo país (EMBI+) 28/10 (2 d) · 🟢 Dólar oficial (A3500) 29/10 (1 d) · 🟢 Historial de TIR 22/10 (8 d)
 
 ## Mercado por clase › Dollar Linked › Cripto
 
 <img src="../../assets/screenshots/renta-fija_mercado_por_clase_dollar_linked_cripto.webp" alt="Mercado por clase › Dollar Linked › Cripto" width="100%">
 
-> 🕒 Datos de Renta Fija al 30/10/2026 13:30 hs (última corrida del pipeline de pricing). 🗂️ Frescura de los datos: 🟢 Precios de bonos 30/10 · 🟢 Curva del Tesoro (Fed, GSW) 23/10 (7 d) · 🟢 Tasas del Tesoro (FRED) 28/10 (2 d) · 🟢 Riesgo país (EMBI+) 28/10 (2 d) · 🟢 Dólar oficial (A3500) 29/10 (1 d) · 🟢 Historial de TIR 22/10 (8 d)
+> 🕒 Datos de Renta Fija al 30/10/2026 15:30 hs (última corrida del pipeline de pricing). 🗂️ Frescura de los datos: 🟢 Precios de bonos 30/10 · 🟢 Curva del Tesoro (Fed, GSW) 23/10 (7 d) · 🟢 Tasas del Tesoro (FRED) 28/10 (2 d) · 🟢 Riesgo país (EMBI+) 28/10 (2 d) · 🟢 Dólar oficial (A3500) 29/10 (1 d) · 🟢 Historial de TIR 22/10 (8 d)
 
 ## Mercado por clase › Soberanos USD
 
@@ -88,7 +82,7 @@ Pricing de 7 tipos de instrumento en tres vistas de precio, curvas, valor relati
 
 <img src="../../assets/screenshots/renta-fija_mercado_por_clase_corporativos_usd.webp" alt="Mercado por clase › Corporativos USD" width="100%">
 
-> 🕒 Datos de Renta Fija al 30/10/2026 13:30 hs (última corrida del pipeline de pricing). 🗂️ Frescura de los datos: 🟢 Precios de bonos 30/10 · 🟢 Curva del Tesoro (Fed, GSW) 23/10 (7 d) · 🟢 Tasas del Tesoro (FRED) 28/10 (2 d) · 🟢 Riesgo país (EMBI+) 28/10 (2 d) · 🟢 Dólar oficial (A3500) 29/10 (1 d) · 🟢 Historial de TIR 22/10 (8 d)
+> 🕒 Datos de Renta Fija al 30/10/2026 15:30 hs (última corrida del pipeline de pricing). 🗂️ Frescura de los datos: 🟢 Precios de bonos 30/10 · 🟢 Curva del Tesoro (Fed, GSW) 23/10 (7 d) · 🟢 Tasas del Tesoro (FRED) 28/10 (2 d) · 🟢 Riesgo país (EMBI+) 28/10 (2 d) · 🟢 Dólar oficial (A3500) 29/10 (1 d) · 🟢 Historial de TIR 22/10 (8 d)
 
 ## Mercado por clase › Corporativos ARS
 
@@ -112,7 +106,7 @@ Pricing de 7 tipos de instrumento en tres vistas de precio, curvas, valor relati
 
 <img src="../../assets/screenshots/renta-fija_donde_hay_valor_tablero_arbitraje.webp" alt="Dónde hay valor › Tablero Arbitraje" width="100%">
 
-> 🕒 Datos de Renta Fija al 30/10/2026 13:30 hs (última corrida del pipeline de pricing). 🗂️ Frescura de los datos: 🟢 Precios de bonos 30/10 · 🟢 Curva del Tesoro (Fed, GSW) 23/10 (7 d) · 🟢 Tasas del Tesoro (FRED) 28/10 (2 d) · 🟢 Riesgo país (EMBI+) 28/10 (2 d) · 🟢 Dólar oficial (A3500) 29/10 (1 d) · 🟢 Historial de TIR 22/10 (8 d)
+> 🕒 Datos de Renta Fija al 30/10/2026 15:30 hs (última corrida del pipeline de pricing). 🗂️ Frescura de los datos: 🟢 Precios de bonos 30/10 · 🟢 Curva del Tesoro (Fed, GSW) 23/10 (7 d) · 🟢 Tasas del Tesoro (FRED) 28/10 (2 d) · 🟢 Riesgo país (EMBI+) 28/10 (2 d) · 🟢 Dólar oficial (A3500) 29/10 (1 d) · 🟢 Historial de TIR 22/10 (8 d)
 
 ## Dónde hay valor › Carry Trade
 

@@ -1,7 +1,7 @@
 # Cambios
 
 ## 30/10/2026 — Actualización mayor de la vidriera
-- README nuevo (portada corta) y documentación en `docs/`: capturas por sección (147 pantallas), novedades, motores, Excel y PDF, datos y pipeline, hallazgos, ingeniería y roadmap.
+- README nuevo (portada corta) y documentación en `docs/`: capturas por sección (153 pantallas), novedades, motores, Excel y PDF, datos y pipeline, hallazgos, ingeniería y roadmap.
 - Capturas regeneradas del terminal actual; se agregan las secciones Renta Variable y Calendarios y más de veinte pantallas nuevas.
 - 2.704 tests automatizados; auditoría de cálculos en 11 oleadas.
 - Aviso legal y licencia («todos los derechos reservados»).
