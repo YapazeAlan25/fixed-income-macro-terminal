@@ -23,6 +23,7 @@
 
 | Si querés... | Entrá a |
 |---|---|
+| **Ver todo lo que ofrece el proyecto, en una página** (motor de descarga y terminal de análisis) | [Todo lo que ofrece el proyecto](docs/capacidades.md) |
 | **Ver las pantallas**, sección por sección | [Capturas por sección](docs/capturas/README.md) |
 | Ver las **herramientas con parámetros** (Armador de portafolios, Breakeven, ficha de bono, Excel y PDF) | [Herramientas clave](docs/capturas/herramientas_clave.md) |
 | Entender **cómo se calcula** (pricing, comisiones, vistas Mercado / Compra / Venta, Armador) | [Motores y herramientas](docs/motores.md) |
@@ -68,7 +69,7 @@ El escritorio tiene **7 secciones**. Cada una tiene su recorrido completo con ca
 | **7 / 153** | secciones del escritorio / pantallas documentadas con captura |
 | **2.704** | tests automatizados (pricing, dashboard, descarga, cálculos macro y estadísticos, contrastes contra fuentes independientes) |
 | **11** | oleadas de auditoría de cálculos, cada hallazgo con su test de regresión |
-| **4** | tareas programadas (Windows Task Scheduler) que mantienen datos, precios, mercados e historia al día sin intervención manual |
+| **6** | tareas programadas (Windows Task Scheduler) que mantienen datos, precios, mercados, historia y alertas al día sin intervención manual |
 | **~1m 40s** | descarga completa de las fuentes en paralelo |
 | **21 s** | pipeline de pricing completo |
 
@@ -111,6 +112,7 @@ Más en [`docs/ingenieria.md`](docs/ingenieria.md).
 
 | Página | Qué encontrás |
 |---|---|
+| [Todo lo que ofrece el proyecto](docs/capacidades.md) | Las dos piezas (motor de descarga y terminal de análisis) y todas sus capacidades, en una sola página |
 | [Capturas por sección](docs/capturas/README.md) | Las 153 pantallas del terminal, con la explicación que trae cada una |
 | [Novedades](docs/novedades.md) | Qué se sumó desde la versión anterior de esta vidriera |
 | [Motores y herramientas](docs/motores.md) | Pricing, comisiones y vistas Mercado / Compra / Venta, Armador de portafolios, terminal de analista, fiscal y bancos, Mi cartera |

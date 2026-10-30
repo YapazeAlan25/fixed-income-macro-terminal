@@ -17,6 +17,7 @@ Método de cada oleada: leer el código de un grupo de módulos, **recalcular a 
 | **Bandas del REM aplicadas desde el cierre de la encuesta** | Mirada al futuro de unos 6 días respecto de la publicación | Rige la encuesta anterior hasta que se publica la nueva |
 | **Habilidad del REM promediada con el plazo 0** (donde casi siempre gana) | Ocultaba que a 3-6 meses el REM no mejoraba a extrapolar en 2017-2019 | Se mide en el mismo tramo que el sesgo y contra dos referencias ingenuas |
 | **Patrón de expresión regular corrupto** (un carácter de control en vez de `\b`) | Bonos Par y Descuento clasificados en la familia equivocada | Reglas por nombre del instrumento con test |
+| **El «-» del INDEC leído como «sin dato»** | Series que en realidad son un cero publicado (locales cerrados, categorías sin casos, un complejo exportador que todavía no exporta) figuraban con huecos: una jurisdicción entera sin ventas de un rubro faltaba de la tabla | Se carga como cero solo donde una identidad contable lo confirma (las jurisdicciones suman el país, las partes suman el total); en una variación sobre base cero no se carga, porque no es 0 % |
 | **Rezago del CER contra el REM, sensibilidades y escalas** de la ficha, forwards y breakeven | Diferencias de uno a pocos puntos básicos entre pantallas | Una sola implementación y tests de paridad |
 
 **Pruebas pre-registradas y resultados negativos:** el nowcast del EMAE, el riesgo país local y la utilidad de los forwards se probaron con la regla escrita antes de mirar, y los resultados negativos están publicados.
@@ -47,7 +48,7 @@ Estos hallazgos surgen de rondas de auditoría documentadas y fechadas contra el
 |---|---|
 | **Finanzas cuantitativas** | Pricing de 7 tipos de instrumento (TIR, duration, convexidad, Z-spread, DV01), curvas de rendimiento, forwards implícitas, roll-down, breakeven total return, VaR y ES, descomposición de Euler del riesgo, optimización con covarianza Ledoit-Wolf |
 | **Conocimiento del mercado argentino** | CER con proyector por REM, Dollar Linked con bandas cambiarias, duales con ruteo de pata ganadora, arbitraje de legislación AL/GD, MEP/CCL implícito, carry trade con costo real de conversión, comisiones y derechos de mercado |
-| **Ingeniería de datos** | 13 fuentes en paralelo con validación y caché incremental, warehouse DuckDB/Parquet, ~30 parsers de Excel oficiales, orquestación con Prefect, 4 tareas programadas, respaldo verificado, panel de salud de datos |
+| **Ingeniería de datos** | 13 fuentes en paralelo con validación y caché incremental, warehouse DuckDB/Parquet, ~30 parsers de Excel oficiales, orquestación con Prefect, 6 tareas programadas, respaldo verificado, panel de salud de datos |
 | **Rigor estadístico** | Corrección por pruebas múltiples, tests de Granger robustos, análisis sin mirar el futuro, resultados negativos publicados, distinción explícita entre precedencia y causalidad |
 | **Control de calidad** | 2.704 tests, contrastes contra fuentes independientes (FMI, informes oficiales), auditorías documentadas con hallazgos reales y corregidos |
 | **Producto** | Una terminal con 7 secciones y 153 pantallas y vistas pensadas para un analista: qué cambió hoy, alertas, fichas por instrumento, exportación a Excel de nivel research desk |
@@ -64,11 +65,11 @@ Estos hallazgos surgen de rondas de auditoría documentadas y fechadas contra el
 | Almacenamiento analítico | DuckDB, Parquet |
 | Cálculo numérico y estadística | NumPy, SciPy, Numba (JIT); Granger robusto (HC1), Newey-West, Benjamini-Hochberg, Ledoit-Wolf |
 | Fuentes de datos | API BCRA, INDEC (parsers de Excel oficiales), FRED, ECB, BIS, Tesoro de EE.UU., datos.gob.ar, ARCA, Secretaría de Finanzas, API de datos del FMI (SDMX), UTDT, CNV (calificaciones), prospectos MAE (PDF), precios y puntas de IOL, otras fuentes públicas de mercado, Yahoo Finance y futuros de dólar (scraping de fuentes públicas) |
-| Extracción de fichas de bonos | PyMuPDF (texto) + parsing automático por expresiones regulares del documento legal definitivo; lectura asistida por LLM en el flujo de carga manual de casos no estándar |
+| Extracción de fichas de bonos | PyMuPDF y reconocimiento óptico (pytesseract) para pasar los PDF legales a texto; fichado caso por caso con un protocolo escrito y asistencia de IA, verificado por un linter de fichas (un parser automático por expresiones regulares se descartó: dejó un bono real con la amortización mal) |
 | Generación de reportes | openpyxl (fichas Excel completas por instrumento, exportación masiva del universo) |
 | Dashboard | Streamlit, Plotly (velas, perfil de volumen), caché de lecturas por firma de archivo |
 | Validación | pytest (2.704 tests: la suite del motor de pricing y el dashboard — reconciliación PVCF↔precio del exportador Excel, invariantes por familia de instrumento, controles cruzados contra fuentes independientes, paridad entre la tarea programada y la corrida manual, funciones puras 100% sintéticas — y 180 sobre el motor de descarga con sesiones simuladas sin red) + GitHub Actions (CI en cada push: compileall + pytest) |
-| Automatización | Windows Task Scheduler (4 tareas: macro diaria; precios, pricing y export cada 30 min en horario de mercado; mercados globales cada 30 min; historia, respaldo y calidad semanales) con control de cuota de API |
+| Automatización | Windows Task Scheduler (6 tareas: macro diaria; precios, pricing y export cada 30 min en horario de mercado; mercados globales cada 30 min; historia, respaldo y calidad semanales; lecturas y alertas diarias; vigilante de la maquinaria) con control de cuota de API |
 
 ## Lógica destacada (ejemplo ilustrativo)
 

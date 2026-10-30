@@ -56,7 +56,40 @@ El sistema corre en un orden fijo de 4 pasos, repartidos entre este repo y su ca
 3. **Precios en vivo** — actualiza intradiario los futuros de dólar (scraping de fuentes públicas de mercado) y los precios y puntas de bonos/letras/ON vía IOL, con un contador de cuota mensual que corta antes de arriesgar el acceso a la API.
 4. **Motor de pricing y dashboard** — corre el ETL de planillas BCRA/INDEC, dispara el pipeline de pricers (Prefect), archiva la foto intradía, exporta el book completo de Excel y levanta el escritorio en Streamlit.
 
-Los pasos 2-4 corren también sin intervención humana vía **4 tareas programadas de Windows**: la macro diaria; precios, pricing y export cada 30 minutos en horario de mercado; mercados globales cada 30 minutos; y una semanal (viernes) que baja la historia de precios, reconstruye la TIR histórica, hace un **respaldo verificado** con manifiesto SHA-256 y corre el chequeo de calidad de datos. Un test automatizado verifica que la tarea programada corra exactamente el mismo pipeline que una corrida manual, no una aproximación.
+Los pasos 2-4 corren también sin intervención humana, con **6 tareas programadas de Windows** (detalle más abajo). Un test automatizado verifica que la tarea programada corra exactamente el mismo pipeline que una corrida manual, no una aproximación.
+## Las 6 tareas programadas
+
+Corren con el Programador de tareas de Windows, sin intervención manual:
+
+| Tarea | Cuándo | Qué hace |
+|---|---|---|
+| **Macro diaria** | Todos los días, 17:30 | Descarga las 14 fuentes (INDEC gateado por su calendario), regenera los archivos limpios y el índice de salud |
+| **Precios, pricing y export** | Lunes a viernes, cada 30 minutos de 11:00 a 17:00 | Futuros de dólar, precios y puntas de IOL, recálculo de todos los pricers y export del libro completo de Excel |
+| **Mercados globales** | Lunes a viernes, cada 30 minutos desde las 10:30 | Barras intradiarias de ~65 activos de Yahoo Finance |
+| **Historia semanal** | Viernes, 18:00 | Historia de precios, reconstrucción de la TIR histórica, respaldo verificado (SHA-256) y chequeo de calidad de datos |
+| **Lecturas y alertas** | Lunes a viernes, 18:15 | Arma las lecturas del día, avisa si alguna cambió y alimenta el registro de predicciones |
+| **Vigilante** | Todos los días, 10:00 | Controla que la maquinaria diaria haya corrido; si algo quedó sin correr, lo avisa en la propia terminal |
+
+## Versiones históricas de series revisadas
+
+El INDEC y el BCRA **revisan sus series y no publican las versiones anteriores**. Para poder decir «qué se sabía cada día» (y probar un análisis sin mirar el futuro), el sistema guarda dos cosas:
+
+- **ALFRED**: las versiones históricas oficiales de 14 series de la Fed que se revisan (empleo, producción industrial, desempleo, PIB, condiciones financieras, actividad nacional...): para cada período, cada valor y desde qué día estuvo publicado.
+- **Versiones propias de las series argentinas** (EMAE, PIB, IPC, balanza, salarios, agregados monetarios, tipo de cambio real multilateral y fiscal): cada día se compara lo descargado contra lo guardado y se agrega una fila por cada período nuevo o revisado. La primera corrida es la línea de base: las revisiones se miden desde ahí, y se dice así.
+
+## Índice maestro y salud de los datos
+
+- Un **índice maestro** de todas las series (fuente, identificador, tema, unidad, frecuencia, primer y último dato, cantidad de observaciones y estado) que además marca cuándo una misma magnitud existe en más de una fuente (por ejemplo, la inflación en el BCRA, el INDEC y la Fed).
+- Un **reporte de salud** con los problemas ordenados por gravedad (sin archivo, vacía, pocas observaciones, desactualizada) y umbrales de frescura por frecuencia: una serie anual desactualizada a los 14 meses es normal; una diaria, no. Una serie atrasada se compara contra lo último que publica el origen: si no hay nada más nuevo, se marca como **fuente parada** y no como un fallo de la descarga.
+- Un **historial de corridas** (qué fuentes corrieron, cuáles fallaron, cuántas series y cuánto cambió respecto de la corrida anterior) y un comando de **verificación previa** que, sin bajar nada, valida que las series configuradas pertenezcan a su release, que las URLs de las planillas respondan y que el entorno tenga todas las dependencias.
+
+## Cómo se arma la ficha de un bono
+
+1. **Indexación** del universo de títulos públicos, obligaciones negociables y fideicomisos del MAE (incluidos los que su API no lista como vigentes).
+2. **Descarga** de los PDF legales de cada emisión (avisos de resultados, suplementos, resoluciones) y **lectura** en paralelo, con reconocimiento óptico de caracteres en las páginas escaneadas.
+3. **Fichado**: una ficha estructurada con el cronograma de pagos, la moneda, la indexación y la ley, armada **caso por caso con un protocolo escrito y asistencia de IA**. No se automatizó a propósito: un parser por expresiones regulares dejó un bono real con 26 cuotas trimestrales al 0 % en lugar de sus 42 cuotas mensuales.
+4. **Verificación**: un verificador revisa el esquema, la coherencia moneda-indexación, los campos recomendados (ISIN, monto emitido, garantía) y marca las fichas sin completar; otro contrasta la ficha con el mercado (por ejemplo, un precio que «se cae» de golpe en una fecha de pago donde la ficha no tiene amortización).
+5. **Inyección** del cronograma en los parámetros que lee el motor de pricing.
 
 ---
 [← Volver al inicio del repositorio](../README.md)

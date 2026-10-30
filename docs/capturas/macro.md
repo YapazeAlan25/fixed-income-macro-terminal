@@ -16,31 +16,31 @@ La economía real y financiera del país con datos oficiales: postura monetaria,
 
 <img src="../../assets/screenshots/macro_ciclo_de_actividad.webp" alt="Ciclo de actividad" width="100%">
 
-> Argentina no tiene un fechado oficial de recesiones y tiene pocos episodios. Una contracción se define acá como el EMAE desestacionalizado (promedio de 3 meses) a más de 2,5 % por debajo de su máximo de 12 meses: 9 inicios entre 2008 y 2023. Se mide cuánto anticipó cada variable el inicio de una contracción en los 6 meses siguientes. AUC 0,5 = azar, 1 = perfecto. q (BH) = p-valor por desplazamiento circular (conserva la persistencia de la serie) corregido por haber probado 14 medidas: el intervalo de confianza por bloques solo es optimista con 9 episodios, por eso la regla pide además q ≤ 0,10. Con la corrección por pruebas múltiples (q ≤ 0.10) se distinguen del azar: Reservas brutas: variación a 12 meses (cae = riesgo); Reservas brutas: variació
+> Argentina no tiene un fechado oficial de recesiones y tiene pocos episodios. Una contracción se define acá como el EMAE desestacionalizado (promedio de 3 meses) a más de 2,5 % por debajo de su máximo de 12 meses: 9 inicios entre 2008 y 2023. Se mide cuánto anticipó cada variable el inicio de una contracción en los 6 meses siguientes. AUC 0,5 = azar, 1 = perfecto. q (BH) = p-valor por desplazamiento circular (conserva la persistencia de la serie) corregido por haber probado 14 medidas: el intervalo de confianza por bloques solo es optimista con 9 episodios, por eso la regla pide además q ≤ 0,10.
 
 ## Corridas y dolarización
 
 <img src="../../assets/screenshots/macro_corridas_y_dolarizacion.webp" alt="Corridas y dolarización" width="100%">
 
-> Datos hasta 31/10/2026 (reservas y tipos de cambio). Los agregados monetarios (M1, M2, M3) se publican con demora: se usa el último dato disponible (hasta 3 meses atrás) y se marca la fecha real. Las franjas rojas son episodios fuertes y las amarillas, moderados. En 2011-2015 y 2019-2025 el oficial se movió poco mientras el blue, el CCL y el MEP absorbían la presión: la brecha llegó a 140 % en 2023. Hoy está lejos de esos niveles.
+> Datos hasta 27/10/2026 (reservas y tipos de cambio). Los agregados monetarios (M1, M2, M3) se publican con demora: se usa el último dato disponible (hasta 3 meses atrás) y se marca la fecha real. Las franjas rojas son episodios fuertes y las amarillas, moderados. En 2011-2015 y 2019-2025 el oficial se movió poco mientras el blue, el CCL y el MEP absorbían la presión: la brecha llegó a 140 % en 2023. Hoy está lejos de esos niveles.
 
 ## Cambiario
 
 <img src="../../assets/screenshots/macro_cambiario.webp" alt="Cambiario" width="100%">
 
-> 💡 Cada sección trae sus propios datos sólo cuando la elegís — no se recalculan todas juntas en cada actualización. 💡 Compara las 3 variables clave de la política económica en frecuencia MENSUAL: Tasa de interés de plazos fijos, Inflación y Ritmo de Devaluación (Crawling Peg) del Dólar Oficial. Si la Tasa de Interés supera a Inflación y Devaluación, el peso ofrece retorno real positivo (carry trade atractivo, incentiva quedarse en pesos); si Inflación o Devaluación superan a la Tasa, hay licuación real de los ahorros en pesos (in
+> 💡 Cada sección trae sus propios datos sólo cuando la elegís — no se recalculan todas juntas en cada actualización. 💡 Compara las 3 variables clave de la política económica en frecuencia MENSUAL: Tasa de interés de plazos fijos, Inflación y Ritmo de Devaluación (Crawling Peg) del Dólar Oficial.
 
 ## Reservas y liquidez
 
 <img src="../../assets/screenshots/macro_reservas_y_liquidez.webp" alt="Reservas y liquidez" width="100%">
 
-> Datos al 27/10/2026 (último dato publicado por el BCRA). Millones de USD. Reservas netas reconstruidas a partir de datos oficiales; ver «Cómo se computan» y las fuentes de cada partida. 🟢 Se actualizan solas con la descarga diaria del BCRA: niveles 1 y 2, compras del BCRA, factores y cobertura. 🟠 Dependen de partidas con fuente oficial (config/reservas_ajustes.csv: swaps, SEDESA, compras al FMI, repos, oro): niveles 3 y 4; se actualizan a mano cuando cambia alguna, y la pantalla avisa si aparece un desembolso nuevo o si pasaron más de 45 días sin verificarlas.
+> Datos al 27/10/2026 (último dato publicado por el BCRA). Millones de USD. Reservas netas reconstruidas a partir de datos oficiales; ver «Cómo se computan» y las fuentes de cada partida. 🟢 Se actualizan solas con la descarga diaria del BCRA: niveles 1 y 2, compras del BCRA, factores y cobertura.
 
 ## Fiscal
 
 <img src="../../assets/screenshots/macro_fiscal.webp" alt="Fiscal" width="100%">
 
-> Semáforos con umbrales orientativos (no son metas oficiales ni un modelo): cada uno depende solo de su valor y su umbral; no se suman en un puntaje. Cambiar los umbrales: INDICADORES en src/quant/tablero_fiscal.py. Fecha estimada = fin del mes siguiente al último dato + el rezago habitual de la fuente. Si una fuente figura atrasada, revisá la descarga (python main.py all) antes de suponer que el organismo no publicó.
+> Semáforos con umbrales orientativos (no son metas oficiales ni un modelo): cada uno depende solo de su valor y su umbral; no se suman en un puntaje. Fecha estimada = fin del mes siguiente al último dato + el rezago habitual de la fuente.
 
 ## Monetario
 
@@ -50,7 +50,7 @@ La economía real y financiera del país con datos oficiales: postura monetaria,
 
 <img src="../../assets/screenshots/macro_monetario__p2.webp" alt="Monetario (parte 2 de 2)" width="100%">
 
-> Con los otros agregados: Base monetaria: Contractiva por cantidad · M1: Neutral · M2: Contractiva por cantidad · M3: Neutral. Con umbrales ±40 %: Tasa real baja y dinero que se licúa / Neutral; la etiqueta no cambia en el 63 % de los 260 meses. 📖 Cómo leer. Cada línea es cuánto creció (o cayó) en términos reales —descontada la inflación— cada agregado en los últimos 12 meses; la línea blanca punteada es el crecimiento de la actividad. Si el dinero real crece más que la actividad hay más liquidez de la que la economía absorbe (expansivo); si crece menos o cae, hay menos (contractivo). M2 en pesos incluye billetes, cuentas corrientes y cajas de ahorro; M3 su
+> Con los otros agregados: Base monetaria: Contractiva por cantidad · M1: Neutral · M2: Contractiva por cantidad · M3: Neutral. Con umbrales ±40 %: Tasa real baja y dinero que se licúa / Neutral; la etiqueta no cambia en el 63 % de los 260 meses. 📖 Cómo leer. Cada línea es cuánto creció (o cayó) en términos reales —descontada la inflación— cada agregado en los últimos 12 meses; la línea blanca punteada es el crecimiento de la actividad. Si el dinero real crece más que la actividad hay más liquidez de la que la economía absorbe (expansivo); si crece menos o cae, hay menos (contractivo).
 
 ## Crédito y bancos
 
@@ -118,7 +118,7 @@ La economía real y financiera del país con datos oficiales: postura monetaria,
 
 <img src="../../assets/screenshots/macro_expectativas.webp" alt="Expectativas" width="100%">
 
-> 💡 Índice de Confianza del Consumidor (UTDT) — expectativas de gasto de los hogares. | 🕒 Última actualización: 2026-10-01 (hace -1 días) 💡 Índice de Confianza en el Gobierno (UTDT) — percepción de gestión, no de un partido en particular. | 🕒 Última actualización: 2026-10-01 (hace -1 días)
+> 💡 Índice de Confianza del Consumidor (UTDT) — expectativas de gasto de los hogares. | 🕒 Última actualización: 2026-10-01 (hace 0 días) 💡 Índice de Confianza en el Gobierno (UTDT) — percepción de gestión, no de un partido en particular. | 🕒 Última actualización: 2026-10-01 (hace 0 días)
 
 ## Mercados
 
@@ -130,4 +130,4 @@ La economía real y financiera del país con datos oficiales: postura monetaria,
 
 <img src="../../assets/screenshots/macro_correlaciones.webp" alt="Correlaciones" width="100%">
 
-> ¿Se mueven juntos las reservas, la base monetaria o M1/M2/M3 con el riesgo país y los rendimientos de los bonos? Se miden los cambios a un horizonte elegible (1 a 12 meses): el cambio de un mes es muy ruidoso y puede esconder una relación de fondo que aparece a 3-12 meses. Cada resultado dice cuántos meses tiene y si es significativo (|t| ≥ 2, con n efectivo cuando los cambios se solapan). Los agregados monetarios so 10 series · 08/1992 a 09/2026 · agregados monetarios hasta el último mes publicado · cambios a 6 meses.
+> ¿Se mueven juntos las reservas, la base monetaria o M1/M2/M3 con el riesgo país y los rendimientos de los bonos? Se miden los cambios a un horizonte elegible (1 a 12 meses): el cambio de un mes es muy ruidoso y puede esconder una relación de fondo que aparece a 3-12 meses. Cada resultado dice cuántos meses tiene y si es significativo (|t| ≥ 2, con n efectivo cuando los cambios se solapan). 10 series · 08/1992 a 09/2026 · agregados monetarios hasta el último mes publicado · cambios a 6 meses.

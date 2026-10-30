@@ -4,6 +4,7 @@
 
 | Si querés... | Entrá a |
 |---|---|
+| **Ver todo lo que ofrece el proyecto, en una página** (motor de descarga y terminal de análisis) | [Todo lo que ofrece el proyecto](capacidades.md) |
 | **Ver las pantallas**, sección por sección | [Capturas por sección](capturas/README.md) |
 | Ver las **herramientas con parámetros** (Armador de portafolios, Breakeven, ficha de bono, Excel y PDF) | [Herramientas clave](capturas/herramientas_clave.md) |
 | Entender **cómo se calcula** (pricing, comisiones, vistas Mercado / Compra / Venta, Armador) | [Motores y herramientas](motores.md) |

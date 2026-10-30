@@ -68,7 +68,7 @@ Las capturas de una corrida real (USD 10.000, volumen mínimo 100.000, tope 25 %
 ## Terminal de analista: valor relativo, TIR histórica y señales
 
 - **TIR histórica diaria reconstruida con los pricers reales**: cada precio pasado se valúa con la misma matemática del dashboard en vivo y solo con lo que se sabía ese día (CER publicado, REM vigente, TAMAR hasta el día anterior). Contrastada: con los precios de hoy reproduce 58 de 58 TIR del pricer vivo con diferencia de 0,00 pb. Incluye 101 instrumentos en pesos ya vencidos para evitar el **sesgo de supervivencia**.
-- **Curva de rendimiento elegida con evidencia**: logarítmica por defecto (Nelson-Siegel solo en Dollar Linked), con mínimo de 5 bonos y calidad de ajuste visible en cada panel; el backtest es reproducible (`tools/backtest_curvas.py`).
+- **Curva de rendimiento elegida con evidencia**: logarítmica por defecto (Nelson-Siegel solo en Dollar Linked), con mínimo de 5 bonos y calidad de ajuste visible en cada panel; el backtest es reproducible (script propio del proyecto).
 - **Valor relativo**: spreads de legislación con estudio de eventos sin mirar el futuro, vida media de reversión y edge neto de comisiones; caro/barato contra la curva soberana Nelson-Siegel (cada soberano se mide contra la curva sin él mismo).
 - **Forwards implícitas, roll-down y yield USD sintético** (paridad cubierta con futuros de dólar), siempre limitados a donde la curva llega.
 - **Carry trade como operación completa** con las cuatro patas de conversión y breakeven contra REM, ROFEX y banda cambiaria.

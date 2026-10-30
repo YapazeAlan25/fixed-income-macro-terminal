@@ -22,7 +22,7 @@ El contexto global que mueve al mercado: régimen de riesgo, reloj del ciclo de 
 
 <img src="../../assets/screenshots/liquidez_valuacion.webp" alt="Valuación" width="100%">
 
-> Cómo leerlo. Con un CAPE de 40.7 (cerca del máximo histórico) la relación pasada implica un retorno real muy bajo; es una extrapolación al borde de la muestra. Probada fuera de muestra (1,042 meses, unas 9 ventanas independientes) el modelo redujo el error en 9 % contra usar el promedio, pero el intervalo del R² incluye el cero: no se puede afirmar que sea mejor que el promedio. Sirve para calibrar expectativas de la Cuánto más rinde el mercado por ganancias que un bono del Tesoro indexado por inflación. Cerca de cero o negativa significa que el accionista casi no cobra un premio por el riesgo. Solo hay datos desde 2003, así que el percentil se mide contra 20 años y un ciclo de tasas muy particular; no se probó cuánto anticipa.
+> Cómo leerlo. Con un CAPE de 40.7 (cerca del máximo histórico) la relación pasada implica un retorno real muy bajo; es una extrapolación al borde de la muestra. Probada fuera de muestra (1,042 meses, unas 9 ventanas independientes) el modelo redujo el error en 9 % contra usar el promedio, pero el intervalo del R² incluye el cero: no se puede afirmar que sea mejor que el promedio. Cuánto más rinde el mercado por ganancias que un bono del Tesoro indexado por inflación. Cerca de cero o negativa significa que el accionista casi no cobra un premio por el riesgo. Solo hay datos desde 2003, así que el percentil se mide contra 20 años y un ciclo de tasas muy particular; no se probó cuánto anticipa.
 
 ## Burbujas y exceso
 
@@ -40,13 +40,13 @@ El contexto global que mueve al mercado: régimen de riesgo, reloj del ciclo de 
 
 <img src="../../assets/screenshots/liquidez_posicionado_o_no_merval_en_dolares.webp" alt="¿Posicionado o no? › Merval en dólares" width="100%">
 
-> Los intervalos (95 %, bootstrap de bloques de 63 ruedas sobre los retornos diarios) incluyen al cero casi siempre en el Sharpe: ninguna regla mejoró el retorno ajustado por riesgo de forma estadísticamente clara. La ganancia consistente está en la caída máxima: las reglas de tendencia, crédito y el consenso recortaron lo peor de los grandes mercados bajistas sin dejar de rendir parecido. «Exposición en el pico» es lo que la regla tenía puesto el día que el mercado hizo su máximo: ninguna regla avisó antes del pico; reducen la exposición a medida que la caída avanza. «Caída evitada» = parte de la pérdida de comprar y mantener que la regla no sufrió.
+> Las mismas reglas de exposición probadas sobre el Merval medido en dólares: valen las conclusiones y los límites de la pantalla anterior.
 
 ## Pronósticos
 
 <img src="../../assets/screenshots/liquidez_pronosticos.webp" alt="Pronósticos" width="100%">
 
-> Evidencia — A: probada fuera de muestra con ≥ 6 episodios; B: consistente con ≥ 6 episodios pero sin prueba fuera de muestra clara; C: descriptiva, muy pocos episodios. Ninguna llega a A hoy: con 8 recesiones, unos 20 episodios de caídas y menos de 15 ventanas de 10 años, la muestra no alcanza para más. El registro de predicciones (Inicio → Auditoría) acumula la evidencia real y recién empieza. Cómo leerlo. Una probabilidad solo vale contra su tasa base: decir «8 % de recesión» no informa si lo normal es 4 % o 14 %. Por eso cada tarjeta muestra lo normal al lado, el skill (cuánto mejor que no saber nada, medido fuera de muestra: 0 = igual que la tasa base, negativo = peor) y los episodios independientes que lo sostienen. Se pronostican riesgos y rangos, no fechas ni direcciones: ningún indicador de esta pan
+> Evidencia — A: probada fuera de muestra con ≥ 6 episodios; B: consistente con ≥ 6 episodios pero sin prueba fuera de muestra clara; C: descriptiva, muy pocos episodios. Ninguna llega a A hoy: con 8 recesiones, unos 20 episodios de caídas y menos de 15 ventanas de 10 años, la muestra no alcanza para más. El registro de predicciones (Inicio → Auditoría) acumula la evidencia real y recién empieza. Cómo leerlo. Una probabilidad solo vale contra su tasa base: decir «8 % de recesión» no informa si lo normal es 4 % o 14 %. Por eso cada tarjeta muestra lo normal al lado, el skill (cuánto mejor que no saber nada, medido fuera de muestra: 0 = igual que la tasa base, negativo = peor) y los episodios independientes que lo sostienen.
 
 ## Política de riesgo
 
@@ -74,13 +74,13 @@ El contexto global que mueve al mercado: régimen de riesgo, reloj del ciclo de 
 
 <img src="../../assets/screenshots/liquidez_liquidez_y_tasas__p2.webp" alt="Liquidez y Tasas (parte 2 de 2)" width="100%">
 
-> Promedio del percentil contra los 5 años previos de cuatro medidas de estrés: VIX, MOVE (bonos), VVIX (volatilidad del VIX) y CISS (estrés sistémico del BCE). 0 = el estrés más bajo de los 5 años, 100 = el más alto. Cómo leerlo. Las probabilidades salen de lo que ocurrió después de cada tramo (desde 2004); no son pronósticos. El GSSI ordena bien el riesgo de caída y de volatilidad (AUC 0.77, IC 95 % 0.66-0.86), pero no es independiente del Régimen de riesgo: es en la práctica su subconjunto de volatilidad y estrés (correlación de rangos 0.74; el compuesto completo da AUC 0.76, IC 0.69-0.82). El retorno medio posterior no ordena 
+> Promedio del percentil contra los 5 años previos de cuatro medidas de estrés: VIX, MOVE (bonos), VVIX (volatilidad del VIX) y CISS (estrés sistémico del BCE). 0 = el estrés más bajo de los 5 años, 100 = el más alto. Cómo leerlo. Las probabilidades salen de lo que ocurrió después de cada tramo (desde 2004); no son pronósticos. El GSSI ordena bien el riesgo de caída y de volatilidad (AUC 0.77, IC 95 % 0.66-0.86), pero no es independiente del Régimen de riesgo: es en la práctica su subconjunto de volatilidad y estrés (correlación de rangos 0.74; el compuesto completo da AUC 0.76, IC 0.69-0.82).
 
 ## Liquidez y Tasas › Reserva Federal & Liquidez US
 
 <img src="../../assets/screenshots/liquidez_liquidez_y_tasas_reserva_federal_liquidez_us.webp" alt="Liquidez y Tasas › Reserva Federal & Liquidez US" width="100%">
 
-> Promedio del percentil contra los 5 años previos de cuatro medidas de estrés: VIX, MOVE (bonos), VVIX (volatilidad del VIX) y CISS (estrés sistémico del BCE). 0 = el estrés más bajo de los 5 años, 100 = el más alto. Cómo leerlo. Las probabilidades salen de lo que ocurrió después de cada tramo (desde 2004); no son pronósticos. El GSSI ordena bien el riesgo de caída y de volatilidad (AUC 0.77, IC 95 % 0.66-0.86), pero no es independiente del Régimen de riesgo: es en la práctica su subconjunto de volatilidad y estrés (correlación de rangos 0.74; el compuesto completo da AUC 0.76, IC 0.69-0.82). El retorno medio posterior no ordena 
+> Balance de la Reserva Federal y liquidez neta de EE.UU. (balance de la Fed menos la cuenta del Tesoro menos los repos inversos).
 
 ## Liquidez y Tasas › Contexto Internacional (BIS / BCE)
 
@@ -92,43 +92,43 @@ El contexto global que mueve al mercado: régimen de riesgo, reloj del ciclo de 
 
 <img src="../../assets/screenshots/liquidez_mercados.webp" alt="Mercados" width="100%">
 
-> Historia completa disponible de cada activo (no solo el último año) — agrupados por mercado para que se puedan comparar de un vistazo. El texto en cursiva arriba de cada gráfico explica cómo leer el movimiento. Donde el dato existe en FRED, se prefiere esa fuente sobre yfinance. Los gráficos son velas SEMANALES (cierre de viernes) con SMA 20/50/200 y RSI 21 debajo; para diario/mensual/intradía y más indicadores usá l Todo el universo de mercados ordenado por variación de hoy — para escanear qué se movió sin recorrer los ~40 gráficos de abajo uno por uno. Clic en una columna del encabezado para reordenar por esa variación.
+> Historia completa disponible de cada activo (no solo el último año) — agrupados por mercado para que se puedan comparar de un vistazo. El texto en cursiva arriba de cada gráfico explica cómo leer el movimiento. Donde el dato existe en FRED, se prefiere esa fuente sobre yfinance. Todo el universo de mercados ordenado por variación de hoy — para escanear qué se movió sin recorrer los ~40 gráficos de abajo uno por uno. Clic en una columna del encabezado para reordenar por esa variación.
 
 ## Mercados › Sectores EE.UU.
 
 <img src="../../assets/screenshots/liquidez_mercados_sectores_ee_uu.webp" alt="Mercados › Sectores EE.UU." width="100%">
 
-> Historia completa disponible de cada activo (no solo el último año) — agrupados por mercado para que se puedan comparar de un vistazo. El texto en cursiva arriba de cada gráfico explica cómo leer el movimiento. Donde el dato existe en FRED, se prefiere esa fuente sobre yfinance. Los gráficos son velas SEMANALES (cierre de viernes) con SMA 20/50/200 y RSI 21 debajo; para diario/mensual/intradía y más indicadores usá l Todo el universo de mercados ordenado por variación de hoy — para escanear qué se movió sin recorrer los ~40 gráficos de abajo uno por uno. Clic en una columna del encabezado para reordenar por esa variación.
+> Los activos de este grupo con la misma lectura que la pantalla «Mercados»: velas semanales con medias móviles de 20, 50 y 200 ruedas y RSI de 21.
 
 ## Mercados › Índices Mundo
 
 <img src="../../assets/screenshots/liquidez_mercados_indices_mundo.webp" alt="Mercados › Índices Mundo" width="100%">
 
-> Historia completa disponible de cada activo (no solo el último año) — agrupados por mercado para que se puedan comparar de un vistazo. El texto en cursiva arriba de cada gráfico explica cómo leer el movimiento. Donde el dato existe en FRED, se prefiere esa fuente sobre yfinance. Los gráficos son velas SEMANALES (cierre de viernes) con SMA 20/50/200 y RSI 21 debajo; para diario/mensual/intradía y más indicadores usá l Todo el universo de mercados ordenado por variación de hoy — para escanear qué se movió sin recorrer los ~40 gráficos de abajo uno por uno. Clic en una columna del encabezado para reordenar por esa variación.
+> Los activos de este grupo con la misma lectura que la pantalla «Mercados»: velas semanales con medias móviles de 20, 50 y 200 ruedas y RSI de 21.
 
 ## Mercados › Renta Fija
 
 <img src="../../assets/screenshots/liquidez_mercados_renta_fija.webp" alt="Mercados › Renta Fija" width="100%">
 
-> Historia completa disponible de cada activo (no solo el último año) — agrupados por mercado para que se puedan comparar de un vistazo. El texto en cursiva arriba de cada gráfico explica cómo leer el movimiento. Donde el dato existe en FRED, se prefiere esa fuente sobre yfinance. Los gráficos son velas SEMANALES (cierre de viernes) con SMA 20/50/200 y RSI 21 debajo; para diario/mensual/intradía y más indicadores usá l Todo el universo de mercados ordenado por variación de hoy — para escanear qué se movió sin recorrer los ~40 gráficos de abajo uno por uno. Clic en una columna del encabezado para reordenar por esa variación.
+> Los activos de este grupo con la misma lectura que la pantalla «Mercados»: velas semanales con medias móviles de 20, 50 y 200 ruedas y RSI de 21.
 
 ## Mercados › Commodities
 
 <img src="../../assets/screenshots/liquidez_mercados_commodities.webp" alt="Mercados › Commodities" width="100%">
 
-> Historia completa disponible de cada activo (no solo el último año) — agrupados por mercado para que se puedan comparar de un vistazo. El texto en cursiva arriba de cada gráfico explica cómo leer el movimiento. Donde el dato existe en FRED, se prefiere esa fuente sobre yfinance. Los gráficos son velas SEMANALES (cierre de viernes) con SMA 20/50/200 y RSI 21 debajo; para diario/mensual/intradía y más indicadores usá l Todo el universo de mercados ordenado por variación de hoy — para escanear qué se movió sin recorrer los ~40 gráficos de abajo uno por uno. Clic en una columna del encabezado para reordenar por esa variación.
+> Los activos de este grupo con la misma lectura que la pantalla «Mercados»: velas semanales con medias móviles de 20, 50 y 200 ruedas y RSI de 21.
 
 ## Mercados › Energía
 
 <img src="../../assets/screenshots/liquidez_mercados_energia.webp" alt="Mercados › Energía" width="100%">
 
-> Historia completa disponible de cada activo (no solo el último año) — agrupados por mercado para que se puedan comparar de un vistazo. El texto en cursiva arriba de cada gráfico explica cómo leer el movimiento. Donde el dato existe en FRED, se prefiere esa fuente sobre yfinance. Los gráficos son velas SEMANALES (cierre de viernes) con SMA 20/50/200 y RSI 21 debajo; para diario/mensual/intradía y más indicadores usá l Todo el universo de mercados ordenado por variación de hoy — para escanear qué se movió sin recorrer los ~40 gráficos de abajo uno por uno. Clic en una columna del encabezado para reordenar por esa variación.
+> Los activos de este grupo con la misma lectura que la pantalla «Mercados»: velas semanales con medias móviles de 20, 50 y 200 ruedas y RSI de 21.
 
 ## Mercados › Forex
 
 <img src="../../assets/screenshots/liquidez_mercados_forex.webp" alt="Mercados › Forex" width="100%">
 
-> Historia completa disponible de cada activo (no solo el último año) — agrupados por mercado para que se puedan comparar de un vistazo. El texto en cursiva arriba de cada gráfico explica cómo leer el movimiento. Donde el dato existe en FRED, se prefiere esa fuente sobre yfinance. Los gráficos son velas SEMANALES (cierre de viernes) con SMA 20/50/200 y RSI 21 debajo; para diario/mensual/intradía y más indicadores usá l Todo el universo de mercados ordenado por variación de hoy — para escanear qué se movió sin recorrer los ~40 gráficos de abajo uno por uno. Clic en una columna del encabezado para reordenar por esa variación.
+> Los activos de este grupo con la misma lectura que la pantalla «Mercados»: velas semanales con medias móviles de 20, 50 y 200 ruedas y RSI de 21.
 
 ## Charting
 
@@ -146,7 +146,7 @@ El contexto global que mueve al mercado: régimen de riesgo, reloj del ciclo de 
 
 <img src="../../assets/screenshots/liquidez_charting_backtest_de_senales.webp" alt="Charting › Backtest de señales" width="100%">
 
-> Cada señal se calcula con datos hasta el cierre de la vela t; se entra en la apertura de t+1 y se sale en el cierre de t+h. Se descuenta la comisión por lado (entrada y salida). La vara de comparación es entrar en cualquier vela del mismo activo: en un activo que sube, casi cualquier compra «gana»; lo que importa es el exceso sobre esa base. Las señales «evitar» (bajistas) sirven si el rendimiento posterior es menor  La señal solo está invertida durante las ventanas de cada operación (el resto del tiempo está en efectivo, sin rendimiento), por eso no es comparable en nivel con comprar y mantener: mirá el exceso por operación de la tabla, no solo el capital final.
+> Cada señal se calcula con datos hasta el cierre de la vela t; se entra en la apertura de t+1 y se sale en el cierre de t+h. Se descuenta la comisión por lado (entrada y salida). La vara de comparación es entrar en cualquier vela del mismo activo: en un activo que sube, casi cualquier compra «gana»; lo que importa es el exceso sobre esa base. Las señales «evitar» La señal solo está invertida durante las ventanas de cada operación (el resto del tiempo está en efectivo, sin rendimiento), por eso no es comparable en nivel con comprar y mantener: mirá el exceso por operación de la tabla, no solo el capital final.
 
 ## Macro EE.UU.
 
