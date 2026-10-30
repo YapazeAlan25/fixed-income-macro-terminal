@@ -102,6 +102,7 @@ Más en [`docs/ingenieria.md`](docs/ingenieria.md).
 | [Hallazgos](docs/hallazgos.md) | Análisis con sus límites y resultados negativos |
 | [Ingeniería y calidad](docs/ingenieria.md) | Auditorías, errores encontrados y corregidos, stack técnico |
 | [Roadmap](docs/roadmap.md) | Lo que sigue |
+| [Versión anterior de esta vidriera (15/10/2026)](https://github.com/YapazeAlan25/fixed-income-macro-terminal/blob/1a3eb0d/README.md) | El README largo de antes, módulo por módulo y con sus imágenes, tal como estaba. Todo lo que mostraba el proyecto sigue ahí; esta portada lo reorganiza por secciones |
 
 ## Stack técnico (resumen)
 
