@@ -4,6 +4,8 @@ La economía real y financiera del país con datos oficiales: postura monetaria,
 
 **19 pantallas.** [Volver al índice](README.md) · [Inicio del repositorio](../../README.md)
 
+> ℹ️ **Sobre estas capturas:** muestran una herramienta de análisis con datos de mercado del día. Los tickers, rendimientos y señales que aparecen son resultados del cálculo para ilustrar su funcionamiento: **no son recomendaciones de inversión** ni ofertas de compra o venta.
+
 ## Salud económica
 
 <img src="../../assets/screenshots/macro_salud_economica.webp" alt="Salud económica" width="100%">

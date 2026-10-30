@@ -4,6 +4,8 @@ El contexto global que mueve al mercado: régimen de riesgo, reloj del ciclo de 
 
 **28 pantallas.** [Volver al índice](README.md) · [Inicio del repositorio](../../README.md)
 
+> ℹ️ **Sobre estas capturas:** muestran una herramienta de análisis con datos de mercado del día. Los tickers, rendimientos y señales que aparecen son resultados del cálculo para ilustrar su funcionamiento: **no son recomendaciones de inversión** ni ofertas de compra o venta.
+
 ## Régimen de riesgo
 
 <img src="../../assets/screenshots/liquidez_regimen_de_riesgo.webp" alt="Régimen de riesgo" width="100%">

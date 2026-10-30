@@ -4,6 +4,8 @@ Diario de operaciones, tenencias con TIR del dinero, riesgo y estrés, calificac
 
 **15 pantallas.** [Volver al índice](README.md) · [Inicio del repositorio](../../README.md)
 
+> ℹ️ **Sobre estas capturas:** muestran una herramienta de análisis con datos de mercado del día. Los tickers, rendimientos y señales que aparecen son resultados del cálculo para ilustrar su funcionamiento: **no son recomendaciones de inversión** ni ofertas de compra o venta.
+
 ## Diario de operaciones
 
 <img src="../../assets/screenshots/cartera_diario_de_operaciones.webp" alt="Diario de operaciones" width="100%">

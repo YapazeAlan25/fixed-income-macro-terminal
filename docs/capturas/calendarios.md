@@ -4,6 +4,8 @@ Cuándo salen los informes del INDEC y del BCRA, y cuándo cobra cada bono.
 
 **3 pantallas.** [Volver al índice](README.md) · [Inicio del repositorio](../../README.md)
 
+> ℹ️ **Sobre estas capturas:** muestran una herramienta de análisis con datos de mercado del día. Los tickers, rendimientos y señales que aparecen son resultados del cálculo para ilustrar su funcionamiento: **no son recomendaciones de inversión** ni ofertas de compra o venta.
+
 ## Informes del INDEC
 
 <img src="../../assets/screenshots/calendarios_informes_del_indec.webp" alt="Informes del INDEC" width="100%">

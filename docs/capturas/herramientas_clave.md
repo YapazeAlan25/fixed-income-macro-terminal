@@ -1,5 +1,7 @@
 # Herramientas clave, paso a paso
 
+> ℹ️ **Sobre estas capturas:** muestran una herramienta de análisis con datos de mercado del día. Los tickers, rendimientos y señales que aparecen son resultados del cálculo para ilustrar su funcionamiento: **no son recomendaciones de inversión** ni ofertas de compra o venta.
+
 Pantallas con parámetros elegidos (capturas del 14-15/10/2026 con el modelo vigente): el recorrido completo del Armador de portafolios con optimización de Markowitz, la matriz de sensibilidad (TIR breakeven), la ficha de bono y las comisiones.
 
 ## Comisiones del broker y vistas Mercado / Compra / Venta

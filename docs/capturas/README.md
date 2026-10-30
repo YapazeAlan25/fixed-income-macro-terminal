@@ -1,5 +1,7 @@
 # Capturas por sección
 
+> ℹ️ **Sobre estas capturas:** muestran una herramienta de análisis con datos de mercado del día. Los tickers, rendimientos y señales que aparecen son resultados del cálculo para ilustrar su funcionamiento: **no son recomendaciones de inversión** ni ofertas de compra o venta.
+
 Capturas reales del terminal (30/10/2026), una por pantalla. Cada una trae, debajo, la explicación que muestra la propia herramienta. Las pantallas que dependen de parámetros (Armador, Breakeven, fichas, Excel y PDF) tienen su propia página: [herramientas clave](herramientas_clave.md).
 
 - [🏠 Inicio](inicio.md) — 1 pantallas. El brief de la mañana: banderas de riesgo, cuadro cambiario con brecha, contexto overnight y el reloj de mercados del mundo.
