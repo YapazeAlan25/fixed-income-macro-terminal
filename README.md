@@ -17,6 +17,23 @@
 **Autor:** Alan Yapaze — analista independiente · [LinkedIn](https://www.linkedin.com/in/alan-yapaze/)
 **Vigencia:** 2023 – presente (iniciado como modelado manual en Excel, migrado en 2026 a una arquitectura Python automatizada)
 
+## 🧭 Por dónde entrar
+
+> Esta página es la portada. **Todo el detalle está en [`docs/`](docs/README.md)**: las 147 pantallas con su captura y la explicación de cada una, cómo calcula cada motor, los hallazgos con sus límites y la ingeniería detrás.
+
+| Si querés... | Entrá a |
+|---|---|
+| **Ver las pantallas**, sección por sección | [Capturas por sección](docs/capturas/README.md) |
+| Ver las **herramientas con parámetros** (Armador de portafolios, Breakeven, ficha de bono, Excel y PDF) | [Herramientas clave](docs/capturas/herramientas_clave.md) |
+| Entender **cómo se calcula** (pricing, comisiones, vistas Mercado / Compra / Venta, Armador) | [Motores y herramientas](docs/motores.md) |
+| Ver **una ficha Excel** por instrumento | [Exportación a Excel y PDF](docs/excel.md) |
+| Saber **de dónde salen los datos** y cómo se actualizan | [Datos y pipeline](docs/datos_y_pipeline.md) |
+| Leer **los análisis y sus límites**, incluidos los resultados negativos | [Hallazgos](docs/hallazgos.md) |
+| Ver cómo se **controla la calidad** (tests, auditorías, errores corregidos) | [Ingeniería y calidad](docs/ingenieria.md) |
+| Ver **qué se sumó** en octubre de 2026 y **qué sigue** | [Novedades](docs/novedades.md) · [Roadmap](docs/roadmap.md) |
+| Ver el **README largo anterior**, módulo por módulo y con sus imágenes | [Versión anterior (15/10/2026)](https://github.com/YapazeAlan25/fixed-income-macro-terminal/blob/1a3eb0d/README.md) |
+
+
 <img src="assets/architecture.svg" alt="Arquitectura: fuentes de datos → motor de ingesta → warehouse DuckDB/Parquet → motores de pricing y capa de señales → dashboard Streamlit → entregables, con operación y calidad" width="100%" />
 
 ## Un vistazo
@@ -102,7 +119,6 @@ Más en [`docs/ingenieria.md`](docs/ingenieria.md).
 | [Hallazgos](docs/hallazgos.md) | Análisis con sus límites y resultados negativos |
 | [Ingeniería y calidad](docs/ingenieria.md) | Auditorías, errores encontrados y corregidos, stack técnico |
 | [Roadmap](docs/roadmap.md) | Lo que sigue |
-| [Versión anterior de esta vidriera (15/10/2026)](https://github.com/YapazeAlan25/fixed-income-macro-terminal/blob/1a3eb0d/README.md) | El README largo de antes, módulo por módulo y con sus imágenes, tal como estaba. Todo lo que mostraba el proyecto sigue ahí; esta portada lo reorganiza por secciones |
 
 ## Stack técnico (resumen)
 
